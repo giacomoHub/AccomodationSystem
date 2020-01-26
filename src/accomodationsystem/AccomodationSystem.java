@@ -5,6 +5,7 @@
  */
 package accomodationsystem;
 
+import java.util.ArrayList;
 import javafx.application.Application;
 import javafx.fxml.FXMLLoader;
 import javafx.scene.Parent;
@@ -32,6 +33,12 @@ public class AccomodationSystem extends Application {
      */
     public static void main(String[] args) {
         launch(args);
+        
+        //initialising system
+        ArrayList<Hall> halls;
+
+	Hall[] hall;
+
     }
     
 }

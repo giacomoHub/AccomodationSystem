@@ -9,35 +9,34 @@ import java.io.IOException;
 import java.net.URL;
 import java.util.ResourceBundle;
 import javafx.event.ActionEvent;
-import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
 import javafx.fxml.Initializable;
 import javafx.scene.Node;
 import javafx.scene.Parent;
 import javafx.scene.Scene;
-import javafx.scene.control.Label;
 import javafx.stage.Stage;
 
 /**
+ * FXML Controller class
  *
  * @author jitojar
  */
-public class FXMLDocumentController implements Initializable {
+public class ManagerViewController implements Initializable {
     
-    @FXML
-    private Label label;
-    
-    @FXML
-    private void handleButtonAction(ActionEvent event) {
-        System.out.println("You clicked me!");
-        label.setText("Hello World!");
-    }
+
+    /**
+     * Initializes the controller class.
+     */
+    @Override
+    public void initialize(URL url, ResourceBundle rb) {
+        // TODO
+    }    
     
     /**
      * Change view
      */
     public void changeScene(ActionEvent event) throws IOException{
-        Parent tableViewParent = FXMLLoader.load(getClass().getResource("ManagerView.fxml"));
+        Parent tableViewParent = FXMLLoader.load(getClass().getResource("FXMLDocument.fxml"));
         Scene otherScene = new Scene(tableViewParent);
                 
         //Get the stage information
@@ -46,9 +45,6 @@ public class FXMLDocumentController implements Initializable {
         window.show();
     }
     
-    @Override
-    public void initialize(URL url, ResourceBundle rb) {
-        // TODO
-    }    
+    
     
 }

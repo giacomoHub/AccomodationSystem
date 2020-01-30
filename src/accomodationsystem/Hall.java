@@ -2,32 +2,30 @@ package accomodationsystem;
 import java.util.ArrayList;
 public class Hall {
 
+        /* ATTRIBUTES  */
 	private String name;
-
 	private Address address;
-
 	private Telephone telephoneNumber;
-
 	private ArrayList<Room> rooms;
-
-	private Room[] room;
-
 	private Telephone telephone;
-
+        
+        /* CONSTRUCTOR */
 	public void Hall(String name, Address address, Telephone telephone) {
-
+            this.name = name;
+            this.address = address;
+            this.telephoneNumber = telephone;
 	}
 
 	public ArrayList<Room> getRooms() {
 		return null;
 	}
 
-	public int getName() {
-		return 0;
+	public String getName() {
+		return name;
 	}
 
 	public int getNumberOfRooms() {
-		return 0;
+		return rooms.size();
 	}
 
 	public Address getAddress() {

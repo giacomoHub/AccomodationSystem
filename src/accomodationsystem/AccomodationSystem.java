@@ -37,8 +37,9 @@ public class AccomodationSystem extends Application {
         
         //initialising system
         ArrayList<Hall> halls;
-
-	Hall[] hall;
+        Hall[] hall;
+        
+        //generating false data
 
     }
     

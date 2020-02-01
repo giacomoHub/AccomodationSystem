@@ -29,11 +29,11 @@ public class Hall {
 	}
 
 	public Address getAddress() {
-		return null;
+		return address;
 	}
 
 	public Telephone getTelephone() {
-		return null;
+		return telephone; // remeber to look at this
 	}
 
 	public ArrayList<Room> getAvailableRooms() {

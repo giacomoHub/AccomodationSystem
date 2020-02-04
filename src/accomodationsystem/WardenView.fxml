@@ -1,0 +1,50 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.scene.image.*?>
+<?import javafx.scene.text.*?>
+<?import java.lang.*?>
+<?import java.util.*?>
+<?import javafx.scene.*?>
+<?import javafx.scene.control.*?>
+<?import javafx.scene.layout.*?>
+
+<AnchorPane id="AnchorPane" prefHeight="400.0" prefWidth="620.0" xmlns="http://javafx.com/javafx/8" xmlns:fx="http://javafx.com/fxml/1" fx:controller="accomodationsystem.WardenViewController">
+   <children>
+      <ScrollPane layoutX="14.0" layoutY="17.0" prefHeight="371.0" prefWidth="456.0">
+         <content>
+            <TableView prefHeight="370.0" prefWidth="454.0">
+              <columns>
+                <TableColumn prefWidth="75.0" text="Hall Name" />
+                <TableColumn prefWidth="75.0" text="Hall Number" />
+                  <TableColumn prefWidth="75.0" text="Room" />
+                  <TableColumn prefWidth="110.0" text="Room Status" />
+                  <TableColumn prefWidth="104.0" text="Cleanliness" />
+              </columns>
+            </TableView>
+         </content>
+      </ScrollPane>
+      <MenuButton layoutX="484.0" layoutY="167.0" mnemonicParsing="false" text="Change Status">
+        <items>
+          <MenuItem mnemonicParsing="false" text="Clean" />
+          <MenuItem mnemonicParsing="false" text="Dirty" />
+            <MenuItem mnemonicParsing="false" text="Offline" />
+        </items>
+      </MenuButton>
+      <Label layoutX="498.0" layoutY="63.0" prefHeight="48.0" prefWidth="90.0" text="ROOM">
+         <font>
+            <Font size="30.0" />
+         </font>
+      </Label>
+      <Label layoutX="488.0" layoutY="117.0" text="CURRENT STATUS" />
+      <Button layoutX="509.0" layoutY="339.0" mnemonicParsing="false" prefHeight="35.0" prefWidth="67.0" text="Button" />
+      <Button layoutX="538.0" layoutY="17.0" mnemonicParsing="false" onAction="#changeScene" prefHeight="27.0" prefWidth="76.0">
+         <graphic>
+            <ImageView fitHeight="11.0" fitWidth="63.0" pickOnBounds="true" preserveRatio="true">
+               <image>
+                  <Image url="@images/Wallcourt.jpg" />
+               </image>
+            </ImageView>
+         </graphic>
+      </Button>
+   </children>
+</AnchorPane>

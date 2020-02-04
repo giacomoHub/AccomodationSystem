@@ -53,7 +53,7 @@
                   <DropShadow blurType="GAUSSIAN" color="#ffffff80" height="70.0" radius="34.5" width="70.0" />
                </effect>
             </Button>
-              <Button fx:id="button" layoutX="31.0" layoutY="79.0" onAction="#handleButtonAction" prefHeight="56.0" prefWidth="118.0" style="-fx-background-color: #015354;" text="Warden" textFill="WHITE">
+              <Button fx:id="button" layoutX="31.0" layoutY="79.0" onAction="#changeSceneWarden" prefHeight="56.0" prefWidth="118.0" style="-fx-background-color: #015354;" text="Warden" textFill="WHITE">
                <font>
                   <Font size="18.0" />
                </font>

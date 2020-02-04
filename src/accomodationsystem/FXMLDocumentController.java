@@ -46,6 +46,15 @@ public class FXMLDocumentController implements Initializable {
         window.show();
     }
     
+    public void changeSceneWarden(ActionEvent event) throws IOException{
+        Parent tableViewParent = FXMLLoader.load(getClass().getResource("WardenView.fxml"));
+        Scene otherScene = new Scene(tableViewParent);
+                
+        //Get the stage information
+        Stage window = (Stage)((Node)event.getSource()).getScene().getWindow();
+        window.setScene(otherScene);
+        window.show();
+    }
     @Override
     public void initialize(URL url, ResourceBundle rb) {
         // TODO

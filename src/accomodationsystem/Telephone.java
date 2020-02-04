@@ -2,12 +2,10 @@ package accomodationsystem;
 public class Telephone {
 
 	private String countryCode;
-
 	private String areaCode;
-
 	private String telephoneNumber;
 
-	public void Telephone(int countryCode, int areaCode, int telephoneNumber) {
+	public Telephone(int countryCode, int areaCode, int telephoneNumber) {
 
 	}
 

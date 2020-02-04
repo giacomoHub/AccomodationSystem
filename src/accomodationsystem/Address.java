@@ -2,20 +2,15 @@ package accomodationsystem;
 public class Address {
 
 	private String streetName;
-
 	private String buildingName;
-
 	private int houseNumber;
-
 	private String postcode;
-
 	private String city;
-
 	private String county;
-
 	private String country;
-
-	public void Address(String streetName, String buildingName, int houseNumber, String postcode, String city, String county, String country) {
+        
+        
+	public Address(String streetName, String buildingName, int houseNumber, String postcode, String city, String county, String country) {
 
 	}
 

@@ -5,19 +5,22 @@ public class Hall {
         /* ATTRIBUTES  */
 	private String name;
 	private Address address;
-	private Telephone telephoneNumber;
-	private ArrayList<Room> rooms;
 	private Telephone telephone;
+	private ArrayList<Room> rooms;
         
         /* CONSTRUCTOR */
-	public void Hall(String name, Address address, Telephone telephone) {
+	public Hall(String name, Address address, Telephone telephone, Room room) {
             this.name = name;
             this.address = address;
-            this.telephoneNumber = telephone;
+            this.telephone = telephone;
+            rooms.add(room);
 	}
 
+        public void addRoom(Room room){
+            rooms.add(room);
+        }
 	public ArrayList<Room> getRooms() {
-		return null;
+		return rooms;
 	}
 
 	public String getName() {

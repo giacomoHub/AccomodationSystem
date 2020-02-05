@@ -10,6 +10,7 @@ public class Hall {
         
         /* CONSTRUCTOR */
 	public Hall(String name, Address address, Telephone telephone, Room room) {
+            rooms = new ArrayList<Room>();
             this.name = name;
             this.address = address;
             this.telephone = telephone;

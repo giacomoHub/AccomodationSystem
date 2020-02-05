@@ -11,7 +11,13 @@ public class Address {
         
         
 	public Address(String streetName, String buildingName, int houseNumber, String postcode, String city, String county, String country) {
-
+            this.streetName = streetName;
+            this.buildingName = buildingName;
+            this.houseNumber = houseNumber;
+            this.postcode = postcode;
+            this.city = city;
+            this.county = county;
+            this.country = country;
 	}
 
 	public void setStreeName(String streetName) {

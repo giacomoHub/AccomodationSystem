@@ -1,5 +1,6 @@
 <?xml version="1.0" encoding="UTF-8"?>
 
+<?import javafx.scene.image.*?>
 <?import javafx.geometry.*?>
 <?import javafx.scene.effect.*?>
 <?import javafx.scene.text.*?>
@@ -13,10 +14,17 @@
    <children>
       <SplitPane dividerPositions="0.4" layoutX="-7.0" layoutY="-3.0" orientation="VERTICAL" prefHeight="465.0" prefWidth="672.0">
         <items>
-          <AnchorPane minHeight="0.0" minWidth="0.0" prefHeight="242.0" prefWidth="654.0">
+          <AnchorPane minHeight="0.0" minWidth="0.0" prefHeight="242.0" prefWidth="654.0" style="-fx-background-color: #015354;">
                <children>
-                  <Button layoutX="598.0" layoutY="4.0" mnemonicParsing="false" onAction="#changeScene" text="Profile" />
-                  <Label layoutX="21.0" layoutY="1.0" prefHeight="33.0" prefWidth="192.0" text="Lease information:">
+                  <Button layoutX="593.0" layoutY="1.0" mnemonicParsing="false" onAction="#changeScene" prefHeight="30.0" prefWidth="63.0" style="-fx-background-color: #015354;" textFill="WHITE">
+                     <graphic>
+                        <ImageView fitHeight="25.0" fitWidth="51.0" pickOnBounds="true" preserveRatio="true">
+                           <image>
+                              <Image url="@images/backArrow.jpg" />
+                           </image>
+                        </ImageView>
+                     </graphic></Button>
+                  <Label layoutX="21.0" layoutY="1.0" prefHeight="33.0" prefWidth="192.0" style="-fx-background-color: #015354;" text="Lease information:" textFill="WHITE">
                      <font>
                         <Font name="Arial Bold" size="20.0" />
                      </font>
@@ -25,7 +33,7 @@
                     <items>
                       <AnchorPane minHeight="0.0" minWidth="0.0" prefHeight="147.0" prefWidth="233.0">
                            <children>
-                              <GridPane prefHeight="147.0" prefWidth="219.0" AnchorPane.bottomAnchor="5.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0">
+                              <GridPane prefHeight="147.0" prefWidth="219.0" style="-fx-background-color: white;" AnchorPane.bottomAnchor="5.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0">
                                 <columnConstraints>
                                   <ColumnConstraints hgrow="SOMETIMES" maxWidth="138.90067291259766" minWidth="10.0" prefWidth="127.0" />
                                   <ColumnConstraints hgrow="SOMETIMES" maxWidth="141.8039779663086" minWidth="10.0" prefWidth="86.0" />
@@ -36,7 +44,7 @@
                                   <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
                                 </rowConstraints>
                                  <children>
-                                    <Label text="Hall name:">
+                                    <Label text="Hall name:" textFill="#015354">
                                        <font>
                                           <Font name="Arial" size="13.0" />
                                        </font>
@@ -44,7 +52,7 @@
                                           <Insets left="25.0" />
                                        </GridPane.margin>
                                     </Label>
-                                    <Label text="Room number:" GridPane.rowIndex="1">
+                                    <Label text="Room number:" textFill="#015354" GridPane.rowIndex="1">
                                        <font>
                                           <Font name="Arial" size="13.0" />
                                        </font>
@@ -52,7 +60,7 @@
                                           <Insets left="25.0" />
                                        </GridPane.margin>
                                     </Label>
-                                    <Label text="Hall number:" GridPane.rowIndex="2">
+                                    <Label text="Hall number:" textFill="#015354" GridPane.rowIndex="2">
                                        <font>
                                           <Font name="Arial" size="13.0" />
                                        </font>
@@ -60,17 +68,17 @@
                                           <Insets left="25.0" />
                                        </GridPane.margin>
                                     </Label>
-                                    <Label text="Nothing" GridPane.columnIndex="1">
+                                    <Label text="Nothing" textFill="#015354" GridPane.columnIndex="1">
                                        <font>
                                           <Font name="Arial Bold" size="13.0" />
                                        </font>
                                     </Label>
-                                    <Label text="Nothing" GridPane.columnIndex="1" GridPane.rowIndex="1">
+                                    <Label text="Nothing" textFill="#015354" GridPane.columnIndex="1" GridPane.rowIndex="1">
                                        <font>
                                           <Font name="Arial Bold" size="13.0" />
                                        </font>
                                     </Label>
-                                    <Label text="Nothing" GridPane.columnIndex="1" GridPane.rowIndex="2">
+                                    <Label text="Nothing" textFill="#015354" GridPane.columnIndex="1" GridPane.rowIndex="2">
                                        <font>
                                           <Font name="Arial Bold" size="13.0" />
                                        </font>
@@ -79,11 +87,11 @@
                               </GridPane>
                            </children>
                         </AnchorPane>
-                      <AnchorPane minHeight="0.0" minWidth="0.0" prefHeight="160.0" prefWidth="100.0">
+                      <AnchorPane minHeight="0.0" minWidth="0.0" prefHeight="160.0" prefWidth="100.0" style="-fx-background-color: white;">
                            <children>
-                              <GridPane prefHeight="139.0" prefWidth="280.0" AnchorPane.bottomAnchor="5.0">
+                              <GridPane prefHeight="139.0" prefWidth="280.0" style="-fx-background-color: white;" AnchorPane.bottomAnchor="5.0">
                                  <children>
-                                    <Label text="Lease number">
+                                    <Label text="Lease number" textFill="#015354">
                                        <font>
                                           <Font name="Arial" size="13.0" />
                                        </font>
@@ -91,7 +99,7 @@
                                           <Insets left="25.0" />
                                        </GridPane.margin>
                                     </Label>
-                                    <Label text="Student name:" GridPane.rowIndex="1">
+                                    <Label text="Student name:" textFill="#015354" GridPane.rowIndex="1">
                                        <font>
                                           <Font name="Arial" size="13.0" />
                                        </font>
@@ -99,7 +107,7 @@
                                           <Insets left="25.0" />
                                        </GridPane.margin>
                                     </Label>
-                                    <Label text="Occupancy" GridPane.rowIndex="2">
+                                    <Label text="Occupancy" textFill="#015354" GridPane.rowIndex="2">
                                        <font>
                                           <Font name="Arial" size="13.0" />
                                        </font>
@@ -107,9 +115,9 @@
                                           <Insets left="25.0" />
                                        </GridPane.margin>
                                     </Label>
-                                    <TextField prefHeight="27.0" prefWidth="163.0" GridPane.columnIndex="1" />
-                                    <TextField GridPane.columnIndex="1" GridPane.rowIndex="1" />
-                                    <ChoiceBox prefWidth="150.0" GridPane.columnIndex="1" GridPane.rowIndex="2" />
+                                    <TextField prefHeight="27.0" prefWidth="163.0" style="-fx-background-color: #0BC1C2; -fx-text-fill: white;" GridPane.columnIndex="1" />
+                                    <TextField style="-fx-background-color: #0BC1C2; -fx-text-fill: white;" GridPane.columnIndex="1" GridPane.rowIndex="1" />
+                                    <ChoiceBox prefWidth="150.0" style="-fx-background-color: #0BC1C2; -fx-text-fill: white;" GridPane.columnIndex="1" GridPane.rowIndex="2" />
                                  </children>
                                  <columnConstraints>
                                     <ColumnConstraints hgrow="SOMETIMES" maxWidth="138.90067291259766" minWidth="10.0" prefWidth="124.1983642578125" />
@@ -121,17 +129,23 @@
                                     <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
                                  </rowConstraints>
                               </GridPane>
-                              <VBox layoutX="299.0" prefHeight="142.0" prefWidth="141.0" spacing="30.0">
+                              <VBox layoutX="299.0" prefHeight="142.0" prefWidth="141.0" spacing="30.0" style="-fx-background-color: white;">
                                  <children>
-                                    <Button mnemonicParsing="false" prefHeight="43.0" prefWidth="86.0" text="Confirm">
+                                    <Button mnemonicParsing="false" prefHeight="43.0" prefWidth="86.0" style="-fx-background-color: green;" text="Confirm" textFill="WHITE">
                                        <VBox.margin>
                                           <Insets left="30.0" top="15.0" />
                                        </VBox.margin>
+                                       <font>
+                                          <Font size="14.0" />
+                                       </font>
                                     </Button>
-                                    <Button layoutX="40.0" layoutY="20.0" mnemonicParsing="false" prefHeight="43.0" prefWidth="86.0" text="Delete">
+                                    <Button layoutX="40.0" layoutY="20.0" mnemonicParsing="false" prefHeight="43.0" prefWidth="86.0" style="-fx-background-color: red;" text="Delete" textFill="WHITE">
                                        <VBox.margin>
                                           <Insets left="30.0" />
                                        </VBox.margin>
+                                       <font>
+                                          <Font size="14.0" />
+                                       </font>
                                     </Button>
                                  </children>
                               </VBox>
@@ -142,7 +156,7 @@
             </AnchorPane>
           <AnchorPane minHeight="0.0" minWidth="0.0" prefHeight="200.0" prefWidth="670.0">
                <children>
-                  <TableView layoutY="-3.0" prefHeight="298.0" prefWidth="670.0">
+                  <TableView layoutY="-3.0" prefHeight="280.0" prefWidth="670.0" style="-fx-selection-bar: #015354; -fx-text-fill: #015354;">
                     <columns>
                       <TableColumn prefWidth="75.0" text="HALL" />
                       <TableColumn prefWidth="62.77344512939453" text="HALL#" />

@@ -18,6 +18,8 @@ import javafx.stage.Stage;
  */
 public class AccomodationSystem extends Application {
     
+    static ArrayList<Hall> halls;
+    
     @Override
     public void start(Stage stage) throws Exception {
         Parent root = FXMLLoader.load(getClass().getResource("FXMLDocument.fxml"));
@@ -28,6 +30,34 @@ public class AccomodationSystem extends Application {
         stage.setScene(scene);
         stage.show();
         stage.setResizable(false);
+        
+        //make new fake data
+        /* STUDENTS */
+        Student s1 = new Student(1111, "juan", "Giacommo");
+        Student s2 = new Student(1112, "Giacomo", "Pellizzari");
+        Student s3 = new Student(1113, "Mohammed", "Solair");
+        
+        /* ROOMS address and lease  */
+        Room r1 = new Room(1, true, 300, 1, new Lease(s1, 1, 1));
+        Room r2 = new Room(2, true, 300, 1, new Lease(s2, 1, 1));
+        Room r3 = new Room(3, true, 300, 1, new Lease(s3, 1, 1));
+        
+        
+        //initialising system
+        // HALL TELEPHONE
+        Telephone tel1 = new Telephone(+44, 0132, 65445);
+        
+        halls = new ArrayList<Hall>();
+        halls.add(new Hall("juantoc", new Address("Frenchay UWE", "Q-Block" ,1, "BSX 111", "Brisol", "Somerset", "England"), tel1, r1));
+        halls.get(0).addRoom(r2);
+        halls.get(0).addRoom(r3);
+        
+        //test print the fake data
+        System.out.println("Accomodation System");
+        for (int i = 0; i < 3; i++) {
+            System.out.println("Student1:" + halls.get(0).getRooms().get(i).getLease().getStudent());
+        }
+        
     }
 
     /**
@@ -35,7 +65,7 @@ public class AccomodationSystem extends Application {
      */
     public static void main(String[] args) {
         launch(args);
-        
+        System.out.println("hello there");
     }
     
 }

@@ -4,7 +4,7 @@ public class Hall {
 
         /* ATTRIBUTES  */
 	private String name;
-	private Address address;
+	private static Address address;
 	private Telephone telephone;
 	private ArrayList<Room> rooms;
         
@@ -43,5 +43,12 @@ public class Hall {
 	public ArrayList<Room> getAvailableRooms() {
 		return null;
 	}
+
+    @Override
+    public String toString() {
+        return name + " " + this.address + " " + this.telephone + " "+ this.rooms;
+    }
+        
+        
 
 }

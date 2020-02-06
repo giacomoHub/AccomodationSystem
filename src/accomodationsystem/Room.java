@@ -57,4 +57,10 @@ public class Room {
 		return roomNumber;
 	}
 
+    @Override
+    public String toString() {
+        return getRoomNumber() + " " + getMonthlyRentRate() + " " + getRoomCleanliness() + " " + getLease();
+    }
+        
+        
 }

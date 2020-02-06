@@ -21,4 +21,10 @@ public class Telephone {
 		return null;
 	}
 
+    @Override
+    public String toString() {
+        return getCountryCode() + " " + getAreaCode() + " " + getTelephoneNumber();
+    }
+        
+        
 }

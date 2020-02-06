@@ -40,7 +40,7 @@ public class ManagerViewController implements Initializable {
     public void initialize(URL url, ResourceBundle rb) {
         // TODO
         
-        //populate the tablex
+        //populate the table
         AccomodationSystem.halls.get(0);
         
         //table.setItems(AccomodationSystem.data.getHalls());

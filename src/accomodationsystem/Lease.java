@@ -30,4 +30,10 @@ public class Lease {
 		return student;
 	}
 
+    @Override
+    public String toString() {
+        return getStudent() + " " + getLeaseNumber() + " " + getDuration();
+    }
+        
+        
 }

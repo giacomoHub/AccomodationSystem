@@ -31,11 +31,16 @@ public class Student {
         this.lastName = lastName;
     }
 
+    //@Override
+    //public String toString() {
+    //    return "\n------------------------- STUDENT START -----------------------------------" +
+    //            "\nStudent No: " + getStudentNumber() + "\nFirst Name: " + getFirstName() + "\nLast Name: " + getLastName() +
+    //            "\n------------------------- STUDENT FINISH --------------------------------\n";
+    //}
+
     @Override
     public String toString() {
-        return "\n------------------------- STUDENT START -----------------------------------" +
-                "\nStudent No: " + getStudentNumber() + "\nFirst Name: " + getFirstName() + "\nLast Name: " + getLastName() +
-                "\n------------------------- STUDENT FINISH --------------------------------\n";
+        return "Student{" + "studentNumber=" + studentNumber + ", firstName=" + firstName + ", lastName=" + lastName + '}';
     }
     
     

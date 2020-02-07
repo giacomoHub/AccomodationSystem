@@ -5,8 +5,10 @@ public class Telephone {
 	private String areaCode;
 	private String telephoneNumber;
 
-	public Telephone(int countryCode, int areaCode, int telephoneNumber) {
-
+	public Telephone(String countryCode, String areaCode, String telephoneNumber) {
+            this.countryCode = countryCode; 
+            this.areaCode = areaCode;
+            this.telephoneNumber = telephoneNumber;
 	}
 
 	public String getCountryCode() {

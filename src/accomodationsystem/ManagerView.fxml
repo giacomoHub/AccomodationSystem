@@ -115,9 +115,9 @@
                                           <Insets left="25.0" />
                                        </GridPane.margin>
                                     </Label>
-                                    <TextField prefHeight="27.0" prefWidth="163.0" style="-fx-background-color: #0BC1C2; -fx-text-fill: white;" GridPane.columnIndex="1" />
-                                    <TextField style="-fx-background-color: #0BC1C2; -fx-text-fill: white;" GridPane.columnIndex="1" GridPane.rowIndex="1" />
-                                    <ChoiceBox prefWidth="150.0" style="-fx-background-color: #0BC1C2; -fx-text-fill: white;" GridPane.columnIndex="1" GridPane.rowIndex="2" />
+                                    <TextField prefHeight="27.0" prefWidth="163.0" style="-fx-background-color: #015354; -fx-text-fill: white;" GridPane.columnIndex="1" />
+                                    <TextField style="-fx-background-color: #015354; -fx-text-fill: white;" GridPane.columnIndex="1" GridPane.rowIndex="1" />
+                                    <ChoiceBox prefWidth="150.0" style="-fx-background-color: white; -fx-text-fill: #015354;" GridPane.columnIndex="1" GridPane.rowIndex="2" />
                                  </children>
                                  <columnConstraints>
                                     <ColumnConstraints hgrow="SOMETIMES" maxWidth="138.90067291259766" minWidth="10.0" prefWidth="124.1983642578125" />

@@ -33,7 +33,9 @@ public class Student {
 
     @Override
     public String toString() {
-        return "Student{" + "studentNumber=" + studentNumber + ", firstName=" + firstName + ", lastName=" + lastName + '}';
+        return "\n------------------------- STUDENT START -----------------------------------" +
+                "\nStudent No: " + getStudentNumber() + "\nFirst Name: " + getFirstName() + "\nLast Name: " + getLastName() +
+                "\n------------------------- STUDENT FINISH --------------------------------\n";
     }
     
     

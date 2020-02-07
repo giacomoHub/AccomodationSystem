@@ -13,6 +13,8 @@ public class Lease {
             this.duration = duration;
             this.leaseNumber = leaseNumber;
 	}
+        
+        public Lease() {}
 
 	public void setDuration(int duration) {
             this.duration = duration;
@@ -32,7 +34,9 @@ public class Lease {
 
     @Override
     public String toString() {
-        return getStudent() + " " + getLeaseNumber() + " " + getDuration();
+        return  "\n------------------------- LEASE START -----------------------------------" +
+                "\nStudent Details for Lease: "+ getStudent() + "\nLease Number: " + getLeaseNumber() + "\nDuration: " + getDuration() +
+                "\n------------------------- LEASE FINISH --------------------------------\n";
     }
         
         

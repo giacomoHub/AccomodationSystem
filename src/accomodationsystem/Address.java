@@ -10,10 +10,10 @@ public class Address {
 	private String country;
         
         
-	public Address(String streetName, String buildingName, int houseNumber, String postcode, String city, String county, String country) {
+	public Address(String streetName, String buildingName, int houseFloorNumber, String postcode, String city, String county, String country) {
             this.streetName = streetName;
             this.buildingName = buildingName;
-            this.houseNumber_floorNumber = houseNumber;
+            this.houseNumber_floorNumber = houseFloorNumber;
             this.postcode = postcode;
             this.city = city;
             this.county = county;
@@ -25,37 +25,39 @@ public class Address {
 	}
 
 	public String getStreetName() {
-		return null;
+		return streetName;
 	}
 
 	public String getBuildingName() {
-		return null;
+		return buildingName;
 	}
 
-	public int getHouseNumber_floorNumber() {
-		return 0;
+	public int getHouseFloorNumber() {
+		return houseNumber_floorNumber;
 	}
 
 	public String getPostcode() {
-		return null;
+		return postcode;
 	}
 
 	public String getCity() {
-		return null;
+		return city;
 	}
 
 	public String getCounty() {
-		return null;
+		return county;
 	}
 
 	public String getCountry() {
-		return null;
+		return country;
 	}
 
     @Override
     public String toString() {
-        return getStreetName() + " " + getBuildingName() + " " + getHouseNumber_floorNumber() + " " + getPostcode() + " " + getCity() + " " +
-                getCounty() + " " + getCountry();
+    return  "------------------------- ADDRESS START -----------------------------------" 
+            + "\nStreet: " + getStreetName() + "\nBuilding Name: " + getBuildingName() + "\nFloor/House No: " + getHouseFloorNumber() + "\nPostcode: " + getPostcode() + "\nCity: " + getCity() 
+            + "\nCounty: " + getCounty() + "\nCountry: " + getCountry() + 
+            "\n------------------------- ADDRESS FINISH --------------------------------\n";
     }
         
         

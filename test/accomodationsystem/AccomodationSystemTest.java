@@ -57,13 +57,19 @@ public class AccomodationSystemTest {
         
         Address address_test = new Address("frenchay Road", "Fr_block", 3, "BR10", "Bristol", "Somerset", "England");
         Telephone tel_tes = new Telephone(+44, 0103, 64645);
-        Room room_test = new Room(1, true, 300, 0, new Lease(new Student(10102, "Mohamed", "Kadir"), 3, 01));
-        Hall hall_test = new Hall("Wallscourt",address_test , tel_tes, room_test );
+        Room room_test = new Room(1, true, 300, 0);
+        Hall hall_test = new Hall("Wallscourt",address_test , tel_tes );
+        Student stu_test = new Student(0010, "juju", "rogers");
+        Lease lease_test = new Lease(stu_test, 300, 4);
         
-        System.out.println("this is the value of address object: " + ' ' + address_test.toString());
+        room_test.setLease(lease_test);
+        hall_test.addRoom(room_test);
+        
         
         System.out.println(hall_test.toString());
         
     }
     
 }
+
+//4 different hall - 100 rooms for loop for roomms

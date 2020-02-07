@@ -1,5 +1,7 @@
 package accomodationsystem;
 import java.util.ArrayList;
+
+
 public class Hall {
 
         /* ATTRIBUTES  */
@@ -9,12 +11,12 @@ public class Hall {
 	private ArrayList<Room> rooms;
         
         /* CONSTRUCTOR */
-	public Hall(String name, Address address, Telephone telephone, Room room) {
-            rooms = new ArrayList<Room>();
+	public Hall(String name, Address address, Telephone telephone) {
+            rooms = new ArrayList<>();
             this.name = name;
             this.address = address;
             this.telephone = telephone;
-            rooms.add(room);
+            
 	}
 
         public void addRoom(Room room){
@@ -46,9 +48,9 @@ public class Hall {
 
     @Override
     public String toString() {
-        return name + " " + this.address + " " + this.telephone + " "+ this.rooms;
+        return "------------------------- HALL START -----------------------------------" + 
+                "\nHall Name: " + getName() + "\n" + getAddress() + getTelephone() + getRooms() +
+                "\n------------------------- HALL FINISH -----------------------------------\n";
     }
-        
-        
 
 }

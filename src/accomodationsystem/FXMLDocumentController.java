@@ -16,6 +16,7 @@ import javafx.fxml.Initializable;
 import javafx.scene.Node;
 import javafx.scene.Parent;
 import javafx.scene.Scene;
+import javafx.scene.control.Button;
 import javafx.scene.control.Label;
 import javafx.stage.Stage;
 
@@ -27,8 +28,13 @@ public class FXMLDocumentController implements Initializable {
     
     @FXML
     private Label label;
-    
     @FXML
+    private Label label1;
+    @FXML
+    private Button managerButton;
+    @FXML
+    private Button button;
+    
     private void handleButtonAction(ActionEvent event) {
         System.out.println("You clicked me!");
         label.setText("Hello World!");
@@ -36,7 +42,10 @@ public class FXMLDocumentController implements Initializable {
     
     /**
      * Change view
+     * @param event
+     * @throws java.io.IOException
      */
+    @FXML
     public void changeScene(ActionEvent event) throws IOException{
         Parent tableViewParent = FXMLLoader.load(getClass().getResource("ManagerView.fxml"));
         Scene otherScene = new Scene(tableViewParent);
@@ -47,6 +56,7 @@ public class FXMLDocumentController implements Initializable {
         window.show();
     }
     
+    @FXML
     public void changeSceneWarden(ActionEvent event) throws IOException{
         Parent tableViewParent = FXMLLoader.load(getClass().getResource("WardenView.fxml"));
         Scene otherScene = new Scene(tableViewParent);

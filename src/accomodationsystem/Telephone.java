@@ -10,20 +10,22 @@ public class Telephone {
 	}
 
 	public String getCountryCode() {
-		return null;
+		return countryCode;
 	}
 
 	public String getAreaCode() {
-		return null;
+		return areaCode;
 	}
 
 	public String getTelephoneNumber() {
-		return null;
+		return telephoneNumber;
 	}
 
     @Override
     public String toString() {
-        return getCountryCode() + " " + getAreaCode() + " " + getTelephoneNumber();
+        return "------------------------- TELEPHONE START -----------------------------------" +
+                "\nCountry Code: " + getCountryCode() + "\nArea Code: " + getAreaCode() + "\nTel No: " + getTelephoneNumber() +
+                "\n------------------------- TELEPHONE FINISH -------------------------------\n";
     }
         
         

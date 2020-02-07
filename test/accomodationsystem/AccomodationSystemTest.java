@@ -56,7 +56,7 @@ public class AccomodationSystemTest {
     public void testHall() {
         
         Address address_test = new Address("frenchay Road", "Fr_block", 3, "BR10", "Bristol", "Somerset", "England");
-        Telephone tel_tes = new Telephone(+44, 0103, 64645);
+        Telephone tel_tes = new Telephone("+44", "0103", "64645");
         Room room_test = new Room(1, true, 300, 0);
         Hall hall_test = new Hall("Wallscourt",address_test , tel_tes );
         Student stu_test = new Student(0010, "juju", "rogers");

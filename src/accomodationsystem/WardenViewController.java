@@ -23,16 +23,13 @@ import javafx.stage.Stage;
  */
 public class WardenViewController implements Initializable {
 
+ 
     /**
-     * Initializes the controller class.
+     * @param event
+     * @throws IOException 
+     * Description: Changes to main menu
      */
-    @Override
-    public void initialize(URL url, ResourceBundle rb) {
-        // TODO
-    }    
-    /**
-     * Change view
-     */
+    
     public void changeScene(ActionEvent event) throws IOException{
         
         // Gets FXML Documents and makes a new scene
@@ -44,5 +41,16 @@ public class WardenViewController implements Initializable {
         window.setScene(otherScene);
         window.show();
     }
+    
+    
+    /**
+     * @param url
+     * @param rb 
+     * Description: loads everything needed for GUI when loaded
+     */
+    @Override
+    public void initialize(URL url, ResourceBundle rb) {
+        // TODO
+    }   
     
 }

@@ -1,11 +1,12 @@
 package accomodationsystem;
 import java.util.ArrayList;
+import javafx.beans.property.SimpleStringProperty;
 
 
 public class Hall {
 
         /* ATTRIBUTES  */
-	private String name;
+	private SimpleStringProperty hallName;
 	private static Address address;
 	private Telephone telephone;
 	private ArrayList<Room> rooms;
@@ -13,7 +14,8 @@ public class Hall {
         /* CONSTRUCTOR */
 	public Hall(String name, Address address, Telephone telephone) {
             rooms = new ArrayList<>(); 
-            this.name = name;
+            this.hallName
+                    = new SimpleStringProperty(name);
             this.address = address;
             this.telephone = telephone;
             
@@ -27,7 +29,7 @@ public class Hall {
 	}
 
 	public String getName() {
-		return name;
+		return hallName.get();
 	}
 
 	public int getNumberOfRooms() {

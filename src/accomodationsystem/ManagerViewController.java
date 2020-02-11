@@ -9,6 +9,7 @@ import java.io.IOException;
 import java.net.URL;
 import java.util.ArrayList;
 import java.util.ResourceBundle;
+import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
@@ -20,7 +21,9 @@ import javafx.scene.Scene;
 import javafx.scene.control.Button;
 import javafx.scene.control.ChoiceBox;
 import javafx.scene.control.Label;
+import javafx.scene.control.TableColumn;
 import javafx.scene.control.TableView;
+import javafx.scene.control.cell.PropertyValueFactory;
 import javafx.scene.layout.AnchorPane;
 import javafx.stage.Stage;
 
@@ -31,8 +34,7 @@ import javafx.stage.Stage;
  */
 public class ManagerViewController implements Initializable {
     
-    @FXML
-    private TableView<ArrayList<Hall>> table;
+    
     @FXML
     private Button createLease_Btn;
     @FXML
@@ -41,6 +43,16 @@ public class ManagerViewController implements Initializable {
     private ChoiceBox<String> occupancy_CB;
     @FXML
     private Button delete_Btn;
+    
+    //fxml table variables
+    @FXML private TableView<Hall> table_T;
+    @FXML private TableColumn<Hall, String> hallName_Col;
+    @FXML private TableColumn<Hall, String> hallNumber_Col;
+    @FXML private TableColumn<Hall, String> room_Col;
+    @FXML private TableColumn<Hall, String> lease_Col;
+    @FXML private TableColumn<Hall, String> student_Col;
+    @FXML private TableColumn<Hall, String> Occupancy_Col;
+    @FXML private TableColumn<Hall, String> Cleanliness_Col;
     
     
     
@@ -60,7 +72,16 @@ public class ManagerViewController implements Initializable {
         occupancy_CB.getItems().add("Unoccupied");
         occupancy_CB.getItems().add("Offline");
         
-        //table.setItems(AccomodationSystem.data.getHalls());
+        hallName_Col.setCellValueFactory(new PropertyValueFactory<>("name"));
+        hallNumber_Col.setCellValueFactory(new PropertyValueFactory<>("hallNumber"));
+        room_Col.setCellValueFactory(new PropertyValueFactory<>("roomNumber"));
+        lease_Col.setCellValueFactory(new PropertyValueFactory<>("roomStatus"));
+        student_Col.setCellValueFactory(new PropertyValueFactory<>("cleanliness"));
+        Occupancy_Col.setCellValueFactory(new PropertyValueFactory<>("roomStatus"));
+        Cleanliness_Col.setCellValueFactory(new PropertyValueFactory<>("cleanliness"));
+        
+        //this loads the dummy data
+        table_T.setItems(getHalls());
     }    
     
     /**
@@ -74,6 +95,22 @@ public class ManagerViewController implements Initializable {
         Stage window = (Stage)((Node)event.getSource()).getScene().getWindow();
         window.setScene(otherScene);
         window.show();
+    }
+    
+    public ObservableList<Hall> getHalls()
+    {
+        
+        ObservableList<Hall> hall = FXCollections.observableArrayList();
+        hall.add(AccomodationSystem.halls.get(0));
+        
+        return hall;
+    }
+    
+    /**
+     * Function that updates the table data;
+     */
+    public void setTableData(){
+        
     }
     
     /**

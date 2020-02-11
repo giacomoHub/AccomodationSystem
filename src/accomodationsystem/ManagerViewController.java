@@ -17,8 +17,11 @@ import javafx.fxml.Initializable;
 import javafx.scene.Node;
 import javafx.scene.Parent;
 import javafx.scene.Scene;
+import javafx.scene.control.Button;
+import javafx.scene.control.ChoiceBox;
 import javafx.scene.control.Label;
 import javafx.scene.control.TableView;
+import javafx.scene.layout.AnchorPane;
 import javafx.stage.Stage;
 
 /**
@@ -30,6 +33,15 @@ public class ManagerViewController implements Initializable {
     
     @FXML
     private TableView<ArrayList<Hall>> table;
+    @FXML
+    private Button createLease_Btn;
+    @FXML
+    private AnchorPane createLeaseView_V;
+    @FXML
+    private ChoiceBox<String> occupancy_CB;
+    @FXML
+    private Button delete_Btn;
+    
     
     
     
@@ -42,6 +54,11 @@ public class ManagerViewController implements Initializable {
         
         //populate the table
         AccomodationSystem.halls.get(0);
+        
+        //add the options to the choice box
+        occupancy_CB.getItems().add("Occupied");
+        occupancy_CB.getItems().add("Unoccupied");
+        occupancy_CB.getItems().add("Offline");
         
         //table.setItems(AccomodationSystem.data.getHalls());
     }    
@@ -58,6 +75,25 @@ public class ManagerViewController implements Initializable {
         window.setScene(otherScene);
         window.show();
     }
+    
+    /**
+     * Function that hides the createLeaseView and the button createLease;
+     */
+    public void hideCreateLease(ActionEvent event){
+        createLeaseView_V.setVisible(false);
+    }
+    
+    /**
+     * Function that shows the createLeaseView and the button createLease;
+     */
+    public void showCreateLease(ActionEvent event){
+        createLeaseView_V.setVisible(true);
+    }
+    
+    
+    
+    
+    
     
     
     

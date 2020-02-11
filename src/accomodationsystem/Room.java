@@ -7,7 +7,7 @@ public class Room {
 
 	private int roomNumber;
 	private float monthlyRentRate;
-        private boolean roomStatus;
+        private boolean roomStatus; //occupied or unoccupied
 	private int roomCleanliness;
 	private Lease lease;
 
@@ -29,7 +29,7 @@ public class Room {
 	}
 
 	public boolean isOccupied() {
-		return true;
+		return roomStatus;
 	}
 
 	public float getMonthlyRentRate() {
@@ -54,10 +54,12 @@ public class Room {
 
 	public void setLease(Lease lease) {
             this.lease = lease;
+            this.roomStatus = true;
 	}
 
 	public void deleteLease() {
-
+            this.lease = null;
+            this.roomStatus = false;
 	}
 
 	public int getRoomNumber() {

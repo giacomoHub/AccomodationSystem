@@ -117,7 +117,7 @@
                                     </Label>
                                     <TextField prefHeight="27.0" prefWidth="163.0" style="-fx-background-color: #015354; -fx-text-fill: white;" GridPane.columnIndex="1" />
                                     <TextField style="-fx-background-color: #015354; -fx-text-fill: white;" GridPane.columnIndex="1" GridPane.rowIndex="1" />
-                                    <ChoiceBox prefWidth="150.0" style="-fx-background-color: white; -fx-text-fill: #015354;" GridPane.columnIndex="1" GridPane.rowIndex="2" />
+                                    <ChoiceBox fx:id="occupancy_CB" prefHeight="29.0" prefWidth="157.0" style="-fx-background-color: white; -fx-text-fill: #015354; -fx-border-color: #015354;" GridPane.columnIndex="1" GridPane.rowIndex="2" />
                                  </children>
                                  <columnConstraints>
                                     <ColumnConstraints hgrow="SOMETIMES" maxWidth="138.90067291259766" minWidth="10.0" prefWidth="124.1983642578125" />
@@ -136,10 +136,10 @@
                                           <Insets left="30.0" top="15.0" />
                                        </VBox.margin>
                                        <font>
-                                          <Font size="14.0" />
+                                          <Font name="Arial" size="14.0" />
                                        </font>
                                     </Button>
-                                    <Button layoutX="40.0" layoutY="20.0" mnemonicParsing="false" prefHeight="43.0" prefWidth="86.0" style="-fx-background-color: red;" text="Delete" textFill="WHITE">
+                                    <Button fx:id="delete_Btn" layoutX="40.0" layoutY="20.0" mnemonicParsing="false" onAction="#showCreateLease" prefHeight="43.0" prefWidth="86.0" style="-fx-background-color: red;" text="Delete" textFill="WHITE">
                                        <VBox.margin>
                                           <Insets left="30.0" />
                                        </VBox.margin>
@@ -149,6 +149,15 @@
                                     </Button>
                                  </children>
                               </VBox>
+                              <AnchorPane fx:id="createLeaseView_V" layoutX="-3.0" layoutY="-3.0" prefHeight="149.0" prefWidth="448.0" style="-fx-background-color: white;">
+                                 <children>
+                                    <Button fx:id="createLease_Btn" layoutX="128.0" layoutY="39.0" mnemonicParsing="false" onAction="#hideCreateLease" prefHeight="72.0" prefWidth="192.0" style="-fx-background-color: #015354;" text="Create new lease" textFill="WHITE">
+                                       <font>
+                                          <Font name="Arial Bold" size="14.0" />
+                                       </font>
+                                    </Button>
+                                 </children>
+                              </AnchorPane>
                            </children></AnchorPane>
                     </items>
                   </SplitPane>

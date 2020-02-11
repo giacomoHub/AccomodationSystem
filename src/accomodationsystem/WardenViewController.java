@@ -30,7 +30,7 @@ public class WardenViewController implements Initializable {
      * Description: Changes to main menu
      */
     
-    public void changeScene(ActionEvent event) throws IOException{
+    public void changeScene(ActionEvent event) throws IOException {
         
         // Gets FXML Documents and makes a new scene
         Parent tableViewParent = FXMLLoader.load(getClass().getResource("FXMLDocument.fxml"));

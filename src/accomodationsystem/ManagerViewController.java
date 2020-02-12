@@ -155,7 +155,7 @@ public class ManagerViewController implements Initializable {
      */
     public ObservableList<ManagerTable> getInfo(ArrayList<ManagerTable> tableData){
         ObservableList<ManagerTable> info = FXCollections.observableArrayList();
-        for(int i = 0; i<tableData.size(); i++){
+        for(int i = 0; i < tableData.size(); i++){
             info.add(tableData.get(i));
         }
         return info;

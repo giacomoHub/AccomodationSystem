@@ -14,38 +14,21 @@ import java.util.ArrayList;
 public class WardenTable {
     
 // Class Attributes
-    private final String hallName;
-    private final Integer hallNumber;
-    private final Integer roomNumber;
-    private final String roomStatus;
-    private final String roomCleanliness;
-//    private final Integer leaseNumber;
-//    private final String studentName;
-
-
-    public WardenTable(Hall hallDetails, Room roomDetails){
-    
-        hallName = hallDetails.getHallName();
-        hallNumber = 10;
-        roomNumber = roomDetails.getRoomNumber();
-        roomStatus = roomDetails.getRoomStatus();
-        roomCleanliness = roomDetails.getRoomCleanliness();
-        //leaseNumber = leaseDetails.getLeaseNumber();
-//        studentName = leaseDetails.getStudent().getFullName();
-    }
+    private String hallName;
+    private String hallNumber;
+    private int roomNumber;
+    private String roomStatus;
+    private String roomCleanliness;
     
     public String getHallName() {
-        
         return hallName;
     }
-
-    public Integer getHallNumber() {
+    
+     public String getHallNumber() {
         return hallNumber;
     }
     
-    /* NOTE THIS IS CURRENTLY RETURNING AN INT*/
-    public Integer getRoomNumber() {
-        
+    public int getRoomNumber() {
         return roomNumber;
     }
 
@@ -53,21 +36,28 @@ public class WardenTable {
         return roomStatus;
     }
 
-    public String getCleanliness() {
+    public String getRoomCleanliness() {
         return roomCleanliness;
     }
+    
+     public void setHallName(String hallName) {
+        this.hallName = hallName;
+    }
 
-//    public Integer getLeaseNumber() {
-//        return leaseNumber;
-//    }
-//
-//    public String getStudentName() {
-//        return studentName;
-//    }
+    public void setHallNumber(String HallNumber) {
+        this.hallName = HallNumber;
+    }
+
+    public void setRoomNumber(int roomNumber) {
+        this.roomNumber = roomNumber;
+    }
+
+    public void setRoomStatus(String roomStatus) {
+        this.roomStatus = roomStatus;
+    }
     
-    
-    
-    
-    
-    
+     public void setRoomCleanliness(String roomCleanliness) {
+        this.roomCleanliness = roomCleanliness;
+    }
+
 }

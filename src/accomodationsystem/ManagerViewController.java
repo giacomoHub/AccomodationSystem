@@ -69,6 +69,7 @@ public class ManagerViewController implements Initializable {
         AccommodationSpecifics data = getInstance();
         ArrayList<ManagerTable> tableData = new ArrayList<ManagerTable>();
         
+        //prepare the data to go in the table
         specificsToTable(data,tableData);
         
         //add the options to the choice box
@@ -84,8 +85,7 @@ public class ManagerViewController implements Initializable {
         Occupancy_Col.setCellValueFactory(new PropertyValueFactory<>("occupancyStatus"));
         Cleanliness_Col.setCellValueFactory(new PropertyValueFactory<>("cleanliness"));
         
-        //this loads the dummy data
-        //table_T.setItems(getHalls());
+        //load the data into the table
         table_T.setItems(getInfo(tableData));
     }    
     
@@ -102,17 +102,8 @@ public class ManagerViewController implements Initializable {
         window.show();
     }
     
-//    public ObservableList<Hall> getHalls()
-//    {
-//        
-//        ObservableList<Hall> hall = FXCollections.observableArrayList();
-//        hall.add(AccomodationSystem.halls.get(0)); //sets a row of the table
-//        
-//        return hall;
-//    }
-    
     /**
-     * Function that gets the specifics items and puts them into the table;
+     * Function that gets the AcoomodationSpecifics data and converts it into ManagerTable;
      */
     public void specificsToTable(AccommodationSpecifics data, ArrayList<ManagerTable> tableData){
         //loop through every hall in the system
@@ -151,7 +142,10 @@ public class ManagerViewController implements Initializable {
     
     
     /**
+     * 
+     * !GETTING RID OF THIS IN FUTURE UPDATE!! CONVERTING ArrayList<ManagerTable> tableData to ObservableList<ManagerTable> in declaration
      * Function that converts the list managerTable items into observable list;
+     * This function will be deleted
      */
     public ObservableList<ManagerTable> getInfo(ArrayList<ManagerTable> tableData){
         ObservableList<ManagerTable> info = FXCollections.observableArrayList();

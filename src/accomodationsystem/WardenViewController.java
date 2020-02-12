@@ -32,12 +32,12 @@ public class WardenViewController implements Initializable {
 
     
     //fxml variables to display in GUI for warden only
-    @FXML private TableView<Hall> tableView;
-    @FXML private TableColumn<Hall, String> hallNameColumn;
-    @FXML private TableColumn<Hall, String> hallNumberColumn;
-    @FXML private TableColumn<Hall, String> roomNumberColumn;
-    @FXML private TableColumn<Hall, String> roomStatusColumn;
-    @FXML private TableColumn<Hall, String> cleanlinessColumn;
+    @FXML private TableView<UWE_AccommodationTable> tableView;
+    @FXML private TableColumn<UWE_AccommodationTable, String> hallNameColumn;
+    @FXML private TableColumn<UWE_AccommodationTable, String> hallNumberColumn;
+    @FXML private TableColumn<UWE_AccommodationTable, String> roomNumberColumn;
+    @FXML private TableColumn<UWE_AccommodationTable, String> roomStatusColumn;
+    @FXML private TableColumn<UWE_AccommodationTable, String> cleanlinessColumn;
     
     /**
      * @param event
@@ -68,11 +68,6 @@ public class WardenViewController implements Initializable {
         
         AccommodationSpecifics data = AccommodationSpecifics.getInstance();
         
-        for (int i = 0; i < data.getHalls().size(); i++) {
-            
-            
-        }
-        
         //set columns in table
         hallNameColumn.setCellValueFactory(new PropertyValueFactory<>("hallName"));
         hallNumberColumn.setCellValueFactory(new PropertyValueFactory<>("hallNumber"));
@@ -81,24 +76,24 @@ public class WardenViewController implements Initializable {
         cleanlinessColumn.setCellValueFactory(new PropertyValueFactory<>("roomCleanliness"));
         
         //this loads the dummy data
-        tableView.setItems(getHalls());
-        
-        
-        
+        tableView.setItems(getData());
         
         
         
     }   
     
     
-     public ObservableList<Hall> getHalls()
+     public ObservableList<UWE_AccommodationTable> getData()
     {
    
-        ObservableList<Hall> hall = FXCollections.observableArrayList();
+        ObservableList<UWE_AccommodationTable> data = FXCollections.observableArrayList();
         
-//        hall.add(AccomodationSystem.halls.get(0)); //this is getting done in the accommodation Specifics
+        int currentHall = 0;
+        while (data.get(currentHall).g) {            
+            
+        }
 
         
-        return hall;
+        return data;
     }
 }

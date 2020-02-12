@@ -16,15 +16,21 @@ public class UWE_AccommodationTable {
     // Class Attributes
     private String HallName;
     private String HallNumber;
-    private String roomNumber;
-    private String roomStatus;
-    private String Cleanliness;
-    private String lease;
-    private String student;
-    private String occupancy;
-
-    public UWE_AccommodationTable(){
+    private ArrayList<Room> room;
     
+    
+    private int roomNumber;
+    private String roomStatus;
+    private String roomCleanliness;
+    private int leaseNumber;
+    private String studentName;
+
+
+    public UWE_AccommodationTable(Hall hallDetails, int i){
+    
+        HallName = hallDetails.getHallName();
+        HallNumber = null;
+        room = hallDetails.getRooms();;
     }
     
     public String getHallName() {
@@ -35,8 +41,9 @@ public class UWE_AccommodationTable {
     public String getHallNumber() {
         return HallNumber;
     }
-
-    public String getRoomNumber() {
+    
+    /* NOTE THIS IS CURRENTLY RETURNING AN INT*/
+    public int getRoomNumber() {
         return roomNumber;
     }
 
@@ -45,20 +52,16 @@ public class UWE_AccommodationTable {
     }
 
     public String getCleanliness() {
-        return Cleanliness;
+        return roomCleanliness;
     }
-
-    public String getLease() {
-        return lease;
-    }
-
-    public String getStudent() {
-        return student;
-    }
-
-    public String getOccupancy() {
-        return occupancy;
-    }
+//
+//    public String getLease() {
+//        return lease;
+//    }
+//
+//    public String getStudent() {
+//        return student;
+//    }
     
     
     

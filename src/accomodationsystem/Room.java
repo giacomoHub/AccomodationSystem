@@ -27,9 +27,19 @@ public class Room {
 	public void setRoomCleanliness(int roomCleanliness) {
             this.roomCleanliness = roomCleanliness;
 	}
+        
+        public void setLease(Lease lease) {
+            this.lease = lease;
+            this.roomStatus = true;
+	}
 
-	public boolean isOccupied() {
-		return roomStatus;
+        /* changed mthod name to current from isOccupied for purpose of method call when putting into table get...*/
+	public String getRoomStatus() {
+            if (roomStatus) {
+                return "Occupied";
+            } else {
+                return "Unoccupied";
+            }
 	}
 
 	public float getMonthlyRentRate() {
@@ -52,10 +62,7 @@ public class Room {
             return lease;
 	}
 
-	public void setLease(Lease lease) {
-            this.lease = lease;
-            this.roomStatus = true;
-	}
+	
 
 	public void deleteLease() {
             this.lease = null;

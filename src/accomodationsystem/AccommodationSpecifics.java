@@ -75,8 +75,6 @@ public class AccommodationSpecifics {
         Address add_3 = new Address("Cardiff", "Rangers" ,1, "BSE R10", "Bath", "Somerset", "England");
         Address add_4 = new Address("UWE", "Quck" ,1, "BSX 212", "Brisol", "Somerset", "England");
         
-        
-        
         halls.add(new Hall("building_1", add_1, tel1));
         halls.add(new Hall("building_2", add_2, tel2));
         halls.add(new Hall("building_3", add_3, tel1));

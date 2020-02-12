@@ -35,7 +35,7 @@ public class WardenViewController implements Initializable {
     @FXML private TableView<Hall> tableView;
     @FXML private TableColumn<Hall, String> hallNameColumn;
     @FXML private TableColumn<Hall, String> hallNumberColumn;
-    @FXML private TableColumn<Hall, String> roomColumn;
+    @FXML private TableColumn<Hall, String> roomNumberColumn;
     @FXML private TableColumn<Hall, String> roomStatusColumn;
     @FXML private TableColumn<Hall, String> cleanlinessColumn;
     
@@ -65,32 +65,39 @@ public class WardenViewController implements Initializable {
      */
     @Override
     public void initialize(URL url, ResourceBundle rb) {
+        
+        AccommodationSpecifics data = AccommodationSpecifics.getInstance();
+        
+        for (int i = 0; i < data.getHalls().size(); i++) {
+            
+            
+        }
+        
         //set columns in table
-        hallNameColumn.setCellValueFactory(new PropertyValueFactory<>("name"));
+        hallNameColumn.setCellValueFactory(new PropertyValueFactory<>("hallName"));
         hallNumberColumn.setCellValueFactory(new PropertyValueFactory<>("hallNumber"));
-        roomColumn.setCellValueFactory(new PropertyValueFactory<>("roomColumn"));
+        roomNumberColumn.setCellValueFactory(new PropertyValueFactory<>("roomNumber"));
         roomStatusColumn.setCellValueFactory(new PropertyValueFactory<>("roomStatus"));
-        cleanlinessColumn.setCellValueFactory(new PropertyValueFactory<>("cleanliness"));
+        cleanlinessColumn.setCellValueFactory(new PropertyValueFactory<>("roomCleanliness"));
         
         //this loads the dummy data
         tableView.setItems(getHalls());
+        
+        
+        
+        
+        
+        
     }   
     
     
      public ObservableList<Hall> getHalls()
     {
-        
-//        AccomodationSystem.halls.get(0);
-        
-        Address address_test = new Address( "frenchay", "Fr_block", 3, "BR10", "Bristol", "Somerset", "England");
-        Telephone tel_tes = new Telephone("+44", "0103", "64645");
-        Room room_test = new Room(1, true, 300, 0);
-//        Hall hall_test = new Hall("Wallscourt",address_test , tel_tes );
-        Student stu_test = new Student(0010, "juju", "rogers");
-        Lease lease_test = new Lease(stu_test, 300, 4);
    
         ObservableList<Hall> hall = FXCollections.observableArrayList();
-        hall.add(new Hall("Wallscourt",address_test , tel_tes ));
+        
+//        hall.add(AccomodationSystem.halls.get(0)); //this is getting done in the accommodation Specifics
+
         
         return hall;
     }

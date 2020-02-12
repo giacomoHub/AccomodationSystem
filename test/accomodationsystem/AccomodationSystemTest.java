@@ -56,18 +56,22 @@ public class AccomodationSystemTest {
     @Test
     public void testHall() {
         
-        Address address_test = new Address( "frenchay", "Fr_block", 3, "BR10", "Bristol", "Somerset", "England");
-        Telephone tel_tes = new Telephone("+44", "0103", "64645");
-        Room room_test = new Room(1, true, 300, 0);
-        Hall hall_test = new Hall("Wallscourt",address_test , tel_tes );
-        Student stu_test = new Student(0010, "juju", "rogers");
-        Lease lease_test = new Lease(stu_test, 300, 4);
+//        Address address_test = new Address( "frenchay", "Fr_block", 3, "BR10", "Bristol", "Somerset", "England");
+//        Telephone tel_tes = new Telephone("+44", "0103", "64645");
+//        Room room_test = new Room(1, true, 300, 0);
+//        Hall hall_test = new Hall("Wallscourt",address_test , tel_tes );
+//        Student stu_test = new Student(0010, "juju", "rogers");
+//        Lease lease_test = new Lease(stu_test, 300, 4);
+//        
+//        room_test.setLease(lease_test);
+//        hall_test.addRoom(room_test);
+//        
+//        
+//        System.out.println(hall_test.toString());
+
         
-        room_test.setLease(lease_test);
-        hall_test.addRoom(room_test);
-        
-        
-        System.out.println(hall_test.toString());
+
+
         
     }
     
@@ -80,6 +84,15 @@ public class AccomodationSystemTest {
 //        Hall h4 = new Hall("Robbins Hall", address, telephone);
         
     }
+    
+    @Test
+    public void testSingleton(){
+        
+        AccommodationSpecifics data = AccommodationSpecifics.getInstance();
+        System.out.println(data.getHalls());
+        
+    }
 }
+
 
 //4 different hall - 100 rooms for loop for roomms

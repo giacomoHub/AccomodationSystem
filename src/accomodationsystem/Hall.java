@@ -6,16 +6,15 @@ import javafx.beans.property.SimpleStringProperty;
 public class Hall {
 
         /* ATTRIBUTES  */
-	private SimpleStringProperty hallName;
+	private String hallName;
 	private static Address address;
 	private Telephone telephone;
 	private ArrayList<Room> rooms;
         
         /* CONSTRUCTOR */
-	public Hall(String name, Address address, Telephone telephone) {
+	public Hall(String nameName, Address address, Telephone telephone) {
             rooms = new ArrayList<>(); 
-            this.hallName
-                    = new SimpleStringProperty(name);
+            this.hallName = nameName;
             this.address = address;
             this.telephone = telephone;
             
@@ -28,8 +27,8 @@ public class Hall {
 		return rooms;
 	}
 
-	public String getName() {
-		return hallName.get();
+	public String getHallName() {
+		return hallName;
 	}
 
 	public int getNumberOfRooms() {
@@ -45,13 +44,18 @@ public class Hall {
 	}
 
 	public ArrayList<Room> getAvailableRooms() {
-		return null;
+            if (rooms.isEmpty()){
+                return null;
+            } else {
+                return rooms;
+            }
+		
 	}
 
     @Override
     public String toString() {
         return "------------------------- HALL START -----------------------------------" + 
-                "\nHall Name: " + getName() + "\n" + getAddress() + getTelephone() + getRooms() +
+                "\nHall Name: " + getHallName() + "\n" + getAddress() + getTelephone() + getRooms() +
                 "\n------------------------- HALL FINISH -----------------------------------\n";
     }
 

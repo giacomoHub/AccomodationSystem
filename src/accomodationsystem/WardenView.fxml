@@ -20,8 +20,7 @@
                         <TableView fx:id="tableView" maxHeight="500.0" maxWidth="800.0" prefHeight="500.0" prefWidth="731.0">
                           <columns>
                             <TableColumn fx:id="hallNameColumn" maxWidth="150.0" minWidth="150.0" prefWidth="0.0" text="Hall Name" />
-                            <TableColumn fx:id="hallNumberColumn" maxWidth="150.0" minWidth="150.0" prefWidth="0.0" text="Hall Number" />
-                              <TableColumn fx:id="roomColumn" maxWidth="167.0" minWidth="131.0" prefWidth="163.0" text="Room" />
+                              <TableColumn fx:id="roomColumn" maxWidth="167.0" minWidth="131.0" prefWidth="163.0" text="Room Number " />
                               <TableColumn fx:id="roomStatusColumn" maxWidth="169.0" minWidth="133.0" prefWidth="137.0" text="Room Status" />
                               <TableColumn fx:id="cleanlinessColumn" maxWidth="150.0" minWidth="150.0" prefWidth="0.0" text="Cleanliness" />
                           </columns>

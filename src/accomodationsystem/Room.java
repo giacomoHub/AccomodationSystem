@@ -69,7 +69,7 @@ public class Room {
     @Override
     public String toString() {
         return "\n------------------------- ROOM START -----------------------------------" +
-                "\nRoom No:" + getRoomNumber() + "\nMothly Rent: " + getMonthlyRentRate() + "\nRoom Cleaniness: " + getRoomCleanliness() + getLease() +
+                "\nRoom No:" + getRoomNumber() + "\nMothly Rent: " + getMonthlyRentRate() + "\nRoom Cleaniness: " + getRoomCleanliness() +"\nRoom Lease: " + getLease() +
                 "\n------------------------- ROOM FINISH --------------------------------\n";
     }
         

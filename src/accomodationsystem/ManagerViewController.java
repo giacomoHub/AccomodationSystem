@@ -46,14 +46,14 @@ public class ManagerViewController implements Initializable {
     
     
     /**
-     * Initializes the controller class.
+     * Initialises the controller class.
      */
     @Override
     public void initialize(URL url, ResourceBundle rb) {
         // TODO
         
         //populate the table
-        AccomodationSystem.halls.get(0);
+        //AccomodationSystem.halls.get(0);
         
         //add the options to the choice box
         occupancy_CB.getItems().add("Occupied");

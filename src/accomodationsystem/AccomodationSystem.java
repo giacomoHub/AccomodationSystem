@@ -19,8 +19,6 @@ import javafx.stage.Stage;
  */
 public class AccomodationSystem extends Application {
     
-    static ArrayList<Hall> halls;
-    
     @Override
     public void start(Stage stage) throws Exception {
         
@@ -31,42 +29,6 @@ public class AccomodationSystem extends Application {
         stage.setScene(scene);
         stage.show();
         stage.setResizable(false);
-        
-        //make new fake data
-        /* STUDENTS */
-        Student s1 = new Student(1111, "juan", "Giacommo");
-        Student s2 = new Student(1112, "Giacomo", "Pellizzari");
-        Student s3 = new Student(1113, "Mohammed", "Solair");
-        
-        /* ROOMS address  */
-        Room r1 = new Room(1, true, 300, 1);
-        Room r2 = new Room(2, true, 300, 1);
-        Room r3 = new Room(3, true, 300, 1);
-        
-        //Leases
-        Lease l1 = new Lease(s1,3,1);
-        Lease l2 = new Lease(s2,7,2);
-        Lease l3 = new Lease(s3,4,3);
-        
-        r1.setLease(l1);
-        r2.setLease(l2);
-        r3.setLease(l3);
-        
-        
-        //initialising system
-        // HALL TELEPHONE
-        Telephone tel1 = new Telephone("+44", "0132", "65445");
-        
-        halls = new ArrayList<>();
-        halls.add(new Hall("buildin1", new Address("Frenchay UWE", "Q-Block" ,1, "BSX 111", "Brisol", "Somerset", "England"), tel1));
-        halls.get(0).addRoom(r2);
-        halls.get(0).addRoom(r3);
-        
-        //test print the fake data
-        System.out.println("Accomodation System");
-        for (int i = 0; i < 2; i++) {
-            System.out.println(halls.get(0).getRooms().get(i).getLease().getStudent());
-        }
         
     }
 

@@ -20,8 +20,6 @@ public class ManagerTable {
     private String occupancyStatus;
     private String cleanliness;
     
-    
-    
 
     public String getHallName() {
         return hallName;
@@ -86,7 +84,5 @@ public class ManagerTable {
     public void setCleanliness(String cleanliness) {
         this.cleanliness = cleanliness;
     }
-    
-    
     
 }

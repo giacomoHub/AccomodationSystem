@@ -165,15 +165,15 @@
             </AnchorPane>
           <AnchorPane minHeight="0.0" minWidth="0.0" prefHeight="200.0" prefWidth="670.0">
                <children>
-                  <TableView layoutY="-3.0" prefHeight="280.0" prefWidth="670.0" style="-fx-selection-bar: #015354; -fx-text-fill: #015354;">
+                  <TableView fx:id="table_T" layoutY="-3.0" prefHeight="280.0" prefWidth="670.0" style="-fx-selection-bar: #015354; -fx-text-fill: #015354;">
                     <columns>
-                      <TableColumn prefWidth="75.0" text="HALL" />
-                      <TableColumn prefWidth="62.77344512939453" text="HALL#" />
-                        <TableColumn prefWidth="66.22654724121094" text="ROOM" />
-                        <TableColumn prefWidth="75.0" text="LEASE" />
-                        <TableColumn prefWidth="198.64117431640625" text="STUDENT" />
-                        <TableColumn prefWidth="100.57742309570312" text="OCCUPANCY" />
-                        <TableColumn prefWidth="89.0" text="CLEAN" />
+                      <TableColumn fx:id="hallName_Col" prefWidth="75.0" text="HALL" />
+                      <TableColumn fx:id="hallNumber_Col" prefWidth="62.77344512939453" text="HALL#" />
+                        <TableColumn fx:id="room_Col" prefWidth="66.22654724121094" text="ROOM" />
+                        <TableColumn fx:id="lease_Col" prefWidth="75.0" text="LEASE" />
+                        <TableColumn fx:id="student_Col" prefWidth="198.64117431640625" text="STUDENT" />
+                        <TableColumn fx:id="Occupancy_Col" prefWidth="100.57742309570312" text="OCCUPANCY" />
+                        <TableColumn fx:id="Cleanliness_Col" prefWidth="89.0" text="CLEAN" />
                     </columns>
                   </TableView>
                </children>

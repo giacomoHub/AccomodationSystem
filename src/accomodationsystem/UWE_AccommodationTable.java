@@ -13,39 +13,39 @@ import java.util.ArrayList;
  */
 public class UWE_AccommodationTable {
     
-    
-    private ArrayList<Room> room;
-    
 // Class Attributes
-    private String HallName;
-    private String HallNumber;
-    private int roomNumber;
-    private String roomStatus;
-    private String roomCleanliness;
-    private int leaseNumber;
-    private String studentName;
+    private final String hallName;
+    private final Integer hallNumber;
+    private final Integer roomNumber;
+    private final String roomStatus;
+    private final String roomCleanliness;
+    private final Integer leaseNumber;
+    private final String studentName;
 
 
-    public UWE_AccommodationTable(Hall hallDetails, Room room){
+    public UWE_AccommodationTable(Hall hallDetails, Room roomDetails, Lease leaseDetails){
     
-        HallName = hallDetails.getHallName();
-//        HallNumber = null;
-        roomNumber = room.getRoomNumber();
-        roomStatus = room.getRoomStatus();
-        roomCleanliness = room.getRoomCleanliness();
+        hallName = hallDetails.getHallName();
+        hallNumber = 10;
+        roomNumber = roomDetails.getRoomNumber();
+        roomStatus = roomDetails.getRoomStatus();
+        roomCleanliness = roomDetails.getRoomCleanliness();
+        leaseNumber = leaseDetails.getLeaseNumber();
+        studentName = leaseDetails.getStudent().getFullName();
     }
     
     public String getHallName() {
         
-        return HallName;
+        return hallName;
     }
 
-    public String getHallNumber() {
-        return HallNumber;
+    public Integer getHallNumber() {
+        return hallNumber;
     }
     
     /* NOTE THIS IS CURRENTLY RETURNING AN INT*/
-    public int getRoomNumber() {
+    public Integer getRoomNumber() {
+        
         return roomNumber;
     }
 
@@ -56,14 +56,14 @@ public class UWE_AccommodationTable {
     public String getCleanliness() {
         return roomCleanliness;
     }
-//
-//    public String getLease() {
-//        return lease;
-//    }
-//
-//    public String getStudent() {
-//        return student;
-//    }
+
+    public Integer getLeaseNumber() {
+        return leaseNumber;
+    }
+
+    public String getStudentName() {
+        return studentName;
+    }
     
     
     

@@ -44,6 +44,10 @@ public class AccommodationSpecifics {
         return instance;
     }
     
+    public ArrayList<Hall> getHalls(){
+        return halls;
+    }
+    
     public void Initialiser(){
         //make new fake data
         /* STUDENTS */
@@ -70,15 +74,15 @@ public class AccommodationSpecifics {
         Telephone tel2 = new Telephone("+88", "01364", "009128");
         
         /** ADDRESS */
-//        Address add_1 = new Address("Frenchay UWE", "Q-Block" ,1, "BS3 111", "Brisol", "Somerset", "England");
-//        Address add_2 = new Address("Bristol", "Zipper-Block" ,1, "B12 S13", "Somerset", "Somewhere in the UK", "England");
-//        Address add_3 = new Address("Cardiff", "Rangers" ,1, "BSE R10", "Bath", "Somerset", "England");
-//        Address add_4 = new Address("UWE", "Quck" ,1, "BSX 212", "Brisol", "Somerset", "England");
+        Address address_1 = new Address("Frenchay UWE", "Q-Block" ,1, "BS3 111", "Brisol", "Somerset", "England");
+        Address address_2 = new Address("Bristol", "Zipper-Block" ,1, "B12 S13", "Somerset", "Somewhere in the UK", "England");
+        Address address_3 = new Address("Cardiff", "Rangers" ,1, "BSE R10", "Bath", "Somerset", "England");
+        Address address_4 = new Address("UWE", "Quck" ,1, "BSX 212", "Brisol", "Somerset", "England");
         
-        halls.add(new Hall("building_1", new Address("Frenchay UWE", "Q-Block" ,1, "BS3 111", "Brisol", "Somerset", "England"), tel1));
-        halls.add(new Hall("building_2", new Address("Bristol", "Zipper-Block" ,1, "B12 S13", "Somerset", "Somewhere in the UK", "England"), tel2));
-        halls.add(new Hall("building_3", new Address("Cardiff", "Rangers" ,1, "BSE R10", "Bath", "Somerset", "England"), tel2));
-        halls.add(new Hall("building_4", new Address("UWE", "Quck" ,1, "BSX 212", "Brisol", "Somerset", "England"), tel1));
+        halls.add(new Hall("building_1", address_1, tel1));
+        halls.add(new Hall("building_2", address_2, tel2));
+        halls.add(new Hall("building_3", address_3, tel2));
+        halls.add(new Hall("building_4", address_4, tel1));
         
         for(int j = 0; j < 4; j++){
             //Variable creates 4 halls 
@@ -94,7 +98,5 @@ public class AccommodationSpecifics {
         
     }
    
-    public ArrayList<Hall> getHalls(){
-        return halls;
-    }
+  
 }

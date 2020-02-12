@@ -68,7 +68,7 @@ public class WardenViewController implements Initializable {
 
         //set columns in table
         hallNameColumn.setCellValueFactory(new PropertyValueFactory<>("hallName"));
-        hallNumberColumn.setCellValueFactory(new PropertyValueFactory<>("hallNumber"));
+//        hallNumberColumn.setCellValueFactory(new PropertyValueFactory<>("hallNumber"));
         roomNumberColumn.setCellValueFactory(new PropertyValueFactory<>("roomNumber"));
         roomStatusColumn.setCellValueFactory(new PropertyValueFactory<>("roomStatus"));
         cleanlinessColumn.setCellValueFactory(new PropertyValueFactory<>("roomCleanliness"));

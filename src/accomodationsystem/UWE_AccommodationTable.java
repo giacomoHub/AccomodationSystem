@@ -29,7 +29,7 @@ public class UWE_AccommodationTable {
     public UWE_AccommodationTable(Hall hallDetails, Room room){
     
         HallName = hallDetails.getHallName();
-        HallNumber = null;
+//        HallNumber = null;
         roomNumber = room.getRoomNumber();
         roomStatus = room.getRoomStatus();
         roomCleanliness = room.getRoomCleanliness();

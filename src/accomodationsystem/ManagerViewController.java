@@ -5,6 +5,7 @@
  */
 package accomodationsystem;
 
+import static accomodationsystem.AccommodationSpecifics.getInstance;
 import java.io.IOException;
 import java.net.URL;
 import java.util.ArrayList;
@@ -45,14 +46,14 @@ public class ManagerViewController implements Initializable {
     private Button delete_Btn;
     
     //fxml table variables
-    @FXML private TableView<Hall> table_T;
-    @FXML private TableColumn<Hall, String> hallName_Col;
-    @FXML private TableColumn<Hall, String> hallNumber_Col;
-    @FXML private TableColumn<Hall, String> room_Col;
-    @FXML private TableColumn<Hall, String> lease_Col;
-    @FXML private TableColumn<Hall, String> student_Col;
-    @FXML private TableColumn<Hall, String> Occupancy_Col;
-    @FXML private TableColumn<Hall, String> Cleanliness_Col;
+    @FXML private TableView<ManagerTable> table_T;
+    @FXML private TableColumn<ManagerTable, String> hallName_Col;
+    @FXML private TableColumn<ManagerTable, String> hallNumber_Col;
+    @FXML private TableColumn<ManagerTable, String> room_Col;
+    @FXML private TableColumn<ManagerTable, String> lease_Col;
+    @FXML private TableColumn<ManagerTable, String> student_Col;
+    @FXML private TableColumn<ManagerTable, String> Occupancy_Col;
+    @FXML private TableColumn<ManagerTable, String> Cleanliness_Col;
     
     
     
@@ -64,15 +65,18 @@ public class ManagerViewController implements Initializable {
     public void initialize(URL url, ResourceBundle rb) {
         // TODO
         
-        //populate the table
-        //AccomodationSystem.halls.get(0);
+        //get the data
+        AccommodationSpecifics data = getInstance();
+        ArrayList<ManagerTable> tableData = new ArrayList<ManagerTable>();
+        
+        specificsToTable(data,tableData);
         
         //add the options to the choice box
         occupancy_CB.getItems().add("Occupied");
         occupancy_CB.getItems().add("Unoccupied");
         occupancy_CB.getItems().add("Offline");
         
-        hallName_Col.setCellValueFactory(new PropertyValueFactory<>("name"));
+        hallName_Col.setCellValueFactory(new PropertyValueFactory<>("hallName"));
         hallNumber_Col.setCellValueFactory(new PropertyValueFactory<>("hallNumber"));
         room_Col.setCellValueFactory(new PropertyValueFactory<>("roomNumber"));
         lease_Col.setCellValueFactory(new PropertyValueFactory<>("roomStatus"));
@@ -81,7 +85,8 @@ public class ManagerViewController implements Initializable {
         Cleanliness_Col.setCellValueFactory(new PropertyValueFactory<>("cleanliness"));
         
         //this loads the dummy data
-//        table_T.setItems(getHalls());
+        //table_T.setItems(getHalls());
+        table_T.setItems(getInfo(tableData));
     }    
     
     /**
@@ -101,10 +106,60 @@ public class ManagerViewController implements Initializable {
 //    {
 //        
 //        ObservableList<Hall> hall = FXCollections.observableArrayList();
-//        hall.add(AccomodationSystem.halls.get(0));
+//        hall.add(AccomodationSystem.halls.get(0)); //sets a row of the table
 //        
 //        return hall;
 //    }
+    
+    /**
+     * Function that gets the specifics items and puts them into the table;
+     */
+    public void specificsToTable(AccommodationSpecifics data, ArrayList<ManagerTable> tableData){
+        //loop through every hall in the system
+        for(int j = 0; j<data.getHalls().size();j++){
+            //loop through every room in the system
+            for(int i=0; i<data.getHalls().get(j).getRooms().size();i++){
+                //add new row of data
+                tableData.add(new ManagerTable());
+                int elementIndex = tableData.size() - 1;
+
+                //set the hall name
+                tableData.get(elementIndex).setHallName(data.getHalls().get(j).getHallName());
+
+                //set the hall number
+                tableData.get(elementIndex).setHallNumber(Integer.toString(j));
+
+                //set the room number
+                tableData.get(elementIndex).setRoomNumber(data.getHalls().get(j).getRooms().get(i).getRoomNumber());
+
+                //set the room lease
+                tableData.get(elementIndex).setLeaseNumber(Integer.toString(data.getHalls().get(j).getRooms().get(i).getLease().getLeaseNumber()));
+
+                //set the student name
+                tableData.get(elementIndex).setStudentName(data.getHalls().get(j).getRooms().get(i).getLease().getStudent().getFirstName());
+
+                //set the occupancy
+                tableData.get(elementIndex).setOccupancyStatus(data.getHalls().get(j).getRooms().get(i).getRoomStatus());
+
+                //set the cleanliness
+                tableData.get(elementIndex).setCleanliness(data.getHalls().get(j).getRooms().get(i).getRoomCleanliness());
+
+            }
+            
+        }
+    }
+    
+    
+    /**
+     * Function that converts the list managerTable items into observable list;
+     */
+    public ObservableList<ManagerTable> getInfo(ArrayList<ManagerTable> tableData){
+        ObservableList<ManagerTable> info = FXCollections.observableArrayList();
+        for(int i = 0; i<tableData.size(); i++){
+            info.add(tableData.get(i));
+        }
+        return info;
+    }
     
     /**
      * Function that updates the table data;

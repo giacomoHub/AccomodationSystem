@@ -52,6 +52,7 @@ public class AccommodationSpecifics {
     
     public void Initialiser(){
         //make new fake data
+        numberOfRooms = 20;
         generateHalls();
         generateRooms();
         generateStudents();
@@ -103,21 +104,21 @@ public class AccommodationSpecifics {
         for(int j = 0; j<halls.size(); j++){
             for(int i=0; i<halls.get(j).getRooms().size(); i++){
                 //put only some students into the system
-                if(i%2==0){
+                //if(i%2==0){
                     leaseNumber++;
                     studentNumber++;
                     halls.get(j).getRooms().get(i).setLease(new Lease(new Student(studentNumber,randomStudentName() ,randomStudentSurname()), i, leaseNumber));
-                }
+                //}
             }
         }
     }
     
     private String randomStudentName(){
-        return null;
+        return "Mario";
     }
     
     private String randomStudentSurname(){
-        return null;
+        return "Mandzukitch";
     }
     
    

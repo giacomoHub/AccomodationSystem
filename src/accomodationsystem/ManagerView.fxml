@@ -12,7 +12,7 @@
 
 <AnchorPane id="AnchorPane" prefHeight="452.0" prefWidth="662.0" xmlns="http://javafx.com/javafx/8" xmlns:fx="http://javafx.com/fxml/1" fx:controller="accomodationsystem.ManagerViewController">
    <children>
-      <SplitPane dividerPositions="0.4" layoutX="-7.0" layoutY="-3.0" orientation="VERTICAL" prefHeight="465.0" prefWidth="672.0">
+      <SplitPane dividerPositions="0.39956803455723544" layoutX="-7.0" layoutY="-3.0" orientation="VERTICAL" prefHeight="465.0" prefWidth="672.0">
         <items>
           <AnchorPane minHeight="0.0" minWidth="0.0" prefHeight="242.0" prefWidth="654.0" style="-fx-background-color: #015354;">
                <children>
@@ -163,21 +163,20 @@
                   </SplitPane>
                </children>
             </AnchorPane>
-          <AnchorPane minHeight="0.0" minWidth="0.0" prefHeight="200.0" prefWidth="670.0">
+          <AnchorPane minHeight="0.0" minWidth="0.0" prefHeight="200.0" prefWidth="670.0" style="-fx-background-color: #015354;">
                <children>
-                  <TableView fx:id="table_T" layoutY="-3.0" prefHeight="280.0" prefWidth="670.0" style="-fx-selection-bar: #015354; -fx-text-fill: #015354;">
+                  <TableView fx:id="table_T" layoutX="6.0" prefHeight="274.0" prefWidth="665.0" style="-fx-selection-bar: #015354; -fx-text-fill: #015354;">
                     <columns>
                       <TableColumn fx:id="hallName_Col" prefWidth="75.0" text="HALL" />
                       <TableColumn fx:id="hallNumber_Col" prefWidth="62.77344512939453" text="HALL#" />
                         <TableColumn fx:id="room_Col" prefWidth="66.22654724121094" text="ROOM" />
                         <TableColumn fx:id="lease_Col" prefWidth="75.0" text="LEASE" />
-                        <TableColumn fx:id="student_Col" prefWidth="198.64117431640625" text="STUDENT" />
-                        <TableColumn fx:id="Occupancy_Col" prefWidth="100.57742309570312" text="OCCUPANCY" />
-                        <TableColumn fx:id="Cleanliness_Col" prefWidth="89.0" text="CLEAN" />
+                        <TableColumn fx:id="student_Col" prefWidth="158.0" text="STUDENT" />
+                        <TableColumn fx:id="Occupancy_Col" prefWidth="123.0" text="OCCUPANCY" />
+                        <TableColumn fx:id="Cleanliness_Col" prefWidth="93.0" text="CLEAN" />
                     </columns>
                   </TableView>
-               </children>
-            </AnchorPane>
+               </children></AnchorPane>
         </items>
       </SplitPane>
    </children>

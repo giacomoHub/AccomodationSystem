@@ -9,6 +9,7 @@ package accomodationsystem;
 import java.util.ArrayList;
 import java.util.Random;
 
+
 /**
  *
  * @author juanestebanvargassalamanca
@@ -25,6 +26,8 @@ public class AccommodationSpecifics {
     private static AccommodationSpecifics instance;
     private ArrayList<Hall> halls; //to be accessed
     private int numberOfRooms; //number of rooms for each hall
+    ArrayList<String> names;
+    ArrayList<String> surnames;
 
     
     /**
@@ -53,6 +56,13 @@ public class AccommodationSpecifics {
     
     public void Initialiser(){
         //make new fake data
+        names = new ArrayList<String>();
+        surnames = new ArrayList<String>();
+        
+        //read new names from file
+        readNames();
+        readSurnames();
+        
         numberOfRooms = 20;
         generateHalls();
         generateRooms();
@@ -116,12 +126,32 @@ public class AccommodationSpecifics {
         }
     }
     
+    private void readNames(){
+        names.add("Mario");
+        names.add("Giacomo");
+        names.add("Filippo");
+        names.add("Roberto");
+        names.add("James");
+        names.add("Ludovico");
+        names.add("Alfred");
+    }
+    
+    private void readSurnames(){
+        surnames.add("Pellizzari");
+        surnames.add("Vargas");
+        surnames.add("Salamanca");
+        surnames.add("Solair");
+    }
+    
     private String randomStudentName(){
-        return "Mario";
+        Random rand = new Random();
+        int index = rand.nextInt(names.size());
+        return names.get(index);
     }
     
     private String randomStudentSurname(){
-        return "Mandzukitch";
+        Random rand = new Random();
+        return surnames.get(rand.nextInt(surnames.size()));
     }
     
    

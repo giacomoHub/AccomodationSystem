@@ -81,7 +81,7 @@ public class ManagerViewController implements Initializable {
         Cleanliness_Col.setCellValueFactory(new PropertyValueFactory<>("cleanliness"));
         
         //this loads the dummy data
-        table_T.setItems(getHalls());
+//        table_T.setItems(getHalls());
     }    
     
     /**
@@ -97,14 +97,14 @@ public class ManagerViewController implements Initializable {
         window.show();
     }
     
-    public ObservableList<Hall> getHalls()
-    {
-        
-        ObservableList<Hall> hall = FXCollections.observableArrayList();
-        hall.add(AccomodationSystem.halls.get(0));
-        
-        return hall;
-    }
+//    public ObservableList<Hall> getHalls()
+//    {
+//        
+//        ObservableList<Hall> hall = FXCollections.observableArrayList();
+//        hall.add(AccomodationSystem.halls.get(0));
+//        
+//        return hall;
+//    }
     
     /**
      * Function that updates the table data;

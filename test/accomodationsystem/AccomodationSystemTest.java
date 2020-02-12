@@ -89,7 +89,11 @@ public class AccomodationSystemTest {
     public void testSingleton(){
         
         AccommodationSpecifics data = AccommodationSpecifics.getInstance();
-        System.out.println(data.getHalls());
+        System.out.println(data.getHalls().get(0));
+        System.out.println(data.getHalls().get(1));
+        System.out.println(data.getHalls().get(2));
+        System.out.println(data.getHalls().get(3));
+        System.out.println("size of halls: " + data.getHalls().size());
         
     }
 }

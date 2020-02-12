@@ -13,12 +13,12 @@ import java.util.ArrayList;
  */
 public class UWE_AccommodationTable {
     
-    // Class Attributes
-    private String HallName;
-    private String HallNumber;
+    
     private ArrayList<Room> room;
     
-    
+// Class Attributes
+    private String HallName;
+    private String HallNumber;
     private int roomNumber;
     private String roomStatus;
     private String roomCleanliness;
@@ -26,11 +26,13 @@ public class UWE_AccommodationTable {
     private String studentName;
 
 
-    public UWE_AccommodationTable(Hall hallDetails, int i){
+    public UWE_AccommodationTable(Hall hallDetails, Room room){
     
         HallName = hallDetails.getHallName();
         HallNumber = null;
-        room = hallDetails.getRooms();;
+        roomNumber = room.getRoomNumber();
+        roomStatus = room.getRoomStatus();
+        roomCleanliness = room.getRoomCleanliness();
     }
     
     public String getHallName() {

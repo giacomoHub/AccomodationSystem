@@ -35,9 +35,9 @@ public class WardenViewController implements Initializable {
     @FXML
     private TableColumn<UWE_AccommodationTable, String> hallNameColumn;
     @FXML
-    private TableColumn<UWE_AccommodationTable, String> hallNumberColumn;
+    private TableColumn<UWE_AccommodationTable, Integer> hallNumberColumn;
     @FXML
-    private TableColumn<UWE_AccommodationTable, String> roomNumberColumn;
+    private TableColumn<UWE_AccommodationTable, Integer > roomNumberColumn;
     @FXML
     private TableColumn<UWE_AccommodationTable, String> roomStatusColumn;
     @FXML
@@ -67,11 +67,11 @@ public class WardenViewController implements Initializable {
     public void initialize(URL url, ResourceBundle rb) {
 
         //set columns in table
-        hallNameColumn.setCellValueFactory(new PropertyValueFactory<>("hallName"));
-//        hallNumberColumn.setCellValueFactory(new PropertyValueFactory<>("hallNumber"));
-        roomNumberColumn.setCellValueFactory(new PropertyValueFactory<>("roomNumber"));
-        roomStatusColumn.setCellValueFactory(new PropertyValueFactory<>("roomStatus"));
-        cleanlinessColumn.setCellValueFactory(new PropertyValueFactory<>("roomCleanliness"));
+        hallNameColumn.setCellValueFactory(new PropertyValueFactory<UWE_AccommodationTable, String>("HallName"));
+//        hallNumberColumn.setCellValueFactory(new PropertyValueFactory<UWE_AccommodationTable, Integer >("HallNumber"));
+//        roomNumberColumn.setCellValueFactory(new PropertyValueFactory<UWE_AccommodationTable, Integer>("RoomNumber"));
+//        roomStatusColumn.setCellValueFactory(new PropertyValueFactory<UWE_AccommodationTable, String>("RoomStatus"));
+//        cleanlinessColumn.setCellValueFactory(new PropertyValueFactory<UWE_AccommodationTable,String >("RoomCleanliness"));
 
         //this loads the dummy data
         tableView.setItems(getData());
@@ -86,7 +86,7 @@ public class WardenViewController implements Initializable {
 
         for (int j = 0; j < data.getHalls().size(); j++) {
             for (int i = 0; i < data.getHalls().get(0).getRooms().size(); i++) {
-                tableData.add(new UWE_AccommodationTable(data.getHalls().get(j), data.getHalls().get(j).getRooms().get(i)));
+                tableData.add(new UWE_AccommodationTable(data.getHalls().get(j), data.getHalls().get(j).getRooms().get(i), data.getHalls().get(j).getRooms().get(i).getLease()));
             }
         }
 

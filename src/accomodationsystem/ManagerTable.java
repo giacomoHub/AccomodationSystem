@@ -42,6 +42,10 @@ public class ManagerTable {
     public String getStudentNumber() {
         return studentNumber;
     }
+    
+    public String getStudentName(){
+        return studentName;
+    }
 
     public String getOccupancyStatus() {
         return occupancyStatus;

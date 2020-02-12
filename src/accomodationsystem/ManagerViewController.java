@@ -79,9 +79,9 @@ public class ManagerViewController implements Initializable {
         hallName_Col.setCellValueFactory(new PropertyValueFactory<>("hallName"));
         hallNumber_Col.setCellValueFactory(new PropertyValueFactory<>("hallNumber"));
         room_Col.setCellValueFactory(new PropertyValueFactory<>("roomNumber"));
-        lease_Col.setCellValueFactory(new PropertyValueFactory<>("roomStatus"));
-        student_Col.setCellValueFactory(new PropertyValueFactory<>("cleanliness"));
-        Occupancy_Col.setCellValueFactory(new PropertyValueFactory<>("roomStatus"));
+        lease_Col.setCellValueFactory(new PropertyValueFactory<>("leaseNumber"));
+        student_Col.setCellValueFactory(new PropertyValueFactory<>("studentName"));
+        Occupancy_Col.setCellValueFactory(new PropertyValueFactory<>("occupancyStatus"));
         Cleanliness_Col.setCellValueFactory(new PropertyValueFactory<>("cleanliness"));
         
         //this loads the dummy data

@@ -47,11 +47,11 @@ public class Room {
 	}
 
 	public String getRoomCleanliness() {
-            if (roomCleanliness == 1) {
+            if (roomCleanliness == 0) {
                 
                 return "Clean";
                 
-            } else if (roomCleanliness == 2) {
+            } else if (roomCleanliness == 1) {
                 
                 return "Dirty";
                 

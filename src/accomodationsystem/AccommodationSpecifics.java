@@ -7,6 +7,7 @@ package accomodationsystem;
 
 
 import java.util.ArrayList;
+import java.util.Random;
 
 /**
  *
@@ -83,13 +84,14 @@ public class AccommodationSpecifics {
     }
     
     private void generateRooms(){
+        Random rand = new Random();
         //add 20 rooms to the four halls
         for(int j = 0; j < halls.size(); j++){
             for (int i = 1; i <= numberOfRooms; i++) {
                 if(i % 2 == 0){
-                    halls.get(j).addRoom(new Room(i, true, i*100, i));
+                    halls.get(j).addRoom(new Room(i, true, i*100, rand.nextInt(2)));
                 } else {
-                    halls.get(j).addRoom(new Room(i, false, i*50, i));
+                    halls.get(j).addRoom(new Room(i, false, i*50, rand.nextInt(2)));
                 }
             }
         }
@@ -97,6 +99,7 @@ public class AccommodationSpecifics {
     
     //function that adds new leases and students to the rooms
     private void generateStudents(){
+        Random rand = new Random();
         int leaseNumber = 0;
         int studentNumber = 1000;
         
@@ -107,7 +110,7 @@ public class AccommodationSpecifics {
                 //if(i%2==0){
                     leaseNumber++;
                     studentNumber++;
-                    halls.get(j).getRooms().get(i).setLease(new Lease(new Student(studentNumber,randomStudentName() ,randomStudentSurname()), i, leaseNumber));
+                    halls.get(j).getRooms().get(i).setLease(new Lease(new Student(studentNumber,randomStudentName() ,randomStudentSurname()), rand.nextInt(30), leaseNumber));
                 //}
             }
         }

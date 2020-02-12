@@ -19,19 +19,19 @@ public class UWE_AccommodationTable {
     private final Integer roomNumber;
     private final String roomStatus;
     private final String roomCleanliness;
-    private final Integer leaseNumber;
-    private final String studentName;
+//    private final Integer leaseNumber;
+//    private final String studentName;
 
 
-    public UWE_AccommodationTable(Hall hallDetails, Room roomDetails, Lease leaseDetails){
+    public UWE_AccommodationTable(Hall hallDetails, Room roomDetails){
     
         hallName = hallDetails.getHallName();
         hallNumber = 10;
         roomNumber = roomDetails.getRoomNumber();
         roomStatus = roomDetails.getRoomStatus();
         roomCleanliness = roomDetails.getRoomCleanliness();
-        leaseNumber = leaseDetails.getLeaseNumber();
-        studentName = leaseDetails.getStudent().getFullName();
+        //leaseNumber = leaseDetails.getLeaseNumber();
+//        studentName = leaseDetails.getStudent().getFullName();
     }
     
     public String getHallName() {
@@ -57,13 +57,13 @@ public class UWE_AccommodationTable {
         return roomCleanliness;
     }
 
-    public Integer getLeaseNumber() {
-        return leaseNumber;
-    }
-
-    public String getStudentName() {
-        return studentName;
-    }
+//    public Integer getLeaseNumber() {
+//        return leaseNumber;
+//    }
+//
+//    public String getStudentName() {
+//        return studentName;
+//    }
     
     
     

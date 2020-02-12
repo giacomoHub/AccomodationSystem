@@ -67,7 +67,7 @@ public class WardenViewController implements Initializable {
     public void initialize(URL url, ResourceBundle rb) {
 
         //set columns in table
-        hallNameColumn.setCellValueFactory(new PropertyValueFactory<UWE_AccommodationTable, String>("HallName"));
+        hallNameColumn.setCellValueFactory(new PropertyValueFactory<>("getHallName"));
 //        hallNumberColumn.setCellValueFactory(new PropertyValueFactory<UWE_AccommodationTable, Integer >("HallNumber"));
 //        roomNumberColumn.setCellValueFactory(new PropertyValueFactory<UWE_AccommodationTable, Integer>("RoomNumber"));
 //        roomStatusColumn.setCellValueFactory(new PropertyValueFactory<UWE_AccommodationTable, String>("RoomStatus"));
@@ -80,13 +80,14 @@ public class WardenViewController implements Initializable {
 
     public ObservableList<UWE_AccommodationTable> getData() {
 
+        //loads all our data
         AccommodationSpecifics data = AccommodationSpecifics.getInstance();
         
         ObservableList<UWE_AccommodationTable> tableData = FXCollections.observableArrayList();
 
         for (int j = 0; j < data.getHalls().size(); j++) {
             for (int i = 0; i < data.getHalls().get(0).getRooms().size(); i++) {
-                tableData.add(new UWE_AccommodationTable(data.getHalls().get(j), data.getHalls().get(j).getRooms().get(i), data.getHalls().get(j).getRooms().get(i).getLease()));
+                tableData.add(new UWE_AccommodationTable(data.getHalls().get(j), data.getHalls().get(j).getRooms().get(i)));
             }
         }
 

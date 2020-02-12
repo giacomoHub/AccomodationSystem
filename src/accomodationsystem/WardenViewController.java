@@ -5,7 +5,6 @@
  */
 package accomodationsystem;
 
-
 import java.io.IOException;
 import java.net.URL;
 import java.util.ResourceBundle;
@@ -30,70 +29,67 @@ import javafx.stage.Stage;
  */
 public class WardenViewController implements Initializable {
 
-    
     //fxml variables to display in GUI for warden only
-    @FXML private TableView<UWE_AccommodationTable> tableView;
-    @FXML private TableColumn<UWE_AccommodationTable, String> hallNameColumn;
-    @FXML private TableColumn<UWE_AccommodationTable, String> hallNumberColumn;
-    @FXML private TableColumn<UWE_AccommodationTable, String> roomNumberColumn;
-    @FXML private TableColumn<UWE_AccommodationTable, String> roomStatusColumn;
-    @FXML private TableColumn<UWE_AccommodationTable, String> cleanlinessColumn;
-    
+    @FXML
+    private TableView<UWE_AccommodationTable> tableView;
+    @FXML
+    private TableColumn<UWE_AccommodationTable, String> hallNameColumn;
+    @FXML
+    private TableColumn<UWE_AccommodationTable, String> hallNumberColumn;
+    @FXML
+    private TableColumn<UWE_AccommodationTable, String> roomNumberColumn;
+    @FXML
+    private TableColumn<UWE_AccommodationTable, String> roomStatusColumn;
+    @FXML
+    private TableColumn<UWE_AccommodationTable, String> cleanlinessColumn;
+
     /**
      * @param event
-     * @throws IOException 
-     * Description: Changes to main menu
+     * @throws IOException Description: Changes to main menu
      */
-    
     public void changeScene(ActionEvent event) throws IOException {
-        
+
         // Gets FXML Documents and makes a new scene
         Parent backToMenu = FXMLLoader.load(getClass().getResource("FXMLDocument.fxml"));
         Scene menuScene = new Scene(backToMenu);
-                
+
         //Windows is cast as a stage
-        Stage window = (Stage)((Node)event.getSource()).getScene().getWindow();
+        Stage window = (Stage) ((Node) event.getSource()).getScene().getWindow();
         window.setScene(menuScene);
         window.show();
     }
-    
-    
+
     /**
      * @param url
-     * @param rb 
-     * Description: loads everything needed for GUI when loaded
+     * @param rb Description: loads everything needed for GUI when loaded
      */
     @Override
     public void initialize(URL url, ResourceBundle rb) {
-        
-        AccommodationSpecifics data = AccommodationSpecifics.getInstance();
-        
+
         //set columns in table
         hallNameColumn.setCellValueFactory(new PropertyValueFactory<>("hallName"));
         hallNumberColumn.setCellValueFactory(new PropertyValueFactory<>("hallNumber"));
         roomNumberColumn.setCellValueFactory(new PropertyValueFactory<>("roomNumber"));
         roomStatusColumn.setCellValueFactory(new PropertyValueFactory<>("roomStatus"));
         cleanlinessColumn.setCellValueFactory(new PropertyValueFactory<>("roomCleanliness"));
-        
+
         //this loads the dummy data
         tableView.setItems(getData());
+
+    }
+
+    public ObservableList<UWE_AccommodationTable> getData() {
+
+        AccommodationSpecifics data = AccommodationSpecifics.getInstance();
         
-        
-        
-    }   
-    
-    
-     public ObservableList<UWE_AccommodationTable> getData()
-    {
-   
-        ObservableList<UWE_AccommodationTable> data = FXCollections.observableArrayList();
-        
-        int currentHall = 0;
-        while (data.get(currentHall).g) {            
-            
+        ObservableList<UWE_AccommodationTable> tableData = FXCollections.observableArrayList();
+
+        for (int j = 0; j < data.getHalls().size(); j++) {
+            for (int i = 0; i < data.getHalls().get(0).getRooms().size(); i++) {
+                tableData.add(new UWE_AccommodationTable(data.getHalls().get(j), data.getHalls().get(j).getRooms().get(i)));
+            }
         }
 
-        
-        return data;
+        return tableData;
     }
 }

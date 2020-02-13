@@ -68,17 +68,17 @@
                                           <Insets left="25.0" />
                                        </GridPane.margin>
                                     </Label>
-                                    <Label text="Nothing" textFill="#015354" GridPane.columnIndex="1">
+                                    <Label fx:id="hallName" text="Nothing" textFill="#015354" GridPane.columnIndex="1">
                                        <font>
                                           <Font name="Arial Bold" size="13.0" />
                                        </font>
                                     </Label>
-                                    <Label text="Nothing" textFill="#015354" GridPane.columnIndex="1" GridPane.rowIndex="1">
+                                    <Label fx:id="roomNumber" text="Nothing" textFill="#015354" GridPane.columnIndex="1" GridPane.rowIndex="1">
                                        <font>
                                           <Font name="Arial Bold" size="13.0" />
                                        </font>
                                     </Label>
-                                    <Label text="Nothing" textFill="#015354" GridPane.columnIndex="1" GridPane.rowIndex="2">
+                                    <Label fx:id="hallNumber" text="Nothing" textFill="#015354" GridPane.columnIndex="1" GridPane.rowIndex="2">
                                        <font>
                                           <Font name="Arial Bold" size="13.0" />
                                        </font>
@@ -115,8 +115,8 @@
                                           <Insets left="25.0" />
                                        </GridPane.margin>
                                     </Label>
-                                    <TextField prefHeight="27.0" prefWidth="163.0" style="-fx-background-color: #015354; -fx-text-fill: white;" GridPane.columnIndex="1" />
-                                    <TextField style="-fx-background-color: #015354; -fx-text-fill: white;" GridPane.columnIndex="1" GridPane.rowIndex="1" />
+                                    <TextField fx:id="leaseNumber" prefHeight="27.0" prefWidth="163.0" style="-fx-background-color: #015354; -fx-text-fill: white;" GridPane.columnIndex="1" />
+                                    <TextField fx:id="studentName" style="-fx-background-color: #015354; -fx-text-fill: white;" GridPane.columnIndex="1" GridPane.rowIndex="1" />
                                     <ChoiceBox fx:id="occupancy_CB" prefHeight="29.0" prefWidth="157.0" style="-fx-background-color: white; -fx-text-fill: #015354; -fx-border-color: #015354;" GridPane.columnIndex="1" GridPane.rowIndex="2" />
                                  </children>
                                  <columnConstraints>
@@ -149,7 +149,7 @@
                                     </Button>
                                  </children>
                               </VBox>
-                              <AnchorPane fx:id="createLeaseView_V" layoutX="-3.0" layoutY="-3.0" prefHeight="149.0" prefWidth="448.0" style="-fx-background-color: white;">
+                              <AnchorPane fx:id="createLeaseView_V" layoutX="-3.0" layoutY="-3.0" prefHeight="149.0" prefWidth="448.0" style="-fx-background-color: white;" visible="false">
                                  <children>
                                     <Button fx:id="createLease_Btn" layoutX="128.0" layoutY="39.0" mnemonicParsing="false" onAction="#hideCreateLease" prefHeight="72.0" prefWidth="192.0" style="-fx-background-color: #015354;" text="Create new lease" textFill="WHITE">
                                        <font>

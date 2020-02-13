@@ -26,14 +26,10 @@ import javafx.stage.Stage;
  */
 public class FXMLDocumentController implements Initializable {
     
-    @FXML
-    private Label label;
-    @FXML
-    private Label label1;
-    @FXML
-    private Button managerButton;
-    @FXML
-    private Button button;
+    @FXML private Label label;
+    @FXML private Label label1;
+    @FXML private Button managerButton;
+    @FXML private Button button;
     
     private void handleButtonAction(ActionEvent event) {
         System.out.println("You clicked me!");

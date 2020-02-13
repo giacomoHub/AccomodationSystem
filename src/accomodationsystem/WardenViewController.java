@@ -18,8 +18,11 @@ import javafx.fxml.Initializable;
 import javafx.scene.Node;
 import javafx.scene.Parent;
 import javafx.scene.Scene;
+import javafx.scene.control.Button;
+import javafx.scene.control.ChoiceBox;
 import javafx.scene.control.TableColumn;
 import javafx.scene.control.TableView;
+import javafx.scene.control.TextField;
 import javafx.scene.control.cell.PropertyValueFactory;
 import javafx.stage.Stage;
 
@@ -30,31 +33,42 @@ import javafx.stage.Stage;
 public class WardenViewController implements Initializable {
 
     //fxml variables to display in GUI for warden only
-
     @FXML private TableView<WardenTable> tableView;
-    @FXML private TableColumn<WardenTable, String> hallNameColumn;
-    @FXML private TableColumn<WardenTable, String> hallNumberColumn;
-    @FXML private TableColumn<WardenTable, String > roomNumberColumn;
-    @FXML private TableColumn<WardenTable, String> roomStatusColumn;
-    @FXML private TableColumn<WardenTable, String> cleanlinessColumn;
+    @FXML private TableColumn<WardenTable, String> hallName_Col;
+    @FXML private TableColumn<WardenTable, String> hallNumber_Col;
+    @FXML private TableColumn<WardenTable, String> roomNumber_Col;
+    @FXML private TableColumn<WardenTable, String> roomStatus_Col;
+    @FXML private TableColumn<WardenTable, String> cleanliness_Col;
+    
+    //fxml variables to see clicked data
+    @FXML private TextField room_Dis;
+    @FXML private TextField currentStatus_Dis;
+    
+    //fxml variables set options and confirming
+    @FXML private ChoiceBox cleanliness_CB;
+    @FXML private Button confirmChange_Bt;
     
     @Override
     public void initialize(URL url, ResourceBundle rb) {
         
         AccommodationSpecifics data = AccommodationSpecifics.getInstance();
-        ArrayList<WardenTable> tableData = new ArrayList<WardenTable>();
+        ObservableList<WardenTable> tableData = FXCollections.observableArrayList();
         
-        specificsToTable(data,tableData);
-
         //set columns in table
-        hallNameColumn.setCellValueFactory(new PropertyValueFactory<>("hallName"));
-        hallNumberColumn.setCellValueFactory(new PropertyValueFactory<>("hallNumber"));
-        roomNumberColumn.setCellValueFactory(new PropertyValueFactory<>("roomNumber"));
-        roomStatusColumn.setCellValueFactory(new PropertyValueFactory<>("roomStatus"));
-        cleanlinessColumn.setCellValueFactory(new PropertyValueFactory<>("roomCleanliness"));
+        hallName_Col.setCellValueFactory(new PropertyValueFactory<>("hallName"));
+        hallNumber_Col.setCellValueFactory(new PropertyValueFactory<>("hallNumber"));
+        roomNumber_Col.setCellValueFactory(new PropertyValueFactory<>("roomNumber"));
+        roomStatus_Col.setCellValueFactory(new PropertyValueFactory<>("roomStatus"));
+        cleanliness_Col.setCellValueFactory(new PropertyValueFactory<>("roomCleanliness"));
+        
+        //Buttons and Labels
+        cleanliness_CB.getItems().add("");
+        cleanliness_CB.getItems().add("Clean");
+        cleanliness_CB.getItems().add("Dirty");
+        cleanliness_CB.getItems().add("Off-Line");
 
         /** LOADS DUMMY DATA **/
-        tableView.setItems(getInfo(tableData));
+        tableView.setItems(specificsToTable(data, tableData));
     }
     
     public void changeScene(ActionEvent event) throws IOException {
@@ -69,19 +83,20 @@ public class WardenViewController implements Initializable {
         window.show();
     }
 
-    public void specificsToTable(AccommodationSpecifics data, ArrayList<WardenTable> tableData){
+    public ObservableList<WardenTable> specificsToTable(AccommodationSpecifics data, ObservableList<WardenTable> tableData){
         //loop through every hall in the system
         for(int j = 0; j<data.getHalls().size();j++){
             //loop through every room in the system
             for(int i=0; i<data.getHalls().get(j).getRooms().size();i++){
                 //add new row of data
                 tableData.add(new WardenTable());
-                int elementIndex = tableData.size() - 1;
+                int elementIndex = tableData.size() - 1; //
 
                 //set the hall name
                 tableData.get(elementIndex).setHallName(data.getHalls().get(j).getHallName());
 
                 //set the hall number
+                System.out.println(j);
                 tableData.get(elementIndex).setHallNumber(Integer.toString(j));
 
                 //set the room number
@@ -94,17 +109,19 @@ public class WardenViewController implements Initializable {
                 tableData.get(elementIndex).setRoomCleanliness(data.getHalls().get(j).getRooms().get(i).getRoomCleanliness());
             }
         }
+        
+        return tableData;
     }
     
     /**
      * Function that converts the list managerTable items into observable list;
      */
-    public ObservableList<WardenTable> getInfo(ArrayList<WardenTable> tableData){
-        ObservableList<WardenTable> info = FXCollections.observableArrayList();
-        for(int i = 0; i<tableData.size(); i++){
-            info.add(tableData.get(i));
-        }
-        return info;
-    }
+//    public ObservableList<WardenTable> getInfo(ArrayList<WardenTable> tableData){
+//        ObservableList<WardenTable> info = FXCollections.observableArrayList();
+//        for(int i = 0; i<tableData.size(); i++){
+//            info.add(tableData.get(i));
+//        }
+//        return info;
+//    }
 }
 

@@ -15,7 +15,7 @@ public class WardenTable {
     
 // Class Attributes
     private String hallName;
-    private String hallNumber;
+    private int hallNumber;
     private int roomNumber;
     private String roomStatus;
     private String roomCleanliness;
@@ -24,7 +24,7 @@ public class WardenTable {
         return hallName;
     }
     
-     public String getHallNumber() {
+     public int getHallNumber() {
         return hallNumber;
     }
     
@@ -45,7 +45,7 @@ public class WardenTable {
     }
 
     public void setHallNumber(String HallNumber) {
-        this.hallName = HallNumber;
+        this.hallNumber = hallNumber;
     }
 
     public void setRoomNumber(int roomNumber) {

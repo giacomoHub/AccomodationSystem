@@ -24,6 +24,7 @@ import javafx.scene.control.ChoiceBox;
 import javafx.scene.control.Label;
 import javafx.scene.control.TableColumn;
 import javafx.scene.control.TableView;
+import javafx.scene.control.TextField;
 import javafx.scene.control.cell.PropertyValueFactory;
 import javafx.scene.layout.AnchorPane;
 import javafx.stage.Stage;
@@ -44,6 +45,20 @@ public class ManagerViewController implements Initializable {
     private ChoiceBox<String> occupancy_CB;
     @FXML
     private Button delete_Btn;
+    @FXML
+    private Label hallName;
+    @FXML
+    private Label hallNumber;
+    @FXML
+    private Label roomNumber;
+    @FXML
+    private TextField leaseNumber;
+    @FXML
+    private TextField studentName;
+    
+    
+    ActionEvent event = new ActionEvent();
+    
     
     //fxml table variables
     @FXML private TableView<ManagerTable> table_T;
@@ -54,6 +69,9 @@ public class ManagerViewController implements Initializable {
     @FXML private TableColumn<ManagerTable, String> student_Col;
     @FXML private TableColumn<ManagerTable, String> Occupancy_Col;
     @FXML private TableColumn<ManagerTable, String> Cleanliness_Col;
+    
+    //data of the currently selected row
+    ManagerTable selectedRow;
     
     
     
@@ -67,27 +85,34 @@ public class ManagerViewController implements Initializable {
         
         //get the data
         AccommodationSpecifics data = getInstance();
-        ArrayList<ManagerTable> tableData = new ArrayList<ManagerTable>();
-        
-        //prepare the data to go in the table
-        specificsToTable(data,tableData);
+        ObservableList<ManagerTable> tableData = FXCollections.observableArrayList();
         
         //add the options to the choice box
         occupancy_CB.getItems().add("Occupied");
         occupancy_CB.getItems().add("Unoccupied");
         occupancy_CB.getItems().add("Offline");
         
-        hallName_Col.setCellValueFactory(new PropertyValueFactory<>("hallName"));
-        hallNumber_Col.setCellValueFactory(new PropertyValueFactory<>("hallNumber"));
-        room_Col.setCellValueFactory(new PropertyValueFactory<>("roomNumber"));
-        lease_Col.setCellValueFactory(new PropertyValueFactory<>("leaseNumber"));
-        student_Col.setCellValueFactory(new PropertyValueFactory<>("studentName"));
-        Occupancy_Col.setCellValueFactory(new PropertyValueFactory<>("occupancyStatus"));
-        Cleanliness_Col.setCellValueFactory(new PropertyValueFactory<>("cleanliness"));
+        initializeTableColumns();
         
-        //load the data into the table
-        table_T.setItems(getInfo(tableData));
+        //prepare and load the data into the table
+        table_T.setItems(specificsToTable(data,tableData));
+        
+        //add the event listener to the table
+        table_T.setOnMouseClicked(e -> {
+            events();
+        });
     }    
+    
+    private void events(){
+        selectedRow = table_T.getSelectionModel().getSelectedItem();
+        setSelectedLabels(selectedRow);
+        System.out.println(selectedRow.getHallName());  
+        
+        if(selectedRow.getStudentName().equals("Giacomo")){
+            hideCreateLease(event);
+            setSelectedInput(selectedRow);
+        }
+    }
     
     /**
      * Change view
@@ -102,10 +127,15 @@ public class ManagerViewController implements Initializable {
         window.show();
     }
     
+    
+    
     /**
      * Function that gets the AcoomodationSpecifics data and converts it into ManagerTable;
+     * @param data
+     * @param tableData
+     * @return type ObservableList<ManagerTable>
      */
-    public void specificsToTable(AccommodationSpecifics data, ArrayList<ManagerTable> tableData){
+    public ObservableList<ManagerTable> specificsToTable(AccommodationSpecifics data, ObservableList<ManagerTable> tableData){
         //loop through every hall in the system
         for(int j = 0; j<data.getHalls().size();j++){
             //loop through every room in the system
@@ -135,31 +165,35 @@ public class ManagerViewController implements Initializable {
                 //set the cleanliness
                 tableData.get(elementIndex).setCleanliness(data.getHalls().get(j).getRooms().get(i).getRoomCleanliness());
 
-            }
-            
+            } 
         }
+        return tableData;
     }
     
-    
-    /**
-     * 
-     * !GETTING RID OF THIS IN FUTURE UPDATE!! CONVERTING ArrayList<ManagerTable> tableData to ObservableList<ManagerTable> in declaration
-     * Function that converts the list managerTable items into observable list;
-     * This function will be deleted
-     */
-    public ObservableList<ManagerTable> getInfo(ArrayList<ManagerTable> tableData){
-        ObservableList<ManagerTable> info = FXCollections.observableArrayList();
-        for(int i = 0; i < tableData.size(); i++){
-            info.add(tableData.get(i));
-        }
-        return info;
-    }
     
     /**
      * Function that updates the table data;
      */
-    public void setTableData(){
-        
+    public void initializeTableColumns(){
+        hallName_Col.setCellValueFactory(new PropertyValueFactory<>("hallName"));
+        hallNumber_Col.setCellValueFactory(new PropertyValueFactory<>("hallNumber"));
+        room_Col.setCellValueFactory(new PropertyValueFactory<>("roomNumber"));
+        lease_Col.setCellValueFactory(new PropertyValueFactory<>("leaseNumber"));
+        student_Col.setCellValueFactory(new PropertyValueFactory<>("studentName"));
+        Occupancy_Col.setCellValueFactory(new PropertyValueFactory<>("occupancyStatus"));
+        Cleanliness_Col.setCellValueFactory(new PropertyValueFactory<>("cleanliness"));
+    }
+    
+    public void setSelectedLabels(ManagerTable row){
+        hallName.setText(row.getHallName());
+        hallNumber.setText(row.getHallNumber());
+        roomNumber.setText(Integer.toString(row.getRoomNumber()));
+    }
+    
+    public void setSelectedInput(ManagerTable row){
+        leaseNumber.setText(row.getLeaseNumber());
+        studentName.setText(row.getStudentName());
+        occupancy_CB.setValue(row.getOccupancyStatus());
     }
     
     /**

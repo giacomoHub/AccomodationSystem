@@ -32,6 +32,10 @@ public class Room {
             this.lease = lease;
             this.roomStatus = true;
 	}
+        
+        public void setRoomStatus(boolean roomStatus){
+            this.roomStatus = roomStatus;
+        }
 
         /* changed mthod name to current from isOccupied for purpose of method call when putting into table get...*/
 	public String getRoomStatus() {
@@ -54,6 +58,9 @@ public class Room {
             } else if (roomCleanliness == 1) {
                 
                 return "Dirty";
+                
+            }else if (roomCleanliness == 2) {
+                return "Offline";
                 
             } else return null;
 	}

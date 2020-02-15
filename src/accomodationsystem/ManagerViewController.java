@@ -99,18 +99,22 @@ public class ManagerViewController implements Initializable {
         
         //add the event listener to the table
         table_T.setOnMouseClicked(e -> {
-            events();
+            rowSelectionEvent();
         });
     }    
     
-    private void events(){
+    /**
+     * Event that decides if to show "CreateLease" button or display info
+     */
+    private void rowSelectionEvent(){
         selectedRow = table_T.getSelectionModel().getSelectedItem();
         setSelectedLabels(selectedRow);
-        System.out.println(selectedRow.getHallName());  
+        setSelectedInput(selectedRow);
         
-        if(selectedRow.getStudentName().equals("Giacomo")){
+        if(selectedRow.getStudentName().equals("")){
+            showCreateLease(event);
+        }else{
             hideCreateLease(event);
-            setSelectedInput(selectedRow);
         }
     }
     
@@ -154,14 +158,23 @@ public class ManagerViewController implements Initializable {
                 tableData.get(elementIndex).setRoomNumber(data.getHalls().get(j).getRooms().get(i).getRoomNumber());
 
                 //set the room lease
-                tableData.get(elementIndex).setLeaseNumber(Integer.toString(data.getHalls().get(j).getRooms().get(i).getLease().getLeaseNumber()));
-
+                try{
+                    tableData.get(elementIndex).setLeaseNumber(Integer.toString(data.getHalls().get(j).getRooms().get(i).getLease().getLeaseNumber()));
+                }catch(Exception e){
+                    tableData.get(elementIndex).setLeaseNumber("");
+                }
                 //set the student name
-                tableData.get(elementIndex).setStudentName(data.getHalls().get(j).getRooms().get(i).getLease().getStudent().getFirstName());
-
+                try{
+                    tableData.get(elementIndex).setStudentName(data.getHalls().get(j).getRooms().get(i).getLease().getStudent().getFirstName());
+                }catch(Exception e){
+                    tableData.get(elementIndex).setStudentName("");
+                }
                 //set the occupancy
-                tableData.get(elementIndex).setOccupancyStatus(data.getHalls().get(j).getRooms().get(i).getRoomStatus());
-
+                try{
+                    tableData.get(elementIndex).setOccupancyStatus(data.getHalls().get(j).getRooms().get(i).getRoomStatus());
+                }catch(Exception e){
+                    tableData.get(elementIndex).setOccupancyStatus("Offline");
+                }
                 //set the cleanliness
                 tableData.get(elementIndex).setCleanliness(data.getHalls().get(j).getRooms().get(i).getRoomCleanliness());
 
@@ -184,12 +197,18 @@ public class ManagerViewController implements Initializable {
         Cleanliness_Col.setCellValueFactory(new PropertyValueFactory<>("cleanliness"));
     }
     
+    /**
+     * Function that shows the data in the labels from every selected row of the table
+     */
     public void setSelectedLabels(ManagerTable row){
         hallName.setText(row.getHallName());
         hallNumber.setText(row.getHallNumber());
         roomNumber.setText(Integer.toString(row.getRoomNumber()));
     }
     
+    /**
+     * Function that shows data from the table to the input fields
+     */
     public void setSelectedInput(ManagerTable row){
         leaseNumber.setText(row.getLeaseNumber());
         studentName.setText(row.getStudentName());
@@ -208,6 +227,34 @@ public class ManagerViewController implements Initializable {
      */
     public void showCreateLease(ActionEvent event){
         createLeaseView_V.setVisible(true);
+    }
+    
+    /**
+     * Function that deletes the selected row of data
+     */
+    public void delete(ActionEvent event){
+        
+        //get the values from the selected row (could use a global variable)
+        selectedRow = table_T.getSelectionModel().getSelectedItem();
+        
+        //change values in the table (wrong, must modify items in the observable list
+        selectedRow.setStudentName("");
+        selectedRow.setLeaseNumber("");
+        selectedRow.setOccupancyStatus("Unoccupied");
+        selectedRow.setCleanliness("Offline");
+        
+        //update the changes of the real data (not only the table data)
+        AccommodationSpecifics data = getInstance();
+        data.getHalls().get(Integer.parseInt(selectedRow.getHallNumber())).getRooms().get(selectedRow.getRoomNumber()).setLease(null);
+        data.getHalls().get(Integer.parseInt(selectedRow.getHallNumber())).getRooms().get(selectedRow.getRoomNumber()).setRoomCleanliness(2);
+        data.getHalls().get(Integer.parseInt(selectedRow.getHallNumber())).getRooms().get(selectedRow.getRoomNumber()).setRoomStatus(false);
+        
+        //show the create Lease page
+        showCreateLease(event);
+        
+        //show the changes to the table
+        table_T.refresh();
+        
     }
     
     

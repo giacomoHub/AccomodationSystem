@@ -254,6 +254,12 @@ public class ManagerViewController implements Initializable {
         
         //show the changes to the table
         table_T.refresh();
+    }
+    
+    /**
+     * Function that updates updates the values from the Input fields to the AccomodationSpecifics
+     */
+    public void update(){
         
     }
     

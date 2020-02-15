@@ -46,11 +46,11 @@ public class ManagerViewController implements Initializable {
     @FXML
     private Button delete_Btn;
     @FXML
-    private Label hallName;
+    private Label hallName_Lbl;
     @FXML
-    private Label hallNumber;
+    private Label hallNumber_Lbl;
     @FXML
-    private Label roomNumber;
+    private Label roomNumber_Lbl;
     @FXML
     private TextField leaseNumber;
     @FXML
@@ -201,9 +201,9 @@ public class ManagerViewController implements Initializable {
      * Function that shows the data in the labels from every selected row of the table
      */
     public void setSelectedLabels(ManagerTable row){
-        hallName.setText(row.getHallName());
-        hallNumber.setText(row.getHallNumber());
-        roomNumber.setText(Integer.toString(row.getRoomNumber()));
+        hallName_Lbl.setText(row.getHallName());
+        hallNumber_Lbl.setText(row.getHallNumber());
+        roomNumber_Lbl.setText(Integer.toString(row.getRoomNumber()));
     }
     
     /**
@@ -257,10 +257,25 @@ public class ManagerViewController implements Initializable {
     }
     
     /**
-     * Function that checks and sends the data to the update function
+     * Function that checks input data and sends it to the update function
      */
     public void confirm(ActionEvent event){
-    
+        boolean leaseNumberFlag = true;
+        boolean studentNameFlag = true;
+        //check if the data in the fields are not null
+        if(leaseNumber.getText().equals("")){
+            leaseNumberFlag = false;
+            displayError();
+        }
+        if(studentName.getText().equals("")){
+            studentNameFlag = false;
+            displayError();
+        }
+        
+        //if everything is displayed correctly update data
+        if(leaseNumberFlag && studentNameFlag){
+            update();
+        }
     }
     
     /**
@@ -268,13 +283,20 @@ public class ManagerViewController implements Initializable {
      */
     public void update(){
         //get the values from the inputs and put them into the data
+        AccommodationSpecifics data = getInstance();
+        //update the room status
+        data.getHalls().get(Integer.parseInt(selectedRow.getHallNumber())).getRooms().get(selectedRow.getRoomNumber()).setRoomStatus(true);
         
+        //update the table
     }
     
-    
-    
-    
-    
+    /**
+     * Function to display what was not entered correctly (will take in a label variable)
+     */
+    public void displayError(){
+        //get the values from the inputs and put them into the data
+        System.out.println("data not entered correctly");
+    }
     
     
     

@@ -257,9 +257,17 @@ public class ManagerViewController implements Initializable {
     }
     
     /**
+     * Function that checks and sends the data to the update function
+     */
+    public void confirm(ActionEvent event){
+    
+    }
+    
+    /**
      * Function that updates updates the values from the Input fields to the AccomodationSpecifics
      */
     public void update(){
+        //get the values from the inputs and put them into the data
         
     }
     

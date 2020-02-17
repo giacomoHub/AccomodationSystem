@@ -10,6 +10,7 @@ import java.net.URL;
 import java.util.ArrayList;
 import java.util.ResourceBundle;
 import javafx.collections.FXCollections;
+import javafx.collections.ListChangeListener;
 import javafx.collections.ObservableList;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
@@ -19,7 +20,9 @@ import javafx.scene.Node;
 import javafx.scene.Parent;
 import javafx.scene.Scene;
 import javafx.scene.control.Button;
+import javafx.scene.control.Cell;
 import javafx.scene.control.ChoiceBox;
+import javafx.scene.control.SelectionModel;
 import javafx.scene.control.TableColumn;
 import javafx.scene.control.TableView;
 import javafx.scene.control.TextField;
@@ -48,12 +51,15 @@ public class WardenViewController implements Initializable {
     @FXML private ChoiceBox cleanliness_CB;
     @FXML private Button confirmChange_Bt;
     
+    WardenTable dataSelected;
+    
     @Override
     public void initialize(URL url, ResourceBundle rb) {
         
         AccommodationSpecifics data = AccommodationSpecifics.getInstance();
         ObservableList<WardenTable> tableData = FXCollections.observableArrayList();
-        
+       
+         
         //set columns in table
         hallName_Col.setCellValueFactory(new PropertyValueFactory<>("hallName"));
         hallNumber_Col.setCellValueFactory(new PropertyValueFactory<>("hallNumber"));
@@ -69,7 +75,21 @@ public class WardenViewController implements Initializable {
 
         /** LOADS DUMMY DATA **/
         tableView.setItems(specificsToTable(data, tableData));
+        
+        /** GET DATA CLICKED **/
+        tableView.setOnMouseClicked(e -> {
+            eventCicked();
+        });
+        
+    
     }
+    
+    public void eventCicked(){
+        dataSelected = tableView.getSelectionModel().getSelectedItem();
+        setSelectedLabels(dataSelected);
+        System.out.println(dataSelected.getHallName());  
+    }
+    
     
     public void changeScene(ActionEvent event) throws IOException {
 
@@ -96,7 +116,7 @@ public class WardenViewController implements Initializable {
                 tableData.get(elementIndex).setHallName(data.getHalls().get(j).getHallName());
 
                 //set the hall number
-                System.out.println(j);
+//                System.out.println(j); // Hall number is not being printed appropiately --\> CHECK
                 tableData.get(elementIndex).setHallNumber(Integer.toString(j));
 
                 //set the room number
@@ -113,15 +133,10 @@ public class WardenViewController implements Initializable {
         return tableData;
     }
     
-    /**
-     * Function that converts the list managerTable items into observable list;
-     */
-//    public ObservableList<WardenTable> getInfo(ArrayList<WardenTable> tableData){
-//        ObservableList<WardenTable> info = FXCollections.observableArrayList();
-//        for(int i = 0; i<tableData.size(); i++){
-//            info.add(tableData.get(i));
-//        }
-//        return info;
-//    }
+
+    public void setSelectedLabels(WardenTable row){
+        room_Dis.setText(row.getHallName());
+        currentStatus_Dis.setText(row.getRoomStatus());
+    }
 }
 

@@ -68,17 +68,17 @@
                                           <Insets left="25.0" />
                                        </GridPane.margin>
                                     </Label>
-                                    <Label fx:id="hallName" text="Nothing" textFill="#015354" GridPane.columnIndex="1">
+                                    <Label fx:id="hallName_Lbl" text="Nothing" textFill="#015354" GridPane.columnIndex="1">
                                        <font>
                                           <Font name="Arial Bold" size="13.0" />
                                        </font>
                                     </Label>
-                                    <Label fx:id="roomNumber" text="Nothing" textFill="#015354" GridPane.columnIndex="1" GridPane.rowIndex="1">
+                                    <Label fx:id="roomNumber_Lbl" text="Nothing" textFill="#015354" GridPane.columnIndex="1" GridPane.rowIndex="1">
                                        <font>
                                           <Font name="Arial Bold" size="13.0" />
                                        </font>
                                     </Label>
-                                    <Label fx:id="hallNumber" text="Nothing" textFill="#015354" GridPane.columnIndex="1" GridPane.rowIndex="2">
+                                    <Label fx:id="hallNumber_Lbl" text="Nothing" textFill="#015354" GridPane.columnIndex="1" GridPane.rowIndex="2">
                                        <font>
                                           <Font name="Arial Bold" size="13.0" />
                                        </font>
@@ -131,7 +131,7 @@
                               </GridPane>
                               <VBox layoutX="299.0" prefHeight="142.0" prefWidth="141.0" spacing="30.0" style="-fx-background-color: white;">
                                  <children>
-                                    <Button mnemonicParsing="false" prefHeight="43.0" prefWidth="86.0" style="-fx-background-color: green;" text="Confirm" textFill="WHITE">
+                                    <Button mnemonicParsing="false" onAction="#confirm" prefHeight="43.0" prefWidth="86.0" style="-fx-background-color: green;" text="Confirm" textFill="WHITE">
                                        <VBox.margin>
                                           <Insets left="30.0" top="15.0" />
                                        </VBox.margin>
@@ -139,7 +139,7 @@
                                           <Font name="Arial" size="14.0" />
                                        </font>
                                     </Button>
-                                    <Button fx:id="delete_Btn" layoutX="40.0" layoutY="20.0" mnemonicParsing="false" onAction="#showCreateLease" prefHeight="43.0" prefWidth="86.0" style="-fx-background-color: red;" text="Delete" textFill="WHITE">
+                                    <Button fx:id="delete_Btn" layoutX="40.0" layoutY="20.0" mnemonicParsing="false" onAction="#delete" prefHeight="43.0" prefWidth="86.0" style="-fx-background-color: red;" text="Delete" textFill="WHITE">
                                        <VBox.margin>
                                           <Insets left="30.0" />
                                        </VBox.margin>
@@ -149,7 +149,7 @@
                                     </Button>
                                  </children>
                               </VBox>
-                              <AnchorPane fx:id="createLeaseView_V" layoutX="-3.0" layoutY="-3.0" prefHeight="149.0" prefWidth="448.0" style="-fx-background-color: white;" visible="false">
+                              <AnchorPane fx:id="createLeaseView_V" layoutX="-3.0" layoutY="-3.0" prefHeight="149.0" prefWidth="448.0" style="-fx-background-color: white;">
                                  <children>
                                     <Button fx:id="createLease_Btn" layoutX="128.0" layoutY="39.0" mnemonicParsing="false" onAction="#hideCreateLease" prefHeight="72.0" prefWidth="192.0" style="-fx-background-color: #015354;" text="Create new lease" textFill="WHITE">
                                        <font>

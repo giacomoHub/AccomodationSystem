@@ -56,6 +56,7 @@ public class WardenViewController implements Initializable {
     @Override
     public void initialize(URL url, ResourceBundle rb) {
         
+        
         AccommodationSpecifics data = AccommodationSpecifics.getInstance();
         ObservableList<WardenTable> tableData = FXCollections.observableArrayList();
        
@@ -78,18 +79,42 @@ public class WardenViewController implements Initializable {
         
         /** GET DATA CLICKED **/
         tableView.setOnMouseClicked(e -> {
-            eventCicked();
+            setSelectedLabels(getDataFromTable());
+            
         });
+    }
+    
+
+    
+//    public void tableClicked(WardenTable rowclicked){
+//        
+//        setSelectedLabels(rowclicked);
+//        System.out.println(rowclicked);  
+//    }
+    
+    public void ConfirmEdit(WardenTable dataToEdit) {
+        String newCleanliness = (String) cleanliness_CB.getSelectionModel().getSelectedItem();
+        dataToEdit.setRoomCleanliness(newCleanliness);
+        tableView.refresh();
         
-    
     }
     
-    public void eventCicked(){
-        dataSelected = tableView.getSelectionModel().getSelectedItem();
-        setSelectedLabels(dataSelected);
-        System.out.println(dataSelected.getHallName());  
+    public WardenTable getDataFromTable(){
+        return dataSelected = tableView.getSelectionModel().getSelectedItem();
     }
     
+    public void changeTable(WardenTable rowToModify){
+     
+        String newCleanliness = (String) cleanliness_CB.getSelectionModel().getSelectedItem();
+        rowToModify.setRoomCleanliness(newCleanliness);
+//        cleanliness_Col.setText(newStatus);
+    }
+    
+    public void setSelectedLabels(WardenTable row){
+        room_Dis.setText(row.getHallName());
+        currentStatus_Dis.setText(row.getRoomCleanliness());
+        
+    }
     
     public void changeScene(ActionEvent event) throws IOException {
 
@@ -134,9 +159,7 @@ public class WardenViewController implements Initializable {
     }
     
 
-    public void setSelectedLabels(WardenTable row){
-        room_Dis.setText(row.getHallName());
-        currentStatus_Dis.setText(row.getRoomStatus());
-    }
+    
+    
 }
 

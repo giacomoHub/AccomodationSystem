@@ -146,6 +146,14 @@ public class AccommodationSpecifics {
         names.add("James");
         names.add("Ludovico");
         names.add("Alfred");
+        names.add("David");
+        names.add("Pierre");
+        names.add("John");
+        names.add("Sara");
+        names.add("Ying");
+        names.add("Emmanuel");
+        names.add("Akuna");
+        
     }
     
     private void readSurnames(){
@@ -153,6 +161,20 @@ public class AccommodationSpecifics {
         surnames.add("Vargas");
         surnames.add("Salamanca");
         surnames.add("Solair");
+        surnames.add("Raynold");
+        surnames.add("Smith");
+        surnames.add("Bonifaz");
+        surnames.add("Evans");
+        surnames.add("Owens");
+        surnames.add("Xiong");
+        surnames.add("Zimbambue");
+        surnames.add("Matata");
+        surnames.add("Ronaldo");
+        surnames.add("Graham");
+        surnames.add("Brent");
+        surnames.add("Kent");
+
+
     }
     
     private String randomStudentName(){

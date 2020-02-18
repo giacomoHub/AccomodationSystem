@@ -10,6 +10,7 @@ import javafx.application.Application;
 import javafx.fxml.FXMLLoader;
 import javafx.scene.Parent;
 import javafx.scene.Scene;
+import javafx.scene.image.Image;
 import javafx.scene.layout.Pane;
 import javafx.stage.Stage;
 
@@ -28,6 +29,7 @@ public class AccomodationSystem extends Application {
         stage.setTitle("UWE Accomodation System");
         stage.setScene(scene);
         stage.show();
+        //stage.getIcons().add(new Image("file:images/pattern.png"));
         stage.setResizable(false);
         
     }

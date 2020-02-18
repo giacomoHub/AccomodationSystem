@@ -69,6 +69,8 @@ public class ManagerViewController implements Initializable {
     private Label leaseDuration_Lbl;
     @FXML
     private CheckBox roomStatus_Box;
+    @FXML
+    private Label occupancyError_Lbl;
     
     ActionEvent event = new ActionEvent();
     
@@ -253,7 +255,12 @@ public class ManagerViewController implements Initializable {
         hallName_Lbl.setText(row.getHallName());
         hallNumber_Lbl.setText(row.getHallNumber());
         roomNumber_Lbl.setText(Integer.toString(row.getRoomNumber()));
-        leaseNumber.setText(row.getLeaseNumber());
+        if(row.getLeaseNumber().equals("")){
+            leaseNumber.setText("N/A");
+        }else{
+            leaseNumber.setText(row.getLeaseNumber());
+        }
+        
     }
     
     /**
@@ -300,18 +307,37 @@ public class ManagerViewController implements Initializable {
         monthlyRate_Lbl.setText(Float.toString(data.getHalls().get(hallIndex).getRooms().get(roomIndex).getMonthlyRentRate()));
         leaseDuration_S.setValue(0);
         leaseDuration_Lbl.setText("");
+        if(data.getHalls().get(hallIndex).getRooms().get(roomIndex).getRoomCleanliness().equals("Offline")){
+            roomStatus_Box.setSelected(false);
+        }else{
+            roomStatus_Box.setSelected(true);
+        }
+        
     }
     
     /**
      * Function to set the room to online or offline
      */
     public void changeRoomStatus(){
+        AccommodationSpecifics data = getInstance();
+        
+        
         if(selectedRow!=null){
+            int roomIndex = selectedRow.getRoomNumber()-1;
+            int hallIndex = Integer.parseInt(selectedRow.getHallNumber());
             if(roomStatus_Box.isSelected()){
                 //change room status to unoccupied
+                data.getHalls().get(hallIndex).getRooms().get(roomIndex).setRoomCleanliness(0);
+                selectedRow.setCleanliness(data.getHalls().get(hallIndex).getRooms().get(roomIndex).getRoomCleanliness());
             }else{
                 //change room status to offline
+                data.getHalls().get(hallIndex).getRooms().get(roomIndex).setRoomCleanliness(2);
+                selectedRow.setCleanliness(data.getHalls().get(hallIndex).getRooms().get(roomIndex).getRoomCleanliness());
             }
+            //update the table
+            table_T.refresh();
+        }else{
+            occupancyError_Lbl.setText("No room selected");
         }
     }
     
@@ -320,7 +346,16 @@ public class ManagerViewController implements Initializable {
      */
     public void hideCreateLease(ActionEvent event){
         if(selectedRow!=null){
-            createLeaseView_V.setVisible(false);
+            //check if the status is set to online
+            if(!selectedRow.getCleanliness().equals("Offline")){
+                createLeaseView_V.setVisible(false);
+                occupancyError_Lbl.setText("");
+            }else{
+                //print error
+                occupancyError_Lbl.setText("Room is not online");
+            }
+        }else{
+            occupancyError_Lbl.setText("No room selected");
         }
     }
     
@@ -346,7 +381,7 @@ public class ManagerViewController implements Initializable {
         selectedRow.setStudentName("");
         selectedRow.setLeaseNumber("");
         selectedRow.setOccupancyStatus("Unoccupied");
-        selectedRow.setCleanliness("Offline");
+        //selectedRow.setCleanliness("Offline");
         
         //set what to change
         AccommodationSpecifics data = getInstance();
@@ -355,7 +390,7 @@ public class ManagerViewController implements Initializable {
         
         //update the changes of the real data (not only the table data)
         data.getHalls().get(hallIndex).getRooms().get(roomIndex).setLease(null);
-        data.getHalls().get(hallIndex).getRooms().get(roomIndex).setRoomCleanliness(2);
+        //data.getHalls().get(hallIndex).getRooms().get(roomIndex).setRoomCleanliness(2);
         data.getHalls().get(hallIndex).getRooms().get(roomIndex).setRoomStatus(false);
         
         //show the create Lease page
@@ -385,6 +420,10 @@ public class ManagerViewController implements Initializable {
         if(studentSurnameFlag && studentNameFlag){
             update();
         }
+    }
+    
+    public void resetErrorLabels(){
+        occupancyError_Lbl.setText("");
     }
     
     /**
@@ -423,11 +462,12 @@ public class ManagerViewController implements Initializable {
         //student
         selectedRow.setStudentName(data.getHalls().get(hallIndex).getRooms().get(roomIndex).getLease().getStudent().getFullName());
         //occupancy
-        selectedRow.setOccupancyStatus(data.getHalls().get(hallIndex).getRooms().get(hallIndex).getRoomStatus());
+        selectedRow.setOccupancyStatus(data.getHalls().get(hallIndex).getRooms().get(roomIndex).getRoomStatus());
         //cleanliness
-        selectedRow.setCleanliness(data.getHalls().get(hallIndex).getRooms().get(hallIndex).getRoomCleanliness());
+        selectedRow.setCleanliness(data.getHalls().get(hallIndex).getRooms().get(roomIndex).getRoomCleanliness());
         table_T.refresh();
     }
+    
     
     /**
      * Function to display what was not entered correctly (will take in a label variable)

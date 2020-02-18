@@ -71,6 +71,12 @@ public class ManagerViewController implements Initializable {
     private CheckBox roomStatus_Box;
     @FXML
     private Label occupancyError_Lbl;
+    @FXML
+    private Label nameError_Lbl;
+    @FXML
+    private Label surnameError_Lbl;
+    @FXML
+    private Label leaseError_Lbl;
     
     ActionEvent event = new ActionEvent();
     
@@ -113,6 +119,13 @@ public class ManagerViewController implements Initializable {
         
         //prepare and load the data into the table
         table_T.setItems(specificsToTable(data,tableData));
+        
+        //set first item in table to be selected
+        selectedRow = table_T.getItems().get(0);
+        //update all of the values in GUI
+        setSelectedLabels(selectedRow);
+        setSelectedInput(selectedRow);
+        hideCreateLease(event);
         
         //add the event listener to the table
         table_T.setOnMouseClicked(e -> {
@@ -230,13 +243,13 @@ public class ManagerViewController implements Initializable {
     }
     
     public void initializeSliders(){
-        monthlyRate_S.setMin(0);
-        monthlyRate_S.setMax(2000);
-        monthlyRate_S.setShowTickLabels(true);
-        monthlyRate_S.setMajorTickUnit(1000);
-        monthlyRate_S.setMinorTickCount(999);
-        monthlyRate_S.setBlockIncrement(1);
-        monthlyRate_S.setSnapToTicks(true);
+        //monthlyRate_S.setMin(0);
+        //monthlyRate_S.setMax(2000);
+        //monthlyRate_S.setShowTickLabels(true);
+        //monthlyRate_S.setMajorTickUnit(1000);
+        //monthlyRate_S.setMinorTickCount(999);
+        //monthlyRate_S.setBlockIncrement(1);
+        //monthlyRate_S.setSnapToTicks(true);
         
         leaseDuration_S.setMin(0);
         leaseDuration_S.setMax(24);
@@ -276,18 +289,29 @@ public class ManagerViewController implements Initializable {
         int hallIndex = Integer.parseInt(row.getHallNumber());
         
         //show things got from AccomodationSpecifics
-        studentName.setText(data.getHalls().get(hallIndex).getRooms().get(roomIndex).getLease().getStudent().getFirstName());
-        studentSurname.setText(data.getHalls().get(hallIndex).getRooms().get(roomIndex).getLease().getStudent().getLastName());
-        
+        try{
+            studentName.setText(data.getHalls().get(hallIndex).getRooms().get(roomIndex).getLease().getStudent().getFirstName());
+        }catch(Exception e){
+            studentName.setText("");
+        }
+        try{
+            studentSurname.setText(data.getHalls().get(hallIndex).getRooms().get(roomIndex).getLease().getStudent().getLastName());
+        }catch(Exception e){
+            studentSurname.setText("");
+        }
         //show monlty rate
         double monthlyRate = data.getHalls().get(hallIndex).getRooms().get(roomIndex).getMonthlyRentRate();
-        monthlyRate_S.setValue(monthlyRate);
-        monthlyRate_Lbl.setText(Double.toString(monthlyRate_S.getValue()));
+        //monthlyRate_S.setValue(monthlyRate);
+        monthlyRate_Lbl.setText(Double.toString(monthlyRate));
         
         //show lease duration
-        double leaseDuration = data.getHalls().get(hallIndex).getRooms().get(roomIndex).getLease().getDuration();
-        leaseDuration_S.setValue(leaseDuration);
-        leaseDuration_Lbl.setText(Double.toString(leaseDuration_S.getValue()));
+        try{
+            double leaseDuration = data.getHalls().get(hallIndex).getRooms().get(roomIndex).getLease().getDuration();
+            leaseDuration_S.setValue(leaseDuration);
+            leaseDuration_Lbl.setText(Double.toString(leaseDuration_S.getValue()));
+        }catch(Exception e){
+            leaseDuration_Lbl.setText("");
+        }
     }
     
     /**
@@ -303,7 +327,7 @@ public class ManagerViewController implements Initializable {
         studentName.setPromptText("Student name");
         studentSurname.setText("");
         studentSurname.setPromptText("Student surname");
-        monthlyRate_S.setValue(data.getHalls().get(hallIndex).getRooms().get(roomIndex).getMonthlyRentRate());
+        //monthlyRate_S.setValue(data.getHalls().get(hallIndex).getRooms().get(roomIndex).getMonthlyRentRate());
         monthlyRate_Lbl.setText(Float.toString(data.getHalls().get(hallIndex).getRooms().get(roomIndex).getMonthlyRentRate()));
         leaseDuration_S.setValue(0);
         leaseDuration_Lbl.setText("");
@@ -375,7 +399,7 @@ public class ManagerViewController implements Initializable {
     public void delete(ActionEvent event){
         
         //get the values from the selected row (could use a global variable)
-        selectedRow = table_T.getSelectionModel().getSelectedItem();
+        //selectedRow = table_T.getSelectionModel().getSelectedItem();
         
         //change values in the table (wrong, must modify items in the observable list
         selectedRow.setStudentName("");
@@ -406,30 +430,69 @@ public class ManagerViewController implements Initializable {
     public void confirm(ActionEvent event){
         boolean studentSurnameFlag = true;
         boolean studentNameFlag = true;
+        boolean leaseDurationFlag = true;
         //check if the data in the fields are not null
         if(studentSurname.getText().equals("")){
             studentSurnameFlag = false;
-            displayError();
+            displayError(1);
+        }else{
+            surnameError_Lbl.setText("");
         }
         if(studentName.getText().equals("")){
             studentNameFlag = false;
-            displayError();
+            displayError(2);
+        }else{
+            nameError_Lbl.setText("");
+        }
+        if((int)leaseDuration_S.getValue()<1){
+            leaseDurationFlag = false;
+            displayError(3);
+        }else{
+            leaseError_Lbl.setText("");
         }
         
         //if everything is displayed correctly update data
-        if(studentSurnameFlag && studentNameFlag){
-            update();
+        if(studentSurnameFlag && studentNameFlag && leaseDurationFlag){
+            if(selectedRow.getOccupancyStatus().equals("Occupied")){
+               updateLease();
+            }else{
+               addNewLease(); 
+            }
+            
         }
     }
     
     public void resetErrorLabels(){
         occupancyError_Lbl.setText("");
+        leaseError_Lbl.setText("");
+        nameError_Lbl.setText("");
+        surnameError_Lbl.setText("");
+    }
+    /**
+     * Function that updates the values form the Input fields to the AccomodationSpecifics
+     */
+    public void updateLease(){
+        AccommodationSpecifics data = getInstance();
+        int roomIndex = selectedRow.getRoomNumber()-1;
+        int hallIndex = Integer.parseInt(selectedRow.getHallNumber());
+        
+        //update everything
+        data.getHalls().get(hallIndex).getRooms().get(roomIndex).getLease().setDuration((int)leaseDuration_S.getValue());
+        data.getHalls().get(hallIndex).getRooms().get(roomIndex).getLease().getStudent().setFirstName(studentName.getText());
+        data.getHalls().get(hallIndex).getRooms().get(roomIndex).getLease().getStudent().setLastName(studentSurname.getText());
+        
+        //update the table
+        updateTableRow(data,roomIndex,hallIndex);
+        
+        //update Gui
+        
+        
     }
     
     /**
-     * Function that updates the values from the Input fields to the AccomodationSpecifics
+     * Function that Creates a new Lease and puts the values from the Input fields to the AccomodationSpecifics
      */
-    public void update(){
+    public void addNewLease(){
         //get the values from the inputs and put them into the data
         AccommodationSpecifics data = getInstance();
         
@@ -443,11 +506,15 @@ public class ManagerViewController implements Initializable {
         Student s = new Student(data.getStudentNumber(), studentName.getText(), studentSurname.getText());
         Lease l = new Lease(s,(int)leaseDuration_S.getValue(),data.getLeaseNumber());
         
-        //update everything
+        //update Specifics data
         data.getHalls().get(hallIndex).getRooms().get(roomIndex).setLease(l);
         
         //update the table
         updateTableRow(data,roomIndex,hallIndex);
+        
+        //update GUI
+        leaseNumber.setText(selectedRow.getLeaseNumber());
+        
     }
     
     /**
@@ -472,11 +539,25 @@ public class ManagerViewController implements Initializable {
     /**
      * Function to display what was not entered correctly (will take in a label variable)
      */
-    public void displayError(){
+    public void displayError(int errorNumber){
         //get the values from the inputs and put them into the data
         System.out.println("data not entered correctly");
         
         //put a switch case
+        switch(errorNumber){
+            case 1:
+                nameError_Lbl.setText("Name error!");
+                break;
+                
+            case 2:
+                surnameError_Lbl.setText("Surname error!");
+                break;
+                
+            case 3:
+                leaseError_Lbl.setText("Insert Value!");
+                break;
+        }
+             
     }
     
     

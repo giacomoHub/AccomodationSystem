@@ -149,11 +149,32 @@ public class AccommodationSpecifics {
         names.add("David");
         names.add("Pierre");
         names.add("John");
-        names.add("Sara");
+        names.add("Sarah");
         names.add("Ying");
         names.add("Emmanuel");
         names.add("Akuna");
-        
+        names.add("Walter");
+        names.add("Jessie");
+        names.add("Tuco");
+        names.add("Walter");
+        names.add("Jared");
+        names.add("Jessica");
+        names.add("Chris");
+        names.add("Bob");
+        names.add("Gus");
+        names.add("Mike");
+        names.add("Laura");
+        names.add("Bill");
+        names.add("Arthur");
+        names.add("Adam");
+        names.add("Alex");
+        names.add("Chad");
+        names.add("Daniel");
+        names.add("Emma");
+        names.add("Ella");
+        names.add("Switch");
+        names.add("Justin");
+        names.add("jgjhhjg");
     }
     
     private void readSurnames(){
@@ -173,6 +194,15 @@ public class AccommodationSpecifics {
         surnames.add("Graham");
         surnames.add("Brent");
         surnames.add("Kent");
+        surnames.add("Einstein");
+        surnames.add("White");
+        surnames.add("Pinkman");
+        surnames.add("Leto");
+        surnames.add("Simpson");
+        surnames.add("Martin");
+        surnames.add("Gates");
+        surnames.add("Cooper");
+        surnames.add("Rubinstein");
 
 
     }

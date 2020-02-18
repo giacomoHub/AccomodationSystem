@@ -28,6 +28,19 @@ public class AccommodationSpecifics {
     private int numberOfRooms; //number of rooms for each hall
     ArrayList<String> names;
     ArrayList<String> surnames;
+    
+    private int leaseNumber = 0;
+    private int studentNumber = 1000;
+
+    public int getLeaseNumber() {
+        leaseNumber++;
+        return leaseNumber;
+    }
+
+    public int getStudentNumber() {
+        studentNumber++;
+        return studentNumber;
+    }
 
     
     /**
@@ -110,8 +123,7 @@ public class AccommodationSpecifics {
     //function that adds new leases and students to the rooms
     private void generateStudents(){
         Random rand = new Random();
-        int leaseNumber = 0;
-        int studentNumber = 1000;
+        
         
         //sets leases and students in half of the rooms
         for(int j = 0; j<halls.size(); j++){

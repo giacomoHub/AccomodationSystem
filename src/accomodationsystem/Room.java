@@ -51,18 +51,16 @@ public class Room {
 	}
 
 	public String getRoomCleanliness() {
-            if (roomCleanliness == 0) {
-                
-                return "Clean";
-                
-            } else if (roomCleanliness == 1) {
-                
-                return "Dirty";
-                
-            }else if (roomCleanliness == 2) {
-                return "Offline";
-                
-            } else return null;
+            switch (roomCleanliness) {
+                case 0:
+                    return "Clean";
+                case 1:
+                    return "Dirty";
+                case 2:
+                    return "Offline";
+                default:
+                    return null;
+            }
 	}
         
         public Lease getLease() {

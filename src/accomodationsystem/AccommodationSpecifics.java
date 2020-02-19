@@ -31,6 +31,16 @@ public class AccommodationSpecifics {
     
     private int leaseNumber = 0;
     private int studentNumber = 1000;
+    
+    
+    /**
+     * Constructor
+     */
+    private AccommodationSpecifics(){
+        halls = new ArrayList<Hall>();
+        Initialiser();
+    } 
+    
 
     public int getLeaseNumber() {
         leaseNumber++;
@@ -42,16 +52,6 @@ public class AccommodationSpecifics {
         return studentNumber;
     }
 
-    
-    /**
-     * Constructor
-     */
-    private AccommodationSpecifics(){
-        halls = new ArrayList<Hall>();
-        Initialiser();
-    } 
-    
-    
     /**
      * Class Methods
      */

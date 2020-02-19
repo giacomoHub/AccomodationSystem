@@ -84,6 +84,10 @@ public class Room {
                 "\nRoom No:" + getRoomNumber() + "\nMothly Rent: " + getMonthlyRentRate() + "\nRoom Cleaniness: " + getRoomCleanliness() +"\nRoom Lease: " + getLease() +
                 "\n------------------------- ROOM FINISH --------------------------------\n";
     }
+
+    void setRoomCleanliness(String newCleanliness) {
+        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+    }
         
         
 }

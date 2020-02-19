@@ -40,11 +40,13 @@ public class WardenTable {
         return roomCleanliness;
     }
     
+    
+    
      public void setHallName(String hallName) {
         this.hallName = hallName;
     }
 
-    public void setHallNumber(String HallNumber) {
+    public void setHallNumber(int hallNumber) {
         this.hallNumber = hallNumber;
     }
 

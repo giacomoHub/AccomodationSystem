@@ -80,21 +80,32 @@ public class WardenViewController implements Initializable {
         /** GET DATA CLICKED **/
         tableView.setOnMouseClicked(e -> {
             setSelectedLabels(getDataFromTable());
-            
         });
     }
     
 
     
-//    public void tableClicked(WardenTable rowclicked){
-//        
-//        setSelectedLabels(rowclicked);
-//        System.out.println(rowclicked);  
-//    }
+    public void tableClicked(WardenTable rowclicked){
+        
+        setSelectedLabels(rowclicked);
+        System.out.println(rowclicked);  
+    }
     
-    public void ConfirmEdit(WardenTable dataToEdit) {
+    public void ConfirmEdit() {
+        dataSelected = getDataFromTable();
+        int indexSelected = tableView.getSelectionModel().getSelectedIndex();
+        int roomIndex = dataSelected.getRoomNumber();
+        
+        System.out.println ("Hall index: " + indexSelected + "\nRoom Index: " + (roomIndex - 1));
+        //UPDATE TBALE VIEW FROM CHIOCEBOX
         String newCleanliness = (String) cleanliness_CB.getSelectionModel().getSelectedItem();
-        dataToEdit.setRoomCleanliness(newCleanliness);
+        dataSelected.setRoomCleanliness(newCleanliness);
+        
+        //UPDATE ACTUAL DATA 
+        AccommodationSpecifics data = AccommodationSpecifics.getInstance();
+        data.getHalls().get(indexSelected).getRooms().get(roomIndex - 1).setRoomCleanliness(newCleanliness);
+        
+        
         tableView.refresh();
         
     }
@@ -107,7 +118,7 @@ public class WardenViewController implements Initializable {
      
         String newCleanliness = (String) cleanliness_CB.getSelectionModel().getSelectedItem();
         rowToModify.setRoomCleanliness(newCleanliness);
-//        cleanliness_Col.setText(newStatus);
+        
     }
     
     public void setSelectedLabels(WardenTable row){
@@ -142,7 +153,7 @@ public class WardenViewController implements Initializable {
 
                 //set the hall number
 //                System.out.println(j); // Hall number is not being printed appropiately --\> CHECK
-                tableData.get(elementIndex).setHallNumber(Integer.toString(j));
+                tableData.get(elementIndex).setHallNumber(j);
 
                 //set the room number
                 tableData.get(elementIndex).setRoomNumber(data.getHalls().get(j).getRooms().get(i).getRoomNumber());

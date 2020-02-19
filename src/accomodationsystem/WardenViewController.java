@@ -19,9 +19,11 @@ import javafx.fxml.Initializable;
 import javafx.scene.Node;
 import javafx.scene.Parent;
 import javafx.scene.Scene;
+import javafx.scene.chart.PieChart;
 import javafx.scene.control.Button;
 import javafx.scene.control.Cell;
 import javafx.scene.control.ChoiceBox;
+import javafx.scene.control.Label;
 import javafx.scene.control.SelectionModel;
 import javafx.scene.control.TableColumn;
 import javafx.scene.control.TableView;
@@ -44,8 +46,8 @@ public class WardenViewController implements Initializable {
     @FXML private TableColumn<WardenTable, String> cleanliness_Col;
     
     //fxml variables to see clicked data
-    @FXML private TextField room_Dis;
-    @FXML private TextField currentStatus_Dis;
+    @FXML private Label room_Dis;
+    @FXML private Label currentStatus_Dis;
     
     //fxml variables set options and confirming
     @FXML private ChoiceBox cleanliness_CB;
@@ -53,14 +55,15 @@ public class WardenViewController implements Initializable {
     
     WardenTable dataSelected;
     
+    
+    
     @Override
     public void initialize(URL url, ResourceBundle rb) {
         
-        
-        AccommodationSpecifics data = AccommodationSpecifics.getInstance();
         ObservableList<WardenTable> tableData = FXCollections.observableArrayList();
-       
-         
+        AccommodationSpecifics data = AccommodationSpecifics.getInstance();
+        
+        
         //set columns in table
         hallName_Col.setCellValueFactory(new PropertyValueFactory<>("hallName"));
         hallNumber_Col.setCellValueFactory(new PropertyValueFactory<>("hallNumber"));
@@ -80,49 +83,50 @@ public class WardenViewController implements Initializable {
         /** GET DATA CLICKED **/
         tableView.setOnMouseClicked(e -> {
             setSelectedLabels(getDataFromTable());
+            
         });
+        
+//        confirmChange_Bt.setOnMouseClicked(e ->{
+//            int selectedIndex = tableView.getSelectionModel().getSelectedIndex();
+//            ConfirmEdit(data.getHalls().get(selectedIndex), tableData.get(selectedIndex));
+//        });
     }
     
 
     
     public void tableClicked(WardenTable rowclicked){
-        
+        /**
+         * this function gets the row clicked and changes the values of the labels --> 
+         * so you can see what you're about to change
+         */
         setSelectedLabels(rowclicked);
-        System.out.println(rowclicked);  
+//        System.out.println(rowclicked);  
     }
     
-    public void ConfirmEdit() {
-        dataSelected = getDataFromTable();
-        int indexSelected = tableView.getSelectionModel().getSelectedIndex();
-        int roomIndex = dataSelected.getRoomNumber();
+    public void ConfirmEdit(Hall rowToModify, WardenTable row ) {
         
-        System.out.println ("Hall index: " + indexSelected + "\nRoom Index: " + (roomIndex - 1));
-        //UPDATE TBALE VIEW FROM CHIOCEBOX
-        String newCleanliness = (String) cleanliness_CB.getSelectionModel().getSelectedItem();
-        dataSelected.setRoomCleanliness(newCleanliness);
+        //UPDATE TABLE VIEW FROM CHIOCEBOX
+        String cleanlinessUpdate = (String) cleanliness_CB.getSelectionModel().getSelectedItem();
+        row.setRoomCleanliness(cleanlinessUpdate);
         
         //UPDATE ACTUAL DATA 
-        AccommodationSpecifics data = AccommodationSpecifics.getInstance();
-        data.getHalls().get(indexSelected).getRooms().get(roomIndex - 1).setRoomCleanliness(newCleanliness);
-        
+        rowToModify.getRooms().get(row.getRoomNumber() - 1).setRoomCleanliness(0);
+        System.out.print(row.getRoomNumber() - 1);
         
         tableView.refresh();
         
     }
     
     public WardenTable getDataFromTable(){
+        /**
+         * This function warden object of row clicked on tableView
+         */
         return dataSelected = tableView.getSelectionModel().getSelectedItem();
     }
     
-    public void changeTable(WardenTable rowToModify){
-     
-        String newCleanliness = (String) cleanliness_CB.getSelectionModel().getSelectedItem();
-        rowToModify.setRoomCleanliness(newCleanliness);
-        
-    }
-    
     public void setSelectedLabels(WardenTable row){
-        room_Dis.setText(row.getHallName());
+        System.out.println(row);
+        room_Dis.setText(Integer.toString(row.getRoomNumber()));
         currentStatus_Dis.setText(row.getRoomCleanliness());
         
     }

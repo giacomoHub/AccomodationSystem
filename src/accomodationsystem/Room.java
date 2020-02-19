@@ -85,9 +85,9 @@ public class Room {
                 "\n------------------------- ROOM FINISH --------------------------------\n";
     }
 
-    void setRoomCleanliness(String newCleanliness) {
-        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
-    }
+//    void setRoomCleanliness(String newCleanliness) {
+//        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+//    }
         
         
 }

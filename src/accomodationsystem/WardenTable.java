@@ -41,7 +41,6 @@ public class WardenTable {
     }
     
     
-    
      public void setHallName(String hallName) {
         this.hallName = hallName;
     }

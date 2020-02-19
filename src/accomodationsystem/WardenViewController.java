@@ -46,22 +46,27 @@ public class WardenViewController implements Initializable {
     @FXML private TableColumn<WardenTable, String> cleanliness_Col;
     
     //fxml variables to see clicked data
-    @FXML private Label room_Dis;
-    @FXML private Label currentStatus_Dis;
+    @FXML private Label room_Display;
+    @FXML private Label currentStatus_Display;
+    @FXML private Label hallName_Display;
+    @FXML private Label hallNumber_Display;
     
     //fxml variables set options and confirming
     @FXML private ChoiceBox cleanliness_CB;
     @FXML private Button confirmChange_Bt;
     
+    
     WardenTable dataSelected;
-    
-    
+   
     
     @Override
     public void initialize(URL url, ResourceBundle rb) {
         
-        ObservableList<WardenTable> tableData = FXCollections.observableArrayList();
         AccommodationSpecifics data = AccommodationSpecifics.getInstance();
+        ObservableList<WardenTable> tableData = FXCollections.observableArrayList();
+        
+        
+        
         
         
         //set columns in table
@@ -72,7 +77,7 @@ public class WardenViewController implements Initializable {
         cleanliness_Col.setCellValueFactory(new PropertyValueFactory<>("roomCleanliness"));
         
         //Buttons and Labels
-        cleanliness_CB.getItems().add("");
+        cleanliness_CB.getItems().add("Please Select");
         cleanliness_CB.getItems().add("Clean");
         cleanliness_CB.getItems().add("Dirty");
         cleanliness_CB.getItems().add("Off-Line");
@@ -86,32 +91,42 @@ public class WardenViewController implements Initializable {
             
         });
         
-//        confirmChange_Bt.setOnMouseClicked(e ->{
-//            int selectedIndex = tableView.getSelectionModel().getSelectedIndex();
-//            ConfirmEdit(data.getHalls().get(selectedIndex), tableData.get(selectedIndex));
-//        });
+        confirmChange_Bt.setOnMouseClicked(e ->{
+            
+            int selectedIndex = tableView.getSelectionModel().getSelectedIndex();
+
+            System.out.println("Current index returned: " + selectedIndex);
+            ConfirmEdit(data.getHalls().get(tableData.get(selectedIndex).getHallNumber()), tableData.get(selectedIndex));
+            setSelectedLabels(getDataFromTable());
+            tableView.refresh();
+               
+        });
     }
     
 
     
-    public void tableClicked(WardenTable rowclicked){
-        /**
-         * this function gets the row clicked and changes the values of the labels --> 
-         * so you can see what you're about to change
-         */
-        setSelectedLabels(rowclicked);
-//        System.out.println(rowclicked);  
+    public int convertCleanlinessDataDype(String cleanlinessStatus){
+        int valueToReturn = 0;
+        switch (cleanlinessStatus) {
+                case "Clean":
+                    valueToReturn = 0;
+                case "Dirty":
+                    valueToReturn = 1;
+                case "Offline":
+                    valueToReturn = 2;
+            }
+        return valueToReturn;
     }
     
     public void ConfirmEdit(Hall rowToModify, WardenTable row ) {
         
         //UPDATE TABLE VIEW FROM CHIOCEBOX
-        String cleanlinessUpdate = (String) cleanliness_CB.getSelectionModel().getSelectedItem();
+        String cleanlinessUpdate = (String) cleanliness_CB.getSelectionModel().getSelectedItem(); //this returns the value of the choiceBox
         row.setRoomCleanliness(cleanlinessUpdate);
         
         //UPDATE ACTUAL DATA 
-        rowToModify.getRooms().get(row.getRoomNumber() - 1).setRoomCleanliness(0);
-        System.out.print(row.getRoomNumber() - 1);
+        rowToModify.getRooms().get(row.getRoomNumber() - 1).setRoomCleanliness(convertCleanlinessDataDype(cleanlinessUpdate));
+        System.out.print("current row number: " + (row.getRoomNumber() - 1));
         
         tableView.refresh();
         
@@ -125,9 +140,19 @@ public class WardenViewController implements Initializable {
     }
     
     public void setSelectedLabels(WardenTable row){
-        System.out.println(row);
-        room_Dis.setText(Integer.toString(row.getRoomNumber()));
-        currentStatus_Dis.setText(row.getRoomCleanliness());
+        System.out.println(row.toString());
+        room_Display.setText(Integer.toString(row.getRoomNumber()));
+        currentStatus_Display.setText(row.getRoomCleanliness());
+        hallName_Display.setText(row.getHallName());
+        hallNumber_Display.setText(Integer.toString(row.getHallNumber()));
+    }
+    
+    public void tableClicked(WardenTable rowclicked){
+        /**
+         * this function gets the row clicked and changes the values of the labels --> 
+         * so you can see what you're about to change
+         */
+        setSelectedLabels(rowclicked);
         
     }
     
@@ -146,8 +171,14 @@ public class WardenViewController implements Initializable {
     public ObservableList<WardenTable> specificsToTable(AccommodationSpecifics data, ObservableList<WardenTable> tableData){
         //loop through every hall in the system
         for(int j = 0; j<data.getHalls().size();j++){
+            
+//            System.out.println("size j is going around: " + j);
             //loop through every room in the system
             for(int i=0; i<data.getHalls().get(j).getRooms().size();i++){
+                
+                
+//                System.out.println("size i is going around for rooms: " + i);
+                
                 //add new row of data
                 tableData.add(new WardenTable());
                 int elementIndex = tableData.size() - 1; //
@@ -156,7 +187,6 @@ public class WardenViewController implements Initializable {
                 tableData.get(elementIndex).setHallName(data.getHalls().get(j).getHallName());
 
                 //set the hall number
-//                System.out.println(j); // Hall number is not being printed appropiately --\> CHECK
                 tableData.get(elementIndex).setHallNumber(j);
 
                 //set the room number
@@ -168,6 +198,7 @@ public class WardenViewController implements Initializable {
                 //set the cleanliness
                 tableData.get(elementIndex).setRoomCleanliness(data.getHalls().get(j).getRooms().get(i).getRoomCleanliness());
             }
+            
         }
         
         return tableData;

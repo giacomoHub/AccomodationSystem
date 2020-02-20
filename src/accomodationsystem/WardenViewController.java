@@ -29,6 +29,7 @@ import javafx.scene.control.TableColumn;
 import javafx.scene.control.TableView;
 import javafx.scene.control.TextField;
 import javafx.scene.control.cell.PropertyValueFactory;
+import javafx.scene.image.Image;
 import javafx.stage.Stage;
 
 /**
@@ -55,16 +56,14 @@ public class WardenViewController implements Initializable {
     @FXML private ChoiceBox cleanliness_CB;
     @FXML private Button confirmChange_Bt;
     
+    ObservableList<WardenTable> tableData = FXCollections.observableArrayList();
+    AccommodationSpecifics data = AccommodationSpecifics.getInstance();
     
     WardenTable dataSelected;
    
     
     @Override
     public void initialize(URL url, ResourceBundle rb) {
-        
-        AccommodationSpecifics data = AccommodationSpecifics.getInstance();
-        ObservableList<WardenTable> tableData = FXCollections.observableArrayList();
-        
         
         
         
@@ -80,7 +79,7 @@ public class WardenViewController implements Initializable {
         cleanliness_CB.getItems().add("Please Select");
         cleanliness_CB.getItems().add("Clean");
         cleanliness_CB.getItems().add("Dirty");
-        cleanliness_CB.getItems().add("Off-Line");
+        cleanliness_CB.getItems().add("Offline");
 
         /** LOADS DUMMY DATA **/
         tableView.setItems(specificsToTable(data, tableData));
@@ -94,9 +93,10 @@ public class WardenViewController implements Initializable {
         confirmChange_Bt.setOnMouseClicked(e ->{
             
             int selectedIndex = tableView.getSelectionModel().getSelectedIndex();
-
-            System.out.println("Current index returned: " + selectedIndex);
-            ConfirmEdit(data.getHalls().get(tableData.get(selectedIndex).getHallNumber()), tableData.get(selectedIndex));
+            System.out.println("Current index returned from tableView: " + selectedIndex);
+            
+            ConfirmEdit(data, tableData.get(selectedIndex), selectedIndex);
+            
             setSelectedLabels(getDataFromTable());
             tableView.refresh();
                
@@ -110,25 +110,29 @@ public class WardenViewController implements Initializable {
         switch (cleanlinessStatus) {
                 case "Clean":
                     valueToReturn = 0;
+                    break;
                 case "Dirty":
                     valueToReturn = 1;
+                    break;
                 case "Offline":
                     valueToReturn = 2;
             }
         return valueToReturn;
     }
     
-    public void ConfirmEdit(Hall rowToModify, WardenTable row ) {
+    public void ConfirmEdit(AccommodationSpecifics dataToModify, WardenTable UpdateTable , int index) {
         
         //UPDATE TABLE VIEW FROM CHIOCEBOX
-        String cleanlinessUpdate = (String) cleanliness_CB.getSelectionModel().getSelectedItem(); //this returns the value of the choiceBox
-        row.setRoomCleanliness(cleanlinessUpdate);
+        String cleanlinessUpdate = cleanliness_CB.getSelectionModel().getSelectedItem().toString(); //this returns the value of the choiceBox
+        
+        UpdateTable.setRoomCleanliness(cleanlinessUpdate);
         
         //UPDATE ACTUAL DATA 
-        rowToModify.getRooms().get(row.getRoomNumber() - 1).setRoomCleanliness(convertCleanlinessDataDype(cleanlinessUpdate));
-        System.out.print("current row number: " + (row.getRoomNumber() - 1));
+        int currentHallIndex = tableData.get(index).getHallNumber();
+        int roomIndexToChange = UpdateTable.getRoomNumber() - 1;
         
-        tableView.refresh();
+        dataToModify.getHalls().get(currentHallIndex).getRooms().get(roomIndexToChange).setRoomCleanliness(convertCleanlinessDataDype(cleanlinessUpdate));
+        System.out.println(dataToModify.getHalls().get(currentHallIndex).getRooms().get(roomIndexToChange).getRoomCleanliness());
         
     }
     
@@ -140,7 +144,6 @@ public class WardenViewController implements Initializable {
     }
     
     public void setSelectedLabels(WardenTable row){
-        System.out.println(row.toString());
         room_Display.setText(Integer.toString(row.getRoomNumber()));
         currentStatus_Display.setText(row.getRoomCleanliness());
         hallName_Display.setText(row.getHallName());

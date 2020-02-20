@@ -18,6 +18,7 @@ import javafx.scene.Parent;
 import javafx.scene.Scene;
 import javafx.scene.control.Button;
 import javafx.scene.control.Label;
+import javafx.scene.layout.AnchorPane;
 import javafx.stage.Stage;
 
 /**
@@ -29,7 +30,15 @@ public class FXMLDocumentController implements Initializable {
     @FXML private Label label;
     @FXML private Label label1;
     @FXML private Button managerButton;
-    @FXML private Button button;
+    @FXML private Button wardenButton;
+    @FXML private AnchorPane wardenVisibility;
+    
+
+    
+    
+    
+    
+    
     
     private void handleButtonAction(ActionEvent event) {
         System.out.println("You clicked me!");
@@ -64,7 +73,13 @@ public class FXMLDocumentController implements Initializable {
     }
     @Override
     public void initialize(URL url, ResourceBundle rb) {
-        // TODO
+        
+        wardenButton.setOnMouseClicked(e -> {
+            wardenVisibility.visibleProperty().set(false);
+        
+        });
+        
+        
         
     }    
     

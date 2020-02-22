@@ -76,10 +76,8 @@ public class WardenViewController implements Initializable {
         cleanliness_Col.setCellValueFactory(new PropertyValueFactory<>("roomCleanliness"));
         
         //Buttons and Labels
-        cleanliness_CB.getItems().add("Please Select");
         cleanliness_CB.getItems().add("Clean");
         cleanliness_CB.getItems().add("Dirty");
-        cleanliness_CB.getItems().add("Offline");
 
         /** LOADS DUMMY DATA **/
         tableView.setItems(specificsToTable(data, tableData));
@@ -170,45 +168,82 @@ public class WardenViewController implements Initializable {
         window.setScene(menuScene);
         window.show();
     }
-
+    
     public ObservableList<WardenTable> specificsToTable(AccommodationSpecifics data, ObservableList<WardenTable> tableData){
-        //loop through every hall in the system
-        for(int j = 0; j<data.getHalls().size();j++){
-            
-//            System.out.println("size j is going around: " + j);
-            //loop through every room in the system
-            for(int i=0; i<data.getHalls().get(j).getRooms().size();i++){
-                
-                
+        
+        int addHallToTable = data.getWardenHallToTable();
+        
+        //loop through every room in the system
+        for(int i=0; i<data.getHalls().get(addHallToTable).getRooms().size();i++){
+
+
 //                System.out.println("size i is going around for rooms: " + i);
-                
-                //add new row of data
-                tableData.add(new WardenTable());
-                int elementIndex = tableData.size() - 1; //
 
-                //set the hall name
-                tableData.get(elementIndex).setHallName(data.getHalls().get(j).getHallName());
+            //add new row of data
+            tableData.add(new WardenTable());
+            int elementIndex = tableData.size() - 1; //
 
-                //set the hall number
-                tableData.get(elementIndex).setHallNumber(j);
+            //set the hall name
+            tableData.get(elementIndex).setHallName(data.getHalls().get(addHallToTable).getHallName());
 
-                //set the room number
-                tableData.get(elementIndex).setRoomNumber(data.getHalls().get(j).getRooms().get(i).getRoomNumber());
+            //set the hall number
+            tableData.get(elementIndex).setHallNumber(addHallToTable);
 
-                //set the room status
-                tableData.get(elementIndex).setRoomStatus(data.getHalls().get(j).getRooms().get(i).getRoomStatus());
+            //set the room number
+            tableData.get(elementIndex).setRoomNumber(data.getHalls().get(addHallToTable).getRooms().get(i).getRoomNumber());
 
-                //set the cleanliness
-                tableData.get(elementIndex).setRoomCleanliness(data.getHalls().get(j).getRooms().get(i).getRoomCleanliness());
-            }
-            
+            //set the room status
+            tableData.get(elementIndex).setRoomStatus(data.getHalls().get(addHallToTable).getRooms().get(i).getRoomStatus());
+
+            //set the cleanliness
+            tableData.get(elementIndex).setRoomCleanliness(data.getHalls().get(addHallToTable).getRooms().get(i).getRoomCleanliness());
         }
         
         return tableData;
     }
+
+   
+}
+
+
+//    public ObservableList<WardenTable> specificsToTable(AccommodationSpecifics data, ObservableList<WardenTable> tableData){
+//        //loop through every hall in the system
+//        for(int j = 0; j<data.getHalls().size();j++){
+//            
+////            System.out.println("size j is going around: " + j);
+//            //loop through every room in the system
+//            for(int i=0; i<data.getHalls().get(j).getRooms().size();i++){
+//                
+//                
+////                System.out.println("size i is going around for rooms: " + i);
+//                
+//                //add new row of data
+//                tableData.add(new WardenTable());
+//                int elementIndex = tableData.size() - 1; //
+//
+//                //set the hall name
+//                tableData.get(elementIndex).setHallName(data.getHalls().get(j).getHallName());
+//
+//                //set the hall number
+//                tableData.get(elementIndex).setHallNumber(j);
+//
+//                //set the room number
+//                tableData.get(elementIndex).setRoomNumber(data.getHalls().get(j).getRooms().get(i).getRoomNumber());
+//
+//                //set the room status
+//                tableData.get(elementIndex).setRoomStatus(data.getHalls().get(j).getRooms().get(i).getRoomStatus());
+//
+//                //set the cleanliness
+//                tableData.get(elementIndex).setRoomCleanliness(data.getHalls().get(j).getRooms().get(i).getRoomCleanliness());
+//            }
+//            
+//        }
+//        
+//        return tableData;
+//    }
     
 
     
     
-}
+
 

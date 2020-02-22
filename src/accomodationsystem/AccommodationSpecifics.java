@@ -15,11 +15,7 @@ import java.util.Random;
  * @author juanestebanvargassalamanca
  * @author giacomopellizzari
  */
-public class AccommodationSpecifics {
-    /**
-     * THIS IS HANDLELING ALL OF THE DATA INTILIASATION
-     */
-    
+public class AccommodationSpecifics {      
     /**
      * Singleton pattern being used here
      */
@@ -29,8 +25,16 @@ public class AccommodationSpecifics {
     ArrayList<String> names;
     ArrayList<String> surnames;
     
+    private ArrayList<String> usernames;
+    private ArrayList<String> passwords;
+    private int wardenHallToTable;
+    
+    
+
+    
     private int leaseNumber = 0;
     private int studentNumber = 1000;
+    
     
     
     /**
@@ -41,6 +45,32 @@ public class AccommodationSpecifics {
         Initialiser();
     } 
     
+    //Singleton
+    public static AccommodationSpecifics getInstance(){
+        if (instance == null) {
+            instance = new AccommodationSpecifics();
+        }
+        
+        return instance;
+    }
+    
+     /**
+     *  SET METHODS
+     */
+    
+    public void setWardenHallToTable(int hall){
+        wardenHallToTable = hall;
+    }
+    
+    /**
+     *  GET METHODS
+     */
+    
+    
+    
+    public int getWardenHallToTable() {
+        return wardenHallToTable;
+    }
 
     public int getLeaseNumber() {
         leaseNumber++;
@@ -51,30 +81,35 @@ public class AccommodationSpecifics {
         studentNumber++;
         return studentNumber;
     }
-
-    /**
-     * Class Methods
-     */
-    public static AccommodationSpecifics getInstance(){
-        if (instance == null) {
-            instance = new AccommodationSpecifics();
-        }
-        
-        return instance;
-    }
     
     public ArrayList<Hall> getHalls(){
         return halls;
     }
     
+    
+    public ArrayList<String> getUsernames(){
+        return usernames;
+    }
+    
+    public ArrayList<String> getPasswords(){
+        return passwords;
+    }
+    /**
+     *  INITIALISES ALL DUMMY DATA FOR SYSTEM
+     */
+    
     public void Initialiser(){
         //make new fake data
         names = new ArrayList<String>();
         surnames = new ArrayList<String>();
+        usernames = new ArrayList<String>();
+        passwords = new ArrayList<String>();
+        
         
         //read new names from file
         readNames();
         readSurnames();
+        addUsernamesPasswords();
         
         numberOfRooms = 20;
         generateHalls();
@@ -82,6 +117,18 @@ public class AccommodationSpecifics {
         generateStudents();
         
         
+    }
+    
+    private void addUsernamesPasswords(){
+        usernames.add("w1");
+        usernames.add("w2");
+        usernames.add("w3");
+        usernames.add("w4");
+        
+        passwords.add("warden1");
+        passwords.add("warden2");
+        passwords.add("warden3");
+        passwords.add("warden4");
     }
     
     //function that will generate all of the halls 

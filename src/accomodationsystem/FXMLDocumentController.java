@@ -34,6 +34,8 @@ public class FXMLDocumentController implements Initializable {
     
     @FXML private Label label;
     @FXML private Label label1;
+    @FXML private Label usernamePasswordErrorLabel;
+    @FXML private Label usernamePasswordNoMatchLabel;
     @FXML private Button managerButton;
     @FXML private Button wardenButton;
     @FXML private Button loginButtonforWarden;
@@ -41,6 +43,7 @@ public class FXMLDocumentController implements Initializable {
     @FXML private AnchorPane wardenLoginView;
     @FXML private TextField usernameInput;
     @FXML private PasswordField passwordInput;
+
     
     
     
@@ -62,6 +65,7 @@ public class FXMLDocumentController implements Initializable {
     }
     
     public void changeSceneWardenTable(ActionEvent event) throws IOException{
+        
         
         //prior to changing i want to check values being passed are correct
         AccommodationSpecifics data = AccommodationSpecifics.getInstance();
@@ -101,9 +105,13 @@ public class FXMLDocumentController implements Initializable {
     public void setLoginPage(){
         managerWardenTableChoice.visibleProperty().set(true);
         wardenLoginView.visibleProperty().set(false);
+        noUsernamePasswordErrorMessage(usernamePasswordErrorLabel ,false);
+        noUsernamePasswordErrorMessage(usernamePasswordNoMatchLabel,false);
     }
     
     public void checkUsernamePassword(){
+        
+        
         
         AccommodationSpecifics data = AccommodationSpecifics.getInstance();
         
@@ -117,12 +125,12 @@ public class FXMLDocumentController implements Initializable {
         
          if (usernamePassed.equals("")){
             usernameNotEmpty = false;
-            System.out.println("username: clear and ERROR");
+            noUsernamePasswordErrorMessage(usernamePasswordErrorLabel, true);
          }
             
         if (passwordPassed.equals("")){
             passwordNotEmpty = false;
-            System.out.println("ppassword: clear and ERROR");
+            noUsernamePasswordErrorMessage(usernamePasswordErrorLabel ,true);
         }
         
         if(usernameNotEmpty && passwordNotEmpty) 
@@ -139,7 +147,9 @@ public class FXMLDocumentController implements Initializable {
                         
                 } else {
                     indexCounter++;
-                    System.out.println("no match username --> ++ counter\n");
+                    noUsernamePasswordErrorMessage(usernamePasswordErrorLabel, false);
+                    noUsernamePasswordErrorMessage(usernamePasswordNoMatchLabel, true);
+//                    System.out.println("no match username --> ++ counter\n");
                 }
             }
         }
@@ -173,21 +183,20 @@ public class FXMLDocumentController implements Initializable {
         }
     }
     
+    public void noUsernamePasswordErrorMessage(Label labelToUpdate ,boolean errorMessage){
+        labelToUpdate.setVisible(errorMessage);   
+    }
+    
     
     @Override
     public void initialize(URL url, ResourceBundle rb) {
         
-        AccommodationSpecifics data = AccommodationSpecifics.getInstance();
-        
-        //hides wardenlogin unitl clicked
+        /**
+         * setLoginPage is handling all label visibilities
+         * including warden login until clicked 
+         */
         setLoginPage();
-        
-//        loginButtonforWarden.setOnMouseClicked(e -> {
-//            checkUsernamePassword();
-//            handleUsernamePasswordEntered(data.getWardenHallToTable());
-//        
-//        });
-               
+            
     }
                
 }

@@ -50,7 +50,7 @@
             </VBox>
             <AnchorPane maxHeight="-Infinity" maxWidth="-Infinity" prefHeight="199.0" prefWidth="370.0">
                <children>
-                  <AnchorPane fx:id="managerWardenTableChoice" layoutY="2.0" prefHeight="232.0" prefWidth="369.0">
+                  <AnchorPane fx:id="managerWardenTableChoice" layoutY="2.0" prefHeight="232.0" prefWidth="369.0" visible="false">
                      <children>
                         <Group layoutX="-8.0" layoutY="-5.0" opacity="0.42">
                            <children>
@@ -82,7 +82,7 @@
                         </AnchorPane>
                      </children>
                   </AnchorPane>
-                  <AnchorPane fx:id="wardenLoginView" prefHeight="232.0" prefWidth="346.0" visible="false">
+                  <AnchorPane fx:id="wardenLoginView" prefHeight="232.0" prefWidth="346.0">
                      <children>
                         <VBox layoutY="3.0" prefHeight="229.0" prefWidth="368.0">
                            <children>
@@ -95,7 +95,7 @@
                                     </Label>
                                  </children>
                                  <VBox.margin>
-                                    <Insets top="25.0" />
+                                    <Insets top="20.0" />
                                  </VBox.margin>
                               </StackPane>
                               <StackPane prefHeight="5.0" prefWidth="370.0">
@@ -106,6 +106,23 @@
                                     <Insets top="1.0" />
                                  </VBox.margin>
                               </StackPane>
+                              <AnchorPane prefHeight="17.0" prefWidth="370.0">
+                                 <children>
+                                    <Label fx:id="usernamePasswordErrorLabel" alignment="CENTER" prefHeight="18.0" prefWidth="370.0" text="Please enter username and password" textFill="RED" visible="false">
+                                       <font>
+                                          <Font size="14.0" />
+                                       </font>
+                                    </Label>
+                                    <Label fx:id="usernamePasswordNoMatchLabel" alignment="CENTER" prefHeight="18.0" prefWidth="374.0" text="Password Username do no match" textFill="RED">
+                                       <font>
+                                          <Font size="14.0" />
+                                       </font>
+                                    </Label>
+                                 </children>
+                                 <VBox.margin>
+                                    <Insets bottom="5.0" top="10.0" />
+                                 </VBox.margin>
+                              </AnchorPane>
                               <StackPane prefHeight="0.0" prefWidth="368.0">
                                  <children>
                                     <TextField fx:id="usernameInput" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="27.0" prefWidth="250.0" promptText="Username">
@@ -116,12 +133,12 @@
                                     <PasswordField fx:id="passwordInput" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="27.0" prefWidth="250.0" promptText="password" />
                                  </children>
                                  <VBox.margin>
-                                    <Insets top="65.0" />
+                                    <Insets top="40.0" />
                                  </VBox.margin>
                               </StackPane>
                               <StackPane prefHeight="150.0" prefWidth="200.0">
                                  <children>
-                                    <Button mnemonicParsing="false" onAction="#changeSceneWardenTable" prefHeight="35.0" prefWidth="61.0" text="Login">
+                                    <Button fx:id="loginButtonforWarden" mnemonicParsing="false" onAction="#changeSceneWardenTable" prefHeight="35.0" prefWidth="61.0" text="Login">
                                        <StackPane.margin>
                                           <Insets right="80.0" />
                                        </StackPane.margin>

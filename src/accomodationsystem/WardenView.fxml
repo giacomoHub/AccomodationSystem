@@ -41,7 +41,8 @@
                                     <Image url="@images/back_button64.png" />
                                  </image>
                               </ImageView>
-                           </graphic></Button>
+                           </graphic>
+                        </Button>
                      </children>
                   </AnchorPane>
                   <AnchorPane prefHeight="46.0" prefWidth="298.0">
@@ -56,7 +57,7 @@
                         </Label>
                         <Label fx:id="hallName_Display" layoutX="146.0" layoutY="6.0" prefHeight="35.0" prefWidth="143.0">
                            <font>
-                              <Font size="15.0" />
+                              <Font size="21.0" />
                            </font>
                         </Label>
                      </children>
@@ -64,10 +65,10 @@
                         <Insets />
                      </opaqueInsets>
                      <VBox.margin>
-                        <Insets bottom="-25.0" />
+                        <Insets bottom="-60.0" top="35.0" />
                      </VBox.margin>
                   </AnchorPane>
-                  <AnchorPane prefHeight="46.0" prefWidth="298.0">
+                  <AnchorPane prefHeight="46.0" prefWidth="298.0" visible="false">
                      <children>
                         <Label prefHeight="46.0" prefWidth="110.0" text="Hall No:">
                            <font>
@@ -87,7 +88,7 @@
                         <Insets />
                      </opaqueInsets>
                      <VBox.margin>
-                        <Insets bottom="20.0" />
+                        <Insets />
                      </VBox.margin>
                   </AnchorPane>
                   <AnchorPane prefHeight="46.0" prefWidth="298.0">
@@ -103,7 +104,8 @@
                         <Label fx:id="room_Display" layoutX="110.0" layoutY="6.0" prefHeight="35.0" prefWidth="150.0">
                            <font>
                               <Font name="System Bold Italic" size="20.0" />
-                           </font></Label>
+                           </font>
+                        </Label>
                      </children>
                      <opaqueInsets>
                         <Insets />
@@ -131,7 +133,8 @@
                               <Label fx:id="currentStatus_Display" prefHeight="26.0" prefWidth="134.0" GridPane.columnIndex="1">
                                  <font>
                                     <Font size="16.0" />
-                                 </font></Label>
+                                 </font>
+                              </Label>
                            </children>
                            <padding>
                               <Insets left="10.0" right="10.0" />
@@ -142,6 +145,23 @@
                         <Insets top="-12.0" />
                      </VBox.margin>
                   </AnchorPane>
+                  <AnchorPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="30.0" prefWidth="292.0">
+                     <children>
+                        <Label fx:id="selectPrintErrorMessage" alignment="CENTER" prefHeight="30.0" prefWidth="292.0" text="Selection needed prior to confirming" textAlignment="CENTER" textFill="#d00909" visible="false">
+                           <font>
+                              <Font name="Tahoma" size="13.0" />
+                           </font>
+                        </Label>
+                        <Label fx:id="selectPrintMessage" alignment="CENTER" layoutY="1.0" prefHeight="27.0" prefWidth="292.0" text="Please Select" textAlignment="CENTER">
+                           <font>
+                              <Font name="Tahoma" size="13.0" />
+                           </font>
+                        </Label>
+                     </children>
+                     <VBox.margin>
+                        <Insets top="20.0" />
+                     </VBox.margin>
+                  </AnchorPane>
                   <StackPane prefHeight="5.0" prefWidth="292.0">
                      <children>
                         <ChoiceBox fx:id="cleanliness_CB" prefWidth="150.0">
@@ -150,17 +170,23 @@
                            </StackPane.margin></ChoiceBox>
                      </children>
                      <VBox.margin>
-                        <Insets top="20.0" />
+                        <Insets top="-15.0" />
                      </VBox.margin>
+                     <opaqueInsets>
+                        <Insets />
+                     </opaqueInsets>
                   </StackPane>
-                  <AnchorPane prefHeight="188.0" prefWidth="326.0">
+                  <AnchorPane prefHeight="113.0" prefWidth="292.0">
                      <children>
-                        <StackPane prefHeight="150.0" prefWidth="292.0">
+                        <StackPane prefHeight="107.0" prefWidth="292.0" AnchorPane.bottomAnchor="0.0">
                            <children>
-                              <Button fx:id="confirmChange_Bt" mnemonicParsing="false" prefHeight="35.0" prefWidth="98.0" text="Confirm Edit" />
+                              <Button fx:id="confirmChange_Bt" mnemonicParsing="false" onAction="#checkTableSelection" prefHeight="35.0" prefWidth="98.0" text="Confirm Edit" />
                            </children>
                         </StackPane>
                      </children>
+                     <VBox.margin>
+                        <Insets bottom="20.0" />
+                     </VBox.margin>
                   </AnchorPane>
                </children>
             </VBox>

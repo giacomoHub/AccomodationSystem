@@ -50,39 +50,30 @@
             </VBox>
             <AnchorPane maxHeight="-Infinity" maxWidth="-Infinity" prefHeight="199.0" prefWidth="370.0">
                <children>
-                  <AnchorPane fx:id="managerWardenTableChoice" layoutY="2.0" prefHeight="232.0" prefWidth="369.0" visible="false">
+                  <AnchorPane fx:id="managerWardenTableChoice" layoutY="2.0" prefHeight="232.0" prefWidth="369.0">
                      <children>
-                        <Group layoutX="-8.0" layoutY="-5.0" opacity="0.42">
+                        <AnchorPane layoutX="21.0" layoutY="19.0" prefHeight="195.0" prefWidth="324.0" style="-fx-background-color: #017D7E;">
                            <children>
-                              <ImageView fitHeight="159.0" fitWidth="164.0" layoutX="40.0" layoutY="44.0" pickOnBounds="true" preserveRatio="true">
-                                 <image>
-                                    <Image url="@images/pattern.jpg" />
-                                 </image>
-                              </ImageView>
-                              <ImageView fitHeight="158.0" fitWidth="168.0" layoutX="186.0" layoutY="44.0" pickOnBounds="true" preserveRatio="true">
-                                 <image>
-                                    <Image url="@images/pattern.jpg" />
-                                 </image>
-                              </ImageView>
-                           </children>
-                        </Group>
-                        <AnchorPane layoutX="-1.0" layoutY="85.0" prefHeight="81.0" prefWidth="370.0">
-                           <children>
-                              <Button fx:id="wardenButton" layoutX="105.0" layoutY="6.0" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" mnemonicParsing="false" onAction="#wardenUsernamePasswordSetScene" prefHeight="40.0" prefWidth="100.0" text="Warden" AnchorPane.rightAnchor="195.0">
+                              <Button fx:id="wardenButton" layoutX="36.0" layoutY="82.0" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" mnemonicParsing="false" onAction="#wardenUsernamePasswordSetScene" prefHeight="57.0" prefWidth="110.0" style="-fx-background-color: #015354;" text="Warden" textFill="WHITE" AnchorPane.rightAnchor="178.0">
                                  <font>
                                     <Font size="18.0" />
                                  </font>
                               </Button>
-                              <Button fx:id="managerButton" layoutX="185.0" layoutY="6.0" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" mnemonicParsing="false" onAction="#changeSceneManagerTable" prefHeight="40.0" prefWidth="100.0" text="Manager" AnchorPane.leftAnchor="195.0">
+                              <Button fx:id="managerButton" layoutX="177.0" layoutY="82.0" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" mnemonicParsing="false" onAction="#changeSceneManagerTable" prefHeight="57.0" prefWidth="110.0" style="-fx-background-color: #015354;" text="Manager" textFill="WHITE" AnchorPane.leftAnchor="177.0">
                                  <font>
                                     <Font size="18.0" />
                                  </font>
                               </Button>
+                              <Label layoutX="50.0" layoutY="29.0" text="Choose your profile:" textFill="WHITE">
+                                 <font>
+                                    <Font name="Arial" size="25.0" />
+                                 </font>
+                              </Label>
                            </children>
                         </AnchorPane>
                      </children>
                   </AnchorPane>
-                  <AnchorPane fx:id="wardenLoginView" prefHeight="232.0" prefWidth="346.0">
+                  <AnchorPane fx:id="wardenLoginView" prefHeight="232.0" prefWidth="346.0" visible="false">
                      <children>
                         <VBox layoutY="3.0" prefHeight="229.0" prefWidth="368.0">
                            <children>

@@ -36,7 +36,7 @@ import javafx.stage.Stage;
  *
  * @author juanestebanvargassalamanca
  */
-p ublic class WardenViewController implements Initializable {
+public class WardenViewController implements Initializable {
 
     //fxml variables to display in GUI for warden only
     @FXML private TableView<WardenTable> tableView;
@@ -153,15 +153,15 @@ p ublic class WardenViewController implements Initializable {
 //    }
     
     
-    public int checkTableSelection(){
-        int selectedIndex = tableView.getSelectionModel().getSelectedIndex();
-        
-        if (selectedIndex == -1) {
-            selectPrintErrorMessage();
-        }
-        
-        return selectedIndex;
-    }
+//    public int checkTableSelection(){
+//        int selectedIndex = tableView.getSelectionModel().getSelectedIndex();
+//        
+//        if (selectedIndex == -1) {
+//            selectPrintErrorMessage();
+//        }
+//        
+//        return selectedIndex;
+//    }
     
     public void confirmEdit() {
         

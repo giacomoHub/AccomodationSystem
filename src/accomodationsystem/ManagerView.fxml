@@ -112,7 +112,7 @@
                            <children>
                               <GridPane prefHeight="209.0" prefWidth="494.0" style="-fx-background-color: white;" AnchorPane.bottomAnchor="0.0">
                                  <children>
-                                    <Label text="Student name:" textFill="#015354" GridPane.rowIndex="1">
+                                    <Label text="Student:" textFill="#015354" GridPane.rowIndex="1">
                                        <font>
                                           <Font name="Arial" size="14.0" />
                                        </font>
@@ -205,6 +205,14 @@
                                        <font>
                                           <Font name="Arial Bold" size="14.0" />
                                        </font>
+                                    </Label>
+                                    <Label fx:id="studentNumber_Lbl" layoutX="35.0" layoutY="81.0" text="0000" textFill="#015354" GridPane.halignment="RIGHT" GridPane.rowIndex="1" GridPane.valignment="CENTER">
+                                       <font>
+                                          <Font name="Arial" size="14.0" />
+                                       </font>
+                                       <GridPane.margin>
+                                          <Insets right="30.0" />
+                                       </GridPane.margin>
                                     </Label>
                                  </children>
                                  <columnConstraints>

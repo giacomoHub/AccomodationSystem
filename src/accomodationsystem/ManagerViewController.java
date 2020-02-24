@@ -77,6 +77,8 @@ public class ManagerViewController implements Initializable {
     private Label surnameError_Lbl;
     @FXML
     private Label leaseError_Lbl;
+    @FXML
+    private Label studentNumber_Lbl;
     
     ActionEvent event = new ActionEvent();
     
@@ -147,6 +149,7 @@ public class ManagerViewController implements Initializable {
         if(selectedRow != null){
             if(selectedRow.getStudentName().equals("")){
                 showCreateLease(event);
+                occupancyError_Lbl.setText("");
             }else{
                 //update all of the values in GUI
                 setSelectedLabels(selectedRow);
@@ -270,8 +273,10 @@ public class ManagerViewController implements Initializable {
         roomNumber_Lbl.setText(Integer.toString(row.getRoomNumber()));
         if(row.getLeaseNumber().equals("")){
             leaseNumber.setText("N/A");
+            studentNumber_Lbl.setText("N/A");
         }else{
             leaseNumber.setText(row.getLeaseNumber());
+            //studentNumber_Lbl.setText("N/A");
         }
         
     }
@@ -303,6 +308,8 @@ public class ManagerViewController implements Initializable {
         double monthlyRate = data.getHalls().get(hallIndex).getRooms().get(roomIndex).getMonthlyRentRate();
         //monthlyRate_S.setValue(monthlyRate);
         monthlyRate_Lbl.setText(Double.toString(monthlyRate));
+        studentNumber_Lbl.setText(Integer.toString(data.getHalls().get(hallIndex).getRooms().get(roomIndex).getLease().getStudent().getStudentNumber()));
+        
         
         //show lease duration
         try{
@@ -434,13 +441,13 @@ public class ManagerViewController implements Initializable {
         //check if the data in the fields are not null
         if(studentSurname.getText().equals("")){
             studentSurnameFlag = false;
-            displayError(1);
+            displayError(2);
         }else{
             surnameError_Lbl.setText("");
         }
         if(studentName.getText().equals("")){
             studentNameFlag = false;
-            displayError(2);
+            displayError(1);
         }else{
             nameError_Lbl.setText("");
         }
@@ -514,6 +521,7 @@ public class ManagerViewController implements Initializable {
         
         //update GUI
         leaseNumber.setText(selectedRow.getLeaseNumber());
+        studentNumber_Lbl.setText(Integer.toString(data.getHalls().get(hallIndex).getRooms().get(roomIndex).getLease().getStudent().getStudentNumber()));
         
     }
     

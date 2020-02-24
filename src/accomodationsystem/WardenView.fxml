@@ -180,7 +180,7 @@
                      <children>
                         <StackPane prefHeight="107.0" prefWidth="292.0" AnchorPane.bottomAnchor="0.0">
                            <children>
-                              <Button fx:id="confirmChange_Bt" mnemonicParsing="false" onAction="#checkTableSelection" prefHeight="35.0" prefWidth="98.0" text="Confirm Edit" />
+                              <Button fx:id="confirmChange_Bt" mnemonicParsing="false" onAction="#checkChoiceBoxSelection" prefHeight="35.0" prefWidth="98.0" text="Confirm Edit" />
                            </children>
                         </StackPane>
                      </children>

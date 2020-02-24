@@ -153,19 +153,37 @@ public class WardenViewController implements Initializable {
 //    }
     
     
-//    public int checkTableSelection(){
-//        int selectedIndex = tableView.getSelectionModel().getSelectedIndex();
-//        
-//        if (selectedIndex == -1) {
-//            selectPrintErrorMessage();
-//        }
-//        
-//        return selectedIndex;
-//    }
+    public int checkTableSelection(){
+        int selectedIndex = tableView.getSelectionModel().getSelectedIndex();
+        
+        
+        if (selectedIndex == -1) {
+            printMessageLabels(false, true);
+        } else {
+            printMessageLabels(false, false);
+        }
+        return selectedIndex;
+    }
+    
+    public void checkChoiceBoxSelection(){
+        String cleanlinessUpdate = "NO WORRIES";
+        
+        try {
+            cleanlinessUpdate = cleanliness_CB.getSelectionModel().getSelectedItem().toString(); //this returns the value of the choiceBox
+        } catch (Exception e) {
+            System.out.println("man is throwing an exception\ncleanliness: " + cleanlinessUpdate);
+        }
+        
+        System.out.println("everythin iri\ncleanliness: " + cleanlinessUpdate + "\n\n");
+    }
     
     public void confirmEdit() {
         
-        int selectedIndex = tableView.getSelectionModel().getSelectedIndex();
+        checkTableSelection(); //first check there has been a selection from the table so we have an index
+        
+        //no we want to check there's a value to update hence there's a 
+        
+        
         
         try {
             String cleanlinessUpdate = cleanliness_CB.getSelectionModel().getSelectedItem().toString(); //this returns the value of the choiceBox
@@ -188,16 +206,24 @@ public class WardenViewController implements Initializable {
 //        tableData.get(selectedIndex).setRoomCleanliness(cleanlinessUpdate);
         
         //UPDATE ACTUAL DATA 
-        int currentHallIndex = tableData.get(selectedIndex).getHallNumber();
-        int roomIndexToChange = tableData.get(selectedIndex).getRoomNumber() - 1;
+        int indexFromTable = 0;
         
-//        data.getHalls().get(currentHallIndex).getRooms().get(roomIndexToChange).setRoomCleanliness(convertCleanlinessDataDype(cleanlinessUpdate));
-//        System.out.println(data.getHalls().get(currentHallIndex).getRooms().get(roomIndexToChange).getRoomCleanliness());
+//        updateDummyData(indexFromTable, cleanlinessUpdate);
         
         //set labels after edit
         setSelectedLabels(getDataFromTable());
         
     }
+    
+    public void updateDummyData(int indexFromTableClickedReturned ,String cleanlinessUpdate){
+        int currentHallIndex = tableData.get(indexFromTableClickedReturned).getHallNumber();
+        int roomIndexToChange = tableData.get(indexFromTableClickedReturned).getRoomNumber() - 1;
+        
+        data.getHalls().get(currentHallIndex).getRooms().get(roomIndexToChange).setRoomCleanliness(convertCleanlinessDataDype(cleanlinessUpdate));
+        System.out.println(data.getHalls().get(currentHallIndex).getRooms().get(roomIndexToChange).getRoomCleanliness());
+    }
+    
+    
     
     public WardenTable getDataFromTable(){
         /**

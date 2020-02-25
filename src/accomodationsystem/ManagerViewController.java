@@ -44,6 +44,8 @@ public class ManagerViewController implements Initializable {
     @FXML
     private AnchorPane createLeaseView_V;
     @FXML
+    private AnchorPane additionalInfo_V;
+    @FXML
     private ChoiceBox<String> occupancy_CB;
     @FXML
     private Button delete_Btn;
@@ -77,6 +79,22 @@ public class ManagerViewController implements Initializable {
     private Label surnameError_Lbl;
     @FXML
     private Label leaseError_Lbl;
+    @FXML
+    private Label studentNumber_Lbl;
+    @FXML
+    private Label address_Lbl;
+    @FXML
+    private Label telephoneNumber_Lbl;
+    @FXML
+    private Label hallName2_Lbl;
+    @FXML
+    private Label building_Lbl;
+    @FXML
+    private Label city_Lbl;
+    @FXML
+    private Label county_Lbl;
+    @FXML
+    private Label postcode_Lbl;
     
     ActionEvent event = new ActionEvent();
     
@@ -116,6 +134,7 @@ public class ManagerViewController implements Initializable {
         initializeTableColumns();
         initializeSliders();
         createLeaseView_V.setVisible(true);
+        additionalInfo_V.setVisible(false);
         
         //prepare and load the data into the table
         table_T.setItems(specificsToTable(data,tableData));
@@ -147,6 +166,7 @@ public class ManagerViewController implements Initializable {
         if(selectedRow != null){
             if(selectedRow.getStudentName().equals("")){
                 showCreateLease(event);
+                occupancyError_Lbl.setText("");
             }else{
                 //update all of the values in GUI
                 setSelectedLabels(selectedRow);
@@ -270,8 +290,10 @@ public class ManagerViewController implements Initializable {
         roomNumber_Lbl.setText(Integer.toString(row.getRoomNumber()));
         if(row.getLeaseNumber().equals("")){
             leaseNumber.setText("N/A");
+            studentNumber_Lbl.setText("N/A");
         }else{
             leaseNumber.setText(row.getLeaseNumber());
+            //studentNumber_Lbl.setText("N/A");
         }
         
     }
@@ -302,7 +324,31 @@ public class ManagerViewController implements Initializable {
         //show monlty rate
         double monthlyRate = data.getHalls().get(hallIndex).getRooms().get(roomIndex).getMonthlyRentRate();
         //monthlyRate_S.setValue(monthlyRate);
-        monthlyRate_Lbl.setText(Double.toString(monthlyRate));
+        monthlyRate_Lbl.setText(Integer.toString((int)monthlyRate));
+        try{
+            studentNumber_Lbl.setText(Integer.toString(data.getHalls().get(hallIndex).getRooms().get(roomIndex).getLease().getStudent().getStudentNumber()));
+        }catch(Exception e){
+            studentNumber_Lbl.setText("");
+        }
+        
+        //show additional info
+        String telephoneNumber = data.getHalls().get(hallIndex).getTelephone().getCountryCode();
+        telephoneNumber += data.getHalls().get(hallIndex).getTelephone().getAreaCode();
+        telephoneNumber += data.getHalls().get(hallIndex).getTelephone().getTelephoneNumber();
+        
+        
+        
+        telephoneNumber_Lbl.setText(telephoneNumber);
+        address_Lbl.setText(data.getHalls().get(hallIndex).getAddress().getStreetName());
+        hallName2_Lbl.setText(row.getHallName());
+        
+        building_Lbl.setText(data.getHalls().get(hallIndex).getAddress().getBuildingName());
+        city_Lbl.setText(data.getHalls().get(hallIndex).getAddress().getCity());
+        county_Lbl.setText(data.getHalls().get(hallIndex).getAddress().getCounty()); 
+        postcode_Lbl.setText(data.getHalls().get(hallIndex).getAddress().getPostcode());
+        
+        System.out.println("The hall index is: " + hallIndex);
+        System.out.println("The hall postcode is: " + data.getHalls().get(hallIndex).getAddress().getPostcode());
         
         //show lease duration
         try{
@@ -328,7 +374,7 @@ public class ManagerViewController implements Initializable {
         studentSurname.setText("");
         studentSurname.setPromptText("Student surname");
         //monthlyRate_S.setValue(data.getHalls().get(hallIndex).getRooms().get(roomIndex).getMonthlyRentRate());
-        monthlyRate_Lbl.setText(Float.toString(data.getHalls().get(hallIndex).getRooms().get(roomIndex).getMonthlyRentRate()));
+        monthlyRate_Lbl.setText(Integer.toString((int)data.getHalls().get(hallIndex).getRooms().get(roomIndex).getMonthlyRentRate()));
         leaseDuration_S.setValue(0);
         leaseDuration_Lbl.setText("");
         if(data.getHalls().get(hallIndex).getRooms().get(roomIndex).getRoomCleanliness().equals("Offline")){
@@ -434,13 +480,13 @@ public class ManagerViewController implements Initializable {
         //check if the data in the fields are not null
         if(studentSurname.getText().equals("")){
             studentSurnameFlag = false;
-            displayError(1);
+            displayError(2);
         }else{
             surnameError_Lbl.setText("");
         }
         if(studentName.getText().equals("")){
             studentNameFlag = false;
-            displayError(2);
+            displayError(1);
         }else{
             nameError_Lbl.setText("");
         }
@@ -514,6 +560,7 @@ public class ManagerViewController implements Initializable {
         
         //update GUI
         leaseNumber.setText(selectedRow.getLeaseNumber());
+        studentNumber_Lbl.setText(Integer.toString(data.getHalls().get(hallIndex).getRooms().get(roomIndex).getLease().getStudent().getStudentNumber()));
         
     }
     
@@ -558,6 +605,14 @@ public class ManagerViewController implements Initializable {
                 break;
         }
              
+    }
+    
+    public void additionalInfo(){
+        additionalInfo_V.setVisible(true);
+    }
+    
+    public void hideAdditionalInfo(){
+        additionalInfo_V.setVisible(false);
     }
     
     

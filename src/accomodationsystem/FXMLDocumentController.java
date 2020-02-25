@@ -87,15 +87,25 @@ public class FXMLDocumentController implements Initializable {
     }
     
     public void changeSceneToLoadingPage(ActionEvent event) throws IOException {
-         // Gets FXML Documents and makes a new scene
-        Parent backToMenu = FXMLLoader.load(getClass().getResource("FXMLDocument.fxml"));
-        Scene menuScene = new Scene(backToMenu);
-
-        //Windows is cast as a stage
-        Stage window = (Stage) ((Node) event.getSource()).getScene().getWindow();
-        window.setScene(menuScene);
-        window.show();
+        managerWardenTableChoice.visibleProperty().set(true);
+        wardenLoginView.visibleProperty().set(false);
+        usernameInput.setText("");
+        passwordInput.setText("");
+        noUsernamePasswordErrorMessage(usernamePasswordErrorLabel ,false);
+        noUsernamePasswordErrorMessage(usernamePasswordNoMatchLabel,false);
+        
     }
+    
+//    public void changeSceneToLoadingPage(ActionEvent event) throws IOException {
+//         // Gets FXML Documents and makes a new scene
+//        Parent backToMenu = FXMLLoader.load(getClass().getResource("FXMLDocument.fxml"));
+//        Scene menuScene = new Scene(backToMenu);
+//
+//        //Windows is cast as a stage
+//        Stage window = (Stage) ((Node) event.getSource()).getScene().getWindow();
+//        window.setScene(menuScene);
+//        window.show();
+//    }
 
     public void wardenUsernamePasswordSetScene(){
         managerWardenTableChoice.visibleProperty().set(false);
@@ -110,8 +120,9 @@ public class FXMLDocumentController implements Initializable {
     }
     
     public void checkUsernamePassword(){
-        
-        
+        //don't overload the error
+        noUsernamePasswordErrorMessage(usernamePasswordErrorLabel ,false);
+        noUsernamePasswordErrorMessage(usernamePasswordNoMatchLabel,false);
         
         AccommodationSpecifics data = AccommodationSpecifics.getInstance();
         

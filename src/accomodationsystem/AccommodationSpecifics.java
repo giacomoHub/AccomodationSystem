@@ -141,10 +141,10 @@ public class AccommodationSpecifics {
         Telephone tel4 = new Telephone("+44", "0236", "097452");
         
         //address
-        Address add1 = new Address("Frenchay UWE", "Q-Block" ,1, "BS3 111", "Brisol", "Somerset", "England");
+        Address add1 = new Address("Frenchay UWE", "Q-Block" ,1, "BS3 111", "Bristol", "Somerset", "England");
         Address add2 = new Address("Bristol", "Zipper-Block" ,1, "B12 S13", "Somerset", "Somewhere in the UK", "England");
         Address add3 = new Address("Cardiff", "Rangers" ,1, "BSE R10", "Bath", "Somerset", "England");
-        Address add4 = new Address("UWE", "Quck" ,1, "BSX 212", "Brisol", "Somerset", "England");
+        Address add4 = new Address("UWE park", "Quck" ,1, "BSX 212", "Brisol", "Somerset", "England");
         
         //halls
         halls.add(new Hall("Bristol Hall", add1, tel1));

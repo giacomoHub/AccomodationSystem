@@ -7,7 +7,7 @@ public class Hall {
 
         /* ATTRIBUTES  */
 	private String hallName;
-	private static Address address;
+	private Address address;
 	private Telephone telephone;
 	private ArrayList<Room> rooms;
         

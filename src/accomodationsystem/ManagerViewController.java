@@ -308,7 +308,12 @@ public class ManagerViewController implements Initializable {
         double monthlyRate = data.getHalls().get(hallIndex).getRooms().get(roomIndex).getMonthlyRentRate();
         //monthlyRate_S.setValue(monthlyRate);
         monthlyRate_Lbl.setText(Double.toString(monthlyRate));
-        studentNumber_Lbl.setText(Integer.toString(data.getHalls().get(hallIndex).getRooms().get(roomIndex).getLease().getStudent().getStudentNumber()));
+        try{
+            studentNumber_Lbl.setText(Integer.toString(data.getHalls().get(hallIndex).getRooms().get(roomIndex).getLease().getStudent().getStudentNumber()));
+        }catch(Exception e){
+            studentNumber_Lbl.setText("");
+        }
+        
         
         
         //show lease duration

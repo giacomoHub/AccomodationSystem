@@ -1,0 +1,58 @@
+/*
+To change this license header, choose License Headers in Project Properties.
+To change this template file, choose Tools | Templates
+and open the template in the editor.
+*/
+/* 
+    Created on : 24-Feb-2020, 22:54:34
+    Author     : jitojar
+*/
+
+
+.lable{
+    -fx-padding:10;
+}
+.column-header-background{
+    -fx-background-color: red;
+}
+
+.table-view .column-header .label{
+   -fx-text-fill: #015354;
+   -fx-font-weight: bold; 
+   -fx-background-color: linear-gradient(whitesmoke 0%, white 100%);
+   -fx-padding:9;
+}
+.table-view .column-header{
+       -fx-border-color: #015354;
+}
+
+.table-view .column-header-background .filler {
+    -fx-background-color:  #6622CC;
+}
+
+.table-row-cell{
+    -fx-background-color: #F7FAFA;
+    -fx-cell-size: 30;
+    -fx-alignment: center;
+    -fx-text-alignment: center;
+    
+}
+
+.table-row-cell:odd{
+    -fx-background-color: #DFEAEA;
+    -fx-cell-size: 30;
+    -fx-alignment: center;
+    -fx-text-alignment: center;
+    -fx-label-padding: 20px;
+}
+.table-row-cell .label{
+    -fx-alignment: center;
+    -fx-text-alignment: center;
+}
+.table-view:cell-selection{
+    
+}
+.table-row-cell:selected {
+    -fx-background-color: #015354;
+    -fx-selection-bar:#015354;
+}

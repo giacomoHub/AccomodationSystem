@@ -253,7 +253,7 @@
             </AnchorPane>
           <AnchorPane minHeight="0.0" minWidth="0.0" prefHeight="200.0" prefWidth="670.0" style="-fx-background-color: #015354;">
                <children>
-                  <TableView fx:id="table_T" layoutX="-1.0" prefHeight="297.0" prefWidth="683.0" style="-fx-selection-bar: #015354; -fx-text-fill: #015354;">
+                  <TableView fx:id="table_T" layoutX="-1.0" prefHeight="297.0" prefWidth="683.0" style="-fx-selection-bar: #015354; -fx-text-fill: #015354;" stylesheets="@images/Table.css">
                     <columns>
                       <TableColumn fx:id="hallName_Col" prefWidth="75.0" text="HALL" />
                       <TableColumn fx:id="hallNumber_Col" prefWidth="62.77344512939453" text="HALL#" />

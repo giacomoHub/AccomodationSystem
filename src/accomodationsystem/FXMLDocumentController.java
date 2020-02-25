@@ -154,7 +154,7 @@ public class FXMLDocumentController implements Initializable {
             }
         }
         
-        System.out.println("\nindexcounter returned:" + counterToReturn);
+//        System.out.println("\nindexcounter returned:" + counterToReturn);
         data.setWardenHallToTable(counterToReturn);
         
     }
@@ -163,18 +163,18 @@ public class FXMLDocumentController implements Initializable {
         
         switch(passwordMatch) {
             case 0:
-                System.out.println("print only hall 1");
+//                System.out.println("print only hall 1");
                 break;
             case 1:
-                System.out.println("print only hall 2");
+//                System.out.println("print only hall 2");
                 break;
                 
             case 2:
-                System.out.println("print only hall 3");
+//                System.out.println("print only hall 3");
                 break;
                 
             case 3:
-                System.out.println("print only hall 4");
+//                System.out.println("print only hall 4");
                 break;
                 
             case 4:

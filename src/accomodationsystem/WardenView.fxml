@@ -57,7 +57,7 @@
                         </Label>
                         <Label fx:id="hallName_Display" layoutX="146.0" layoutY="6.0" prefHeight="35.0" prefWidth="143.0">
                            <font>
-                              <Font size="21.0" />
+                              <Font size="27.0" />
                            </font>
                         </Label>
                      </children>
@@ -103,7 +103,7 @@
                         </Label>
                         <Label fx:id="room_Display" layoutX="110.0" layoutY="6.0" prefHeight="35.0" prefWidth="150.0">
                            <font>
-                              <Font name="System Bold Italic" size="20.0" />
+                              <Font name="System Bold Italic" size="27.0" />
                            </font>
                         </Label>
                      </children>
@@ -147,12 +147,17 @@
                   </AnchorPane>
                   <AnchorPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="30.0" prefWidth="292.0">
                      <children>
-                        <Label fx:id="selectPrintErrorMessage" alignment="CENTER" prefHeight="30.0" prefWidth="292.0" text="Selection needed prior to confirming" textAlignment="CENTER" textFill="#d00909" visible="false">
+                        <Label fx:id="selectTablePrintErrorMessage" alignment="CENTER" prefHeight="29.0" prefWidth="292.0" text="Selection from list is necessary to proceed" textAlignment="CENTER" textFill="#d00909" visible="false">
+                           <font>
+                              <Font name="Tahoma" size="13.0" />
+                           </font></Label>
+                        <Label fx:id="choiceboxSelectionNeededError" alignment="CENTER" prefHeight="29.0" prefWidth="292.0" text="Select cleaning status prior to confirming" textAlignment="CENTER" textFill="#d00909" visible="false">
                            <font>
                               <Font name="Tahoma" size="13.0" />
                            </font>
                         </Label>
-                        <Label fx:id="selectPrintMessage" alignment="CENTER" layoutY="1.0" prefHeight="27.0" prefWidth="292.0" text="Please Select" textAlignment="CENTER">
+                        <Label fx:id="offlineEditingErrorLabel" alignment="CENTER" prefHeight="30.0" prefWidth="293.0" text="Room can only be edited by Manager" textAlignment="CENTER" textFill="#d00909" />
+                        <Label fx:id="choiceboxSelection" alignment="CENTER" prefHeight="29.0" prefWidth="292.0" text="Please Select From the List Below" textAlignment="CENTER" visible="false">
                            <font>
                               <Font name="Tahoma" size="13.0" />
                            </font>
@@ -180,7 +185,7 @@
                      <children>
                         <StackPane prefHeight="107.0" prefWidth="292.0" AnchorPane.bottomAnchor="0.0">
                            <children>
-                              <Button fx:id="confirmChange_Bt" mnemonicParsing="false" onAction="#checkChoiceBoxSelection" prefHeight="35.0" prefWidth="98.0" text="Confirm Edit" />
+                              <Button fx:id="confirmChange_Bt" mnemonicParsing="false" onAction="#confirmEdit" prefHeight="35.0" prefWidth="98.0" text="Confirm Edit" />
                            </children>
                         </StackPane>
                      </children>

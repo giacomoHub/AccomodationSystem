@@ -51,8 +51,10 @@ public class WardenViewController implements Initializable {
     @FXML private Label currentStatus_Display;
     @FXML private Label hallName_Display;
     @FXML private Label hallNumber_Display;
-    @FXML private Label selectPrintMessage;
-    @FXML private Label selectPrintErrorMessage;
+    @FXML private Label choiceboxSelection;
+    @FXML private Label selectTablePrintErrorMessage;
+    @FXML private Label choiceboxSelectionNeededError;
+    @FXML private Label offlineEditingErrorLabel;
     
     
     //fxml variables set options and confirming
@@ -69,34 +71,106 @@ public class WardenViewController implements Initializable {
         
         setUpTableColumnsNames();
         addChoiceboxOptions();
+        printMessageLabels(true, false, false, false);
 
         tableView.setItems(specificsToTable(data, tableData)); /** LOADS DUMMY DATA **/
         
         /** GET DATA CLICKED **/
         tableView.setOnMouseClicked(e -> {
             setSelectedLabels(getDataFromTable());
+            checkOfflineRoom(getDataFromTable());
             
         });
+    }
+
+    public void printMessageLabels(boolean choiceboxOriginalPrompt, boolean tableErrorMessage, boolean choiceboxSelectionErrorMessage, boolean offlineErrorMessage){
+        //first is prompt message
+        choiceboxSelection.setVisible(choiceboxOriginalPrompt);
         
-//        confirmChange_Bt.setOnMouseClicked(e ->{ 
-////            System.out.println("made it this far");
-////            String cleanlinessUpdate = cleanliness_CB.getSelectionModel().getSelectedItem().toString(); //this returns the value of the choiceBox
-////            System.out.println("choice box no selection: " + cleanlinessUpdate);
-//            
-////            int selectedIndex = tableView.getSelectionModel().getSelectedIndex();
-//            
-////            ConfirmEdit(data, tableData.get(selectedIndex), selectedIndex);
-//            
-////            setSelectedLabels(getDataFromTable());
-//            tableView.refresh();
-//               
-//        });
+        //other two are error messages
+        selectTablePrintErrorMessage.setVisible(tableErrorMessage);
+        choiceboxSelectionNeededError.setVisible(choiceboxSelectionErrorMessage);
+        offlineEditingErrorLabel.setVisible(offlineErrorMessage);
+    }
+
+    public int checkTableSelection(){
+        int selectedIndex = tableView.getSelectionModel().getSelectedIndex();
+//        System.out.println("tbale error index returned: " + selectedIndex);
+        
+        if (selectedIndex == -1) {
+            printMessageLabels(false, true, false, false);
+        }
+        
+        return selectedIndex;
     }
     
+    public String checkChoiceBoxSelection(WardenTable rowSelected, int tableError){
+        
+        boolean selectionMade = cleanliness_CB.getSelectionModel().isEmpty();
+        String currentCleanlinessStatus = null; 
+
+        if (tableError != -1) {
+            currentCleanlinessStatus = rowSelected.getRoomCleanliness();
+        
+            if (selectionMade) {
+                printMessageLabels(false, false, true, false);
+            } else {
+                printMessageLabels(true, false, false, false);
+                currentCleanlinessStatus = cleanliness_CB.getSelectionModel().getSelectedItem().toString();
+            }
+        }
+  
+       return currentCleanlinessStatus;
+    }
     
+        
+    public void checkOfflineRoom(WardenTable selection){
+        String cleanlinessStatus = selection.getRoomCleanliness();
+        
+            if(cleanlinessStatus.equals("Offline")){
+                System.out.println("made it this far");
+                cleanliness_CB.setDisable(true);
+                confirmChange_Bt.setDisable(true);
+                printMessageLabels(false, false, false, true);
+
+            } else {
+                printMessageLabels(true, false, false, false);
+                cleanliness_CB.setDisable(false);
+                confirmChange_Bt.setDisable(false);
+            }
+    }
+    
+    public void confirmEdit() {
+        
+        int indexReturned = checkTableSelection(); //first check there has been a selection from the table so we have an index
+        String cleanlinessSelected = checkChoiceBoxSelection(getDataFromTable(), indexReturned); //no we want to check there's a value to update hence there's a 
+        
+        try {
+            tableData.get(indexReturned).setRoomCleanliness(cleanlinessSelected);// update table data      
+            updateDummyData(indexReturned, cleanlinessSelected); //update dummy data with new value
+            //set labels after edit
+            setSelectedLabels(getDataFromTable());
+        } catch (Exception e) {
+            System.out.println("Exeption kicked becasue of -1 returned from tablev");
+        }
+        
+        tableView.refresh();
+        
+    }
+    
+    public void updateDummyData(int indexFromTableClickedReturned ,String cleanlinessUpdate){
+        int currentHallIndex = tableData.get(indexFromTableClickedReturned).getHallNumber();
+        int roomIndexToChange = tableData.get(indexFromTableClickedReturned).getRoomNumber() - 1;
+        
+        data.getHalls().get(currentHallIndex).getRooms().get(roomIndexToChange).setRoomCleanliness(convertCleanlinessDataDype(cleanlinessUpdate));
+//        System.out.println(data.getHalls().get(currentHallIndex).getRooms().get(roomIndexToChange).getRoomCleanliness());
+    }
+    
+            
+            
     public void addChoiceboxOptions(){
         //Buttons and Labels
-        cleanliness_CB.getItems().add("Offline");
+//        cleanliness_CB.getItems().add("Offline");
         cleanliness_CB.getItems().add("Clean");
         cleanliness_CB.getItems().add("Dirty");
     }
@@ -123,107 +197,6 @@ public class WardenViewController implements Initializable {
             }
         return valueToReturn;
     }
-    
-    public void printMessageLabels(boolean pleaseSelectMessage , boolean errorMessage){
-        selectPrintMessage.setVisible(pleaseSelectMessage);
-        selectPrintErrorMessage.setVisible(errorMessage);
-    }
-    
-    
-//    public void ConfirmEdit(AccommodationSpecifics dataToModify, WardenTable UpdateTable , int index) {
-//        
-//        //UPDATE TABLE VIEW FROM CHIOCEBOX
-//        String cleanlinessUpdate = cleanliness_CB.getSelectionModel().getSelectedItem().toString(); //this returns the value of the choiceBox
-//        System.out.println("choice box no selection: " + cleanlinessUpdate);
-//        if (cleanlinessUpdate.equals("")) {
-//            printMessageLabels(false, true);
-//        }
-//        UpdateTable.setRoomCleanliness(cleanlinessUpdate);
-//        
-//        //UPDATE ACTUAL DATA 
-//        int currentHallIndex = tableData.get(index).getHallNumber();
-//        int roomIndexToChange = UpdateTable.getRoomNumber() - 1;
-//        
-//        dataToModify.getHalls().get(currentHallIndex).getRooms().get(roomIndexToChange).setRoomCleanliness(convertCleanlinessDataDype(cleanlinessUpdate));
-//        System.out.println(dataToModify.getHalls().get(currentHallIndex).getRooms().get(roomIndexToChange).getRoomCleanliness());
-//        
-//        //set labels after edit
-//        setSelectedLabels(getDataFromTable());
-//        
-//    }
-    
-    
-    public int checkTableSelection(){
-        int selectedIndex = tableView.getSelectionModel().getSelectedIndex();
-        
-        
-        if (selectedIndex == -1) {
-            printMessageLabels(false, true);
-        } else {
-            printMessageLabels(false, false);
-        }
-        return selectedIndex;
-    }
-    
-    public void checkChoiceBoxSelection(){
-        String cleanlinessUpdate = "NO WORRIES";
-        
-        try {
-            cleanlinessUpdate = cleanliness_CB.getSelectionModel().getSelectedItem().toString(); //this returns the value of the choiceBox
-        } catch (Exception e) {
-            System.out.println("man is throwing an exception\ncleanliness: " + cleanlinessUpdate);
-        }
-        
-        System.out.println("everythin iri\ncleanliness: " + cleanlinessUpdate + "\n\n");
-    }
-    
-    public void confirmEdit() {
-        
-        checkTableSelection(); //first check there has been a selection from the table so we have an index
-        
-        //no we want to check there's a value to update hence there's a 
-        
-        
-        
-        try {
-            String cleanlinessUpdate = cleanliness_CB.getSelectionModel().getSelectedItem().toString(); //this returns the value of the choiceBox
-            System.out.println("choicebox returned:" + cleanlinessUpdate);
-            
-        } catch (NullPointerException e) {
-            
-            System.out.println("null pointer exeption occured --> FIX IT BRO !!");
-        }
-        
-        //UPDATE TABLE VIEW FROM CHIOCEBOX
-//        System.out.println("choice box no selection: " + cleanlinessUpdate);
-//        
-//        if (cleanlinessUpdate.equals("")) {
-//            printMessageLabels(false, true);
-//        } else {
-//            System.out.println("skipped passed check!!");
-//        }
-//        
-//        tableData.get(selectedIndex).setRoomCleanliness(cleanlinessUpdate);
-        
-        //UPDATE ACTUAL DATA 
-        int indexFromTable = 0;
-        
-//        updateDummyData(indexFromTable, cleanlinessUpdate);
-        
-        //set labels after edit
-        setSelectedLabels(getDataFromTable());
-        
-    }
-    
-    public void updateDummyData(int indexFromTableClickedReturned ,String cleanlinessUpdate){
-        int currentHallIndex = tableData.get(indexFromTableClickedReturned).getHallNumber();
-        int roomIndexToChange = tableData.get(indexFromTableClickedReturned).getRoomNumber() - 1;
-        
-        data.getHalls().get(currentHallIndex).getRooms().get(roomIndexToChange).setRoomCleanliness(convertCleanlinessDataDype(cleanlinessUpdate));
-        System.out.println(data.getHalls().get(currentHallIndex).getRooms().get(roomIndexToChange).getRoomCleanliness());
-    }
-    
-    
     
     public WardenTable getDataFromTable(){
         /**
@@ -290,8 +263,3 @@ public class WardenViewController implements Initializable {
         return tableData;
     }
 }
-
-    
-    
-
-

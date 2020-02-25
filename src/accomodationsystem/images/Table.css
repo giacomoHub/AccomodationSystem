@@ -24,6 +24,7 @@ and open the template in the editor.
 }
 .table-view .column-header{
        -fx-border-color: #015354;
+       -fx-border-width: 0;
 }
 
 .table-view .column-header-background .filler {
